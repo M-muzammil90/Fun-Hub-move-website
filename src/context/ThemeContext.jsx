@@ -16,10 +16,7 @@ export function ThemeProvider({ children }) {
       return savedTheme;
     }
 
-    return window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? 'dark'
-      : 'light';
+    return 'dark';
   });
 
   const isDark = theme === 'dark';

@@ -8,14 +8,21 @@
     --font-display: 'Syne', 'Plus Jakarta Sans', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
     font-family: var(--font-sans);
-    --bg-page: #f1f4f9;
-    --text-page: #0f172a;
+    --bg-page: #060913;
+    --text-page: #f8fafc;
+    color-scheme: dark;
   }
 
   html.dark {
     --bg-page: #060913;
     --text-page: #f8fafc;
     color-scheme: dark;
+  }
+
+  html:not(.dark) {
+    --bg-page: #f1f4f9;
+    --text-page: #0f172a;
+    color-scheme: light;
   }
 
   html {
