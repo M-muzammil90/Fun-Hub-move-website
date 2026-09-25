@@ -387,29 +387,40 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="space-y-5">
-        {/* Single header row: label left, filter pills right */}
-        <div className="flex items-center justify-between gap-4 flex-wrap">
-          {/* Left: Flame + label */}
-          <div className="flex items-center gap-2">
-            <div className="p-1 rounded-lg bg-red-600/20 text-red-400">
-              <Flame className="w-5 h-5 fill-current" />
+      <section className="space-y-4">
+        {/* Responsive Header Row: Title on top/left, Filter pills with full-width smooth scroll on mobile */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          {/* Left: Flame + Label */}
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+              <div className="p-1.5 rounded-xl bg-red-600/20 text-red-500 border border-red-500/30 shrink-0">
+                <Flame className="w-4 h-4 fill-current text-red-500" />
+              </div>
+              <h2 className="text-xs sm:text-sm font-black uppercase tracking-wider text-zinc-300 font-display flex items-baseline gap-1.5">
+                <span>Trending /</span>
+                <span className="text-red-500">Popular Content</span>
+              </h2>
             </div>
-            <span className="text-[11px] sm:text-xs font-black uppercase tracking-[0.18em] text-zinc-400">
-              Trending / <span className="text-red-500">Popular Content</span>
-            </span>
+            
+            <Link
+              to="/explore"
+              className="sm:hidden inline-flex items-center gap-1 text-xs font-bold text-zinc-400 hover:text-red-400 shrink-0 transition-colors"
+            >
+              <span>View All</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
 
-          {/* Right: Category filter pills */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none shrink-0">
+          {/* Right: Category filter pills - smooth full width horizontal scroll on mobile, flex-wrap on desktop */}
+          <div className="w-full sm:w-auto flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none -mx-1 px-1 sm:mx-0 sm:px-0">
             {trendingCategories.map((cat) => (
               <button
                 key={cat}
                 type="button"
                 onClick={() => setTrendingCategoryFilter(cat)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all shrink-0 ${
+                className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all shrink-0 whitespace-nowrap ${
                   trendingCategoryFilter === cat
-                    ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-lg shadow-red-600/30'
+                    ? 'bg-gradient-to-r from-red-600 via-rose-600 to-red-700 text-white shadow-lg shadow-red-600/30 border border-red-400/40'
                     : 'bg-[#0e1424] text-zinc-400 hover:text-white border border-white/10 hover:bg-[#151f38]'
                 }`}
               >
@@ -419,17 +430,18 @@ export default function Home() {
 
             <Link
               to="/explore"
-              className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-bold text-zinc-300 hover:text-white shrink-0 ml-1"
+              className="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 text-xs font-bold text-zinc-300 hover:text-white shrink-0 ml-1 whitespace-nowrap"
             >
               <span>View All</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
         </div>
-        {/* Horizontal Scroll Slider — no arrows */}
-        <div className="flex gap-4 overflow-x-auto scrollbar-none snap-x snap-mandatory pb-2 -mx-1 px-1">
+
+        {/* Horizontal Scroll Slider */}
+        <div className="flex gap-3 sm:gap-4 overflow-x-auto scrollbar-none snap-x snap-mandatory pb-2 -mx-3 px-3 sm:mx-0 sm:px-0">
           {filteredTrendingContent.slice(0, 8).map((item, idx) => (
-            <div key={item.id} className="snap-start shrink-0 w-[calc(20%-13px)] min-w-[170px]">
+            <div key={item.id} className="snap-start shrink-0 w-[160px] sm:w-[185px] lg:w-[calc(20%-13px)]">
               <ContentCard content={item} rank={idx + 1} />
             </div>
           ))}
@@ -570,25 +582,35 @@ export default function Home() {
       ========================================================= */}
       <section className="space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div className="flex items-center gap-2.5">
-            <div className="p-1.5 rounded-xl bg-red-600/20 border border-red-500/30 text-red-500 shadow-md shadow-red-500/10 shrink-0">
-              <Calendar className="w-4 h-4 text-red-500" />
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2.5">
+              <div className="p-1.5 rounded-xl bg-red-600/20 border border-red-500/30 text-red-500 shadow-md shadow-red-500/10 shrink-0">
+                <Calendar className="w-4 h-4 text-red-500" />
+              </div>
+              <h2 className="text-base sm:text-lg lg:text-xl font-black text-white tracking-tight font-display flex items-baseline gap-1.5">
+                <span>Upcoming</span>
+                <span className="text-red-500">Releases</span>
+              </h2>
             </div>
-            <h2 className="text-base sm:text-lg lg:text-xl font-black text-white tracking-tight font-display flex items-baseline gap-1.5">
-              <span>Upcoming</span>
-              <span className="text-red-500">Releases</span>
-            </h2>
+
+            <Link
+              to="/explore"
+              className="sm:hidden inline-flex items-center gap-1 text-xs font-bold text-zinc-300 hover:text-red-400 shrink-0 transition-colors"
+            >
+              <span>View All</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2 shrink-0">
+          <div className="w-full sm:w-auto flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none -mx-1 px-1 sm:mx-0 sm:px-0">
             {upcomingCategories.map((cat) => (
               <button
                 key={cat}
                 type="button"
                 onClick={() => setUpcomingCategoryFilter(cat)}
-                className={`px-3 py-1 rounded-full text-xs font-bold transition-all shrink-0 cursor-pointer ${
+                className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all shrink-0 whitespace-nowrap cursor-pointer ${
                   upcomingCategoryFilter === cat
-                    ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-md shadow-red-600/30 scale-105'
+                    ? 'bg-gradient-to-r from-red-600 via-rose-600 to-red-700 text-white shadow-md shadow-red-600/30 border border-red-400/40'
                     : 'bg-[#0a0f1d] text-zinc-400 hover:text-white border border-white/10 hover:bg-[#121a30]'
                 }`}
               >
@@ -598,7 +620,7 @@ export default function Home() {
 
             <Link
               to="/explore"
-              className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-bold text-zinc-300 hover:text-red-400 shrink-0 ml-1 transition-colors"
+              className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 text-xs font-bold text-zinc-300 hover:text-red-400 shrink-0 ml-1 transition-colors whitespace-nowrap"
             >
               <span>View All</span>
               <ArrowRight className="w-3.5 h-3.5" />

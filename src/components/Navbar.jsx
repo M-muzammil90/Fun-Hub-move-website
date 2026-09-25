@@ -227,7 +227,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-              className="xl:hidden p-2 rounded-xl text-white hover:bg-black/25"
+              className="lg:hidden p-2 rounded-xl text-white hover:bg-black/25 transition-colors"
               aria-label="Toggle navigation menu"
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -235,8 +235,9 @@ export default function Navbar() {
           </div>
         </div>
 
+        {/* Mobile Navigation Drawer */}
         {isMobileMenuOpen && (
-          <div className="xl:hidden py-4 border-t border-white/20 space-y-4 animate-in fade-in slide-in-from-top-2 duration-150">
+          <div className="lg:hidden py-4 border-t border-white/10 space-y-4 animate-in fade-in slide-in-from-top-2 duration-150">
             <SearchBar
               className="w-full"
               inputClassName="w-full pl-10 pr-9 py-2 text-xs bg-black/40 border border-white/20 rounded-2xl text-white placeholder-white/70 focus:outline-none"
@@ -249,29 +250,29 @@ export default function Navbar() {
                 <button
                   type="button"
                   onClick={openLoginModal}
-                  className="flex-1 py-2 text-xs font-bold text-center text-white bg-black/40 border border-white/20 rounded-xl hover:border-pink-500/50"
+                  className="flex-1 py-2 text-xs font-bold text-center text-white bg-black/40 border border-white/20 rounded-xl hover:border-red-500/50 transition-colors"
                 >
                   Login
                 </button>
                 <button
                   type="button"
                   onClick={openRegisterModal}
-                  className="flex-1 py-2 text-xs font-black text-center text-white bg-gradient-to-r from-[#ff1361] to-[#7928ca] rounded-xl shadow-md shadow-pink-600/40"
+                  className="flex-1 py-2 text-xs font-black text-center text-white bg-gradient-to-r from-red-600 via-rose-600 to-red-700 rounded-xl shadow-md shadow-red-600/40 transition-colors"
                 >
                   Register
                 </button>
               </div>
             )}
 
-            <div className="grid grid-cols-2 gap-2">
-              <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 text-xs font-bold text-white hover:bg-black/30 rounded-xl bg-black/20 border border-white/10">Home</Link>
-              <Link to="/explore" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 text-xs font-bold text-white hover:bg-black/30 rounded-xl bg-black/20 border border-white/10">Explore</Link>
-              <Link to="/categories" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 text-xs font-bold text-white hover:bg-black/30 rounded-xl bg-black/20 border border-white/10">Categories</Link>
-              <Link to="/characters" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 text-xs font-bold text-white hover:bg-black/30 rounded-xl bg-black/20 border border-white/10">Characters</Link>
-              <Link to="/fan-creations" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 text-xs font-bold text-white hover:bg-black/30 rounded-xl bg-black/20 border border-white/10">Articles</Link>
-              <Link to="/events" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 text-xs font-bold text-white hover:bg-black/30 rounded-xl bg-black/20 border border-white/10">Events</Link>
-              <Link to="/media" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 text-xs font-bold text-white hover:bg-black/30 rounded-xl bg-black/20 border border-white/10">Media</Link>
-              <Link to="/merchandise" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 text-xs font-bold text-white hover:bg-black/30 rounded-xl bg-black/20 border border-white/10">Merchandise</Link>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 text-xs font-bold text-white hover:bg-red-950/40 rounded-xl bg-black/20 border border-white/10 flex items-center gap-2">Home</Link>
+              <Link to="/explore" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 text-xs font-bold text-white hover:bg-red-950/40 rounded-xl bg-black/20 border border-white/10 flex items-center gap-2">Explore</Link>
+              <Link to="/categories" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 text-xs font-bold text-white hover:bg-red-950/40 rounded-xl bg-black/20 border border-white/10 flex items-center gap-2">Categories</Link>
+              <Link to="/characters" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 text-xs font-bold text-white hover:bg-red-950/40 rounded-xl bg-black/20 border border-white/10 flex items-center gap-2">Characters</Link>
+              <Link to="/fan-creations" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 text-xs font-bold text-white hover:bg-red-950/40 rounded-xl bg-black/20 border border-white/10 flex items-center gap-2">Articles</Link>
+              <Link to="/events" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 text-xs font-bold text-white hover:bg-red-950/40 rounded-xl bg-black/20 border border-white/10 flex items-center gap-2">Events</Link>
+              <Link to="/media" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 text-xs font-bold text-white hover:bg-red-950/40 rounded-xl bg-black/20 border border-white/10 flex items-center gap-2">Media</Link>
+              <Link to="/merchandise" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 text-xs font-bold text-white hover:bg-red-950/40 rounded-xl bg-black/20 border border-white/10 flex items-center gap-2">Merchandise</Link>
             </div>
           </div>
         )}
