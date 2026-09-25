@@ -28,15 +28,19 @@ export default function Characters() {
 
   return (
     <div className="space-y-10 pb-20 max-w-7xl mx-auto">
-      <div className="relative rounded-3xl overflow-hidden border border-white/[0.08] bg-gradient-to-r from-[#110e24] via-[#090d16] to-[#121428] p-6 sm:p-12 shadow-2xl">
+      <div className="relative rounded-3xl overflow-hidden border border-red-900/40 bg-gradient-to-r from-[#150508] via-[#0a0b12] to-[#0e0609] p-6 sm:p-12 shadow-[0_0_60px_rgba(220,38,38,0.15)]">
+        {/* Glow orbs */}
+        <div className="absolute top-0 right-0 w-80 h-80 bg-red-600/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-1/3 w-40 h-40 bg-red-900/15 rounded-full blur-2xl pointer-events-none" />
+
         <div className="relative z-10 max-w-xl space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/20 text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-xl bg-red-500/10 text-red-400 border border-red-500/20 text-xs font-bold uppercase tracking-wider">
             <Users className="w-3.5 h-3.5" />
             <span>Fandom Lore Codex</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight font-display">
-            Characters <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Archive</span>
+            Characters <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-400 to-red-300">Archive</span>
           </h1>
 
           <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
@@ -51,7 +55,7 @@ export default function Characters() {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search characters by name, series, or abilities..."
-                className="w-full pl-10 pr-4 py-2.5 bg-black/60 border border-white/10 rounded-2xl text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500 transition-colors"
+                className="w-full pl-10 pr-4 py-2.5 bg-black/60 border border-white/10 rounded-2xl text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors"
               />
             </div>
           </div>
@@ -63,7 +67,7 @@ export default function Characters() {
             alt="Character codex background"
             className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#110e24] via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#150508] via-transparent to-transparent" />
         </div>
       </div>
 
@@ -71,10 +75,10 @@ export default function Characters() {
         <button
           type="button"
           onClick={() => setSelectedCategory('all')}
-          className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+          className={`px-4 py-1.5 rounded-xl text-xs font-bold transition-all ${
             selectedCategory === 'all'
-              ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30'
-              : 'bg-[#0c101d] text-zinc-400 hover:text-white border border-white/[0.08]'
+              ? 'bg-red-600 text-white shadow-lg shadow-red-600/30 border border-red-500/50'
+              : 'bg-[#0c101d] text-zinc-400 hover:text-white border border-white/[0.08] hover:border-red-500/40'
           }`}
         >
           All Categories
@@ -84,10 +88,10 @@ export default function Characters() {
             key={cat.id}
             type="button"
             onClick={() => setSelectedCategory(cat.slug)}
-            className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+            className={`px-4 py-1.5 rounded-xl text-xs font-bold transition-all ${
               selectedCategory === cat.slug
-                ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30'
-                : 'bg-[#0c101d] text-zinc-400 hover:text-white border border-white/[0.08]'
+                ? 'bg-red-600 text-white shadow-lg shadow-red-600/30 border border-red-500/50'
+                : 'bg-[#0c101d] text-zinc-400 hover:text-white border border-white/[0.08] hover:border-red-500/40'
             }`}
           >
             {cat.name}
@@ -96,7 +100,7 @@ export default function Characters() {
       </div>
 
       {filteredCharacters.length > 0 ? (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-7">
           {filteredCharacters.map((char) => (
             <CharacterCard key={char.id} character={char} />
           ))}

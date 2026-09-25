@@ -37,24 +37,24 @@ export default function CharacterDetails() {
     <div className="space-y-10 pb-16 max-w-6xl mx-auto">
       <Link
         to="/characters"
-        className="inline-flex items-center gap-1.5 text-xs font-semibold text-zinc-400 hover:text-white"
+        className="inline-flex items-center gap-1.5 text-xs font-semibold text-zinc-400 hover:text-red-400 transition-colors"
       >
         <ArrowLeft className="w-4 h-4" />
         <span>Back to Character Codex</span>
       </Link>
 
-      <div className="rounded-3xl overflow-hidden border border-[#1b263e] bg-[#0c1222] p-6 md:p-10 shadow-2xl">
+      <div className="rounded-3xl overflow-hidden border border-red-950/50 bg-gradient-to-b from-[#13080a] via-[#090b10] to-[#06070a] p-6 md:p-10 shadow-[0_0_50px_rgba(220,38,38,0.12)]">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-          <div className="relative rounded-2xl overflow-hidden border border-[#1b263e] bg-[#090d16] aspect-[3/4] shadow-xl">
+          <div className="relative rounded-2xl overflow-hidden border border-red-900/30 bg-[#06070a] aspect-[3/4] shadow-xl">
             <img
               src={imageSrc}
               alt={character.name}
               referrerPolicy="no-referrer"
               className="w-full h-full object-cover object-top"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0c1222] via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#06070a] via-transparent to-transparent" />
             <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
-              <span className="px-3 py-1 rounded-xl text-xs font-bold uppercase tracking-wider bg-purple-600 text-white shadow-md">
+              <span className="px-3 py-1 rounded-xl text-xs font-bold uppercase tracking-wider bg-red-600/90 text-white border border-red-400/40 shadow-md shadow-red-950/60 backdrop-blur-md">
                 {character.fandom || character.category}
               </span>
             </div>
@@ -62,33 +62,33 @@ export default function CharacterDetails() {
 
           <div className="md:col-span-2 space-y-6">
             <div>
-              <span className="text-xs font-mono text-zinc-400 font-semibold uppercase tracking-wider">
+              <span className="text-xs font-mono text-red-400 font-semibold uppercase tracking-wider">
                 Codex Entry • {character.category}
               </span>
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight font-display mt-1 mb-2">
                 {character.name}
               </h1>
-              <p className="text-sm font-semibold text-cyan-400">
+              <p className="text-sm font-semibold text-red-300/90">
                 {shortBioText}
               </p>
             </div>
 
             {character.quote && (
-              <div className="p-4 rounded-2xl bg-[#141d33] border border-[#22304e] flex items-start gap-3">
-                <Quote className="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />
+              <div className="p-4 rounded-2xl bg-[#14080b] border border-red-900/30 flex items-start gap-3">
+                <Quote className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
                 <p className="text-xs sm:text-sm italic text-zinc-200">
                   "{character.quote}"
                 </p>
               </div>
             )}
 
-            <div className="p-4 rounded-2xl bg-[#080d1a] border border-[#1b263e] grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+            <div className="p-4 rounded-2xl bg-[#0a0c13] border border-white/[0.08] grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
               <div className="space-y-1">
                 <span className="text-zinc-500 font-bold uppercase tracking-wider text-[10px]">
                   Affiliation & Role
                 </span>
                 <p className="text-zinc-200 font-semibold flex items-center gap-1.5">
-                  <Shield className="w-4 h-4 text-blue-400" />
+                  <Shield className="w-4 h-4 text-red-400" />
                   {affiliationText || 'Independent Legend'}
                 </p>
               </div>
@@ -111,7 +111,7 @@ export default function CharacterDetails() {
                     Voice Actor
                   </span>
                   <p className="text-zinc-200 font-semibold flex items-center gap-1.5">
-                    <Mic className="w-4 h-4 text-purple-400" />
+                    <Mic className="w-4 h-4 text-red-400" />
                     {character.voiceActor}
                   </p>
                 </div>
@@ -122,7 +122,7 @@ export default function CharacterDetails() {
                   <span className="text-zinc-500 font-bold uppercase tracking-wider text-[10px]">
                     Status
                   </span>
-                  <p className="text-emerald-400 font-semibold flex items-center gap-1.5">
+                  <p className="text-red-400 font-semibold flex items-center gap-1.5">
                     <Sparkles className="w-4 h-4" />
                     {character.status}
                   </p>
@@ -148,7 +148,7 @@ export default function CharacterDetails() {
                   {character.tags.map((t) => (
                     <span
                       key={t}
-                      className="px-2.5 py-1 rounded-xl bg-[#141d33] border border-[#22304e] text-blue-400 text-xs font-medium"
+                      className="px-2.5 py-1 rounded-xl bg-red-950/40 border border-red-900/30 text-red-400 text-xs font-medium"
                     >
                       #{t}
                     </span>
@@ -163,7 +163,7 @@ export default function CharacterDetails() {
       {relatedContent.length > 0 && (
         <div className="space-y-4">
           <div className="flex items-center gap-2">
-            <Film className="w-5 h-5 text-blue-400" />
+            <Film className="w-5 h-5 text-red-500" />
             <h3 className="text-xl font-black text-white tracking-tight font-display">
               Related Appearances & Media
             </h3>

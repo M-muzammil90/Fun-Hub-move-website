@@ -12,11 +12,15 @@ import {
   Shield,
   Bookmark,
   LogOut,
-  Flame
+  Flame,
+  UserPlus,
+  LogIn
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import SearchBar from './SearchBar';
+import ThemeToggle from "../components/ThemeToggle";
+import AuthModal from './AuthModal';
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -25,9 +29,25 @@ export default function Navbar() {
   const [isMoreDropdownOpen, setIsMoreDropdownOpen] = useState(false);
   const [hasUnreadNotification, setHasUnreadNotification] = useState(true);
 
+  // Industry-level Auth Modal State
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [authModalMode, setAuthModalMode] = useState('login');
+
   const { currentUser, isAuthenticated, isAdmin, logout, switchRole } = useAuth();
   const { isDark, toggleTheme } = useTheme();
   const navigate = useNavigate();
+
+  const openLoginModal = () => {
+    setAuthModalMode('login');
+    setAuthModalOpen(true);
+    setIsMobileMenuOpen(false);
+  };
+
+  const openRegisterModal = () => {
+    setAuthModalMode('register');
+    setAuthModalOpen(true);
+    setIsMobileMenuOpen(false);
+  };
 
   const categories = [
     { name: 'Anime', path: '/category/anime' },
@@ -64,157 +84,6 @@ export default function Navbar() {
                 </span>
               </span>
             </Link>
-
-            <nav className="hidden xl:flex items-center gap-2 text-xs font-bold text-zinc-300">
-              <NavLink
-                to="/"
-                className={({ isActive }) =>
-                  `px-3 py-1.5 transition-all relative ${
-                    isActive
-                      ? 'text-white font-black after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-5 after:h-0.5 after:bg-[#ff2e63] after:rounded-full'
-                      : 'hover:text-white'
-                  }`
-                }
-              >
-                <span>Home</span>
-              </NavLink>
-
-              <NavLink
-                to="/explore"
-                className={({ isActive }) =>
-                  `px-3 py-1.5 transition-all relative ${
-                    isActive
-                      ? 'text-white font-black after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-5 after:h-0.5 after:bg-[#ff2e63] after:rounded-full'
-                      : 'hover:text-white'
-                  }`
-                }
-              >
-                Explore
-              </NavLink>
-
-              <div
-                className="relative"
-                onMouseEnter={() => setIsCategoriesDropdownOpen(true)}
-                onMouseLeave={() => setIsCategoriesDropdownOpen(false)}
-              >
-                <button
-                  type="button"
-                  className="flex items-center gap-1 px-3.5 py-1.5 rounded-xl transition-all hover:text-white hover:bg-black/20 text-white/85 font-bold"
-                >
-                  <span>Categories</span>
-                  <ChevronDown className="w-3.5 h-3.5 text-white/80" />
-                </button>
-
-                {isCategoriesDropdownOpen && (
-                  <div className="absolute top-full left-0 w-52 bg-[#30050a] border border-red-500/40 rounded-2xl shadow-2xl py-2 z-50 animate-in fade-in zoom-in-95 backdrop-blur-xl">
-                    <Link
-                      to="/categories"
-                      onClick={() => setIsCategoriesDropdownOpen(false)}
-                      className="block px-4 py-2 text-xs font-black text-amber-300 hover:bg-red-950/70"
-                    >
-                      All Categories Overview →
-                    </Link>
-                    <div className="my-1 border-t border-red-500/20" />
-                    {categories.map((c) => (
-                      <Link
-                        key={c.name}
-                        to={c.path}
-                        onClick={() => setIsCategoriesDropdownOpen(false)}
-                        className="block px-4 py-1.5 text-xs text-white/90 hover:text-white hover:bg-red-900/40 font-medium"
-                      >
-                        {c.name}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              <NavLink
-                to="/characters"
-                className={({ isActive }) =>
-                  `px-3.5 py-1.5 rounded-xl transition-all ${
-                    isActive
-                      ? 'bg-white/20 text-white shadow-inner border border-white/25'
-                      : 'hover:text-white hover:bg-black/20'
-                  }`
-                }
-              >
-                Characters
-              </NavLink>
-
-              <NavLink
-                to="/fan-creations"
-                className={({ isActive }) =>
-                  `px-3.5 py-1.5 rounded-xl transition-all ${
-                    isActive
-                      ? 'bg-white/20 text-white shadow-inner border border-white/25'
-                      : 'hover:text-white hover:bg-black/20'
-                  }`
-                }
-              >
-                Articles
-              </NavLink>
-
-              <NavLink
-                to="/events"
-                className={({ isActive }) =>
-                  `px-3.5 py-1.5 rounded-xl transition-all ${
-                    isActive
-                      ? 'bg-white/20 text-white shadow-inner border border-white/25'
-                      : 'hover:text-white hover:bg-black/20'
-                  }`
-                }
-              >
-                Events
-              </NavLink>
-
-              <div
-                className="relative"
-                onMouseEnter={() => setIsMoreDropdownOpen(true)}
-                onMouseLeave={() => setIsMoreDropdownOpen(false)}
-              >
-                <button
-                  type="button"
-                  className="flex items-center gap-1 px-3.5 py-1.5 rounded-xl transition-all hover:text-white hover:bg-black/20 text-white/85 font-bold"
-                >
-                  <span>More</span>
-                  <ChevronDown className="w-3.5 h-3.5 text-white/80" />
-                </button>
-
-                {isMoreDropdownOpen && (
-                  <div className="absolute top-full left-0 w-48 bg-[#30050a] border border-red-500/40 rounded-2xl shadow-2xl py-2 z-50 animate-in fade-in zoom-in-95 backdrop-blur-xl">
-                    <Link
-                      to="/media"
-                      onClick={() => setIsMoreDropdownOpen(false)}
-                      className="block px-4 py-2 text-xs text-white/90 hover:text-white hover:bg-red-900/40"
-                    >
-                      Multimedia Center
-                    </Link>
-                    <Link
-                      to="/merchandise"
-                      onClick={() => setIsMoreDropdownOpen(false)}
-                      className="block px-4 py-2 text-xs text-white/90 hover:text-white hover:bg-red-900/40"
-                    >
-                      Merchandise
-                    </Link>
-                    <Link
-                      to="/about"
-                      onClick={() => setIsMoreDropdownOpen(false)}
-                      className="block px-4 py-2 text-xs text-white/90 hover:text-white hover:bg-red-900/40"
-                    >
-                      About Platform
-                    </Link>
-                    <Link
-                      to="/feedback"
-                      onClick={() => setIsMoreDropdownOpen(false)}
-                      className="block px-4 py-2 text-xs text-white/90 hover:text-white hover:bg-red-900/40"
-                    >
-                      Feedback & Support
-                    </Link>
-                  </div>
-                )}
-              </div>
-            </nav>
           </div>
 
           <div className="hidden md:flex flex-1 max-w-md mx-2">
@@ -224,17 +93,9 @@ export default function Navbar() {
               placeholder="Search anime, movies, characters, events..."
             />
           </div>
-
+        
           <div className="flex items-center gap-2.5 shrink-0">
-            <button
-              type="button"
-              onClick={toggleTheme}
-              className="p-2 rounded-xl text-white/80 hover:text-white bg-black/20 hover:bg-black/35 border border-white/15 transition-colors"
-              title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-              aria-label="Toggle theme"
-            >
-              {isDark ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4 text-amber-300" />}
-            </button>
+            <ThemeToggle />
 
             <button
               type="button"
@@ -346,18 +207,20 @@ export default function Navbar() {
               </div>
             ) : (
               <div className="flex items-center gap-2">
-                <Link
-                  to="/login"
-                  className="px-4 py-1.5 text-xs font-bold text-white hover:border-white rounded-full border border-white/25 transition-all bg-black/30 backdrop-blur-sm"
+                <button
+                  type="button"
+                  onClick={openLoginModal}
+                  className="px-4 py-1.5 text-xs font-bold text-white hover:text-pink-300 hover:border-pink-500/50 rounded-full border border-white/25 transition-all bg-black/40 backdrop-blur-md hover:bg-pink-950/30 shadow-sm"
                 >
                   Login
-                </Link>
-                <Link
-                  to="/register"
-                  className="px-4 py-1.5 text-xs font-extrabold text-white bg-gradient-to-r from-[#ff2e63] to-[#e6005c] hover:from-[#ff1751] hover:to-[#cc004b] rounded-full transition-all shadow-lg shadow-[#ff2e63]/30 hover:scale-105 active:scale-95"
+                </button>
+                <button
+                  type="button"
+                  onClick={openRegisterModal}
+                  className="px-4 py-1.5 text-xs font-black text-white bg-gradient-to-r from-[#ff1361] via-[#d60067] to-[#7928ca] hover:from-[#ff2371] hover:to-[#8938da] rounded-full transition-all shadow-md shadow-pink-600/40 hover:shadow-pink-600/70 hover:scale-105 active:scale-95 border border-pink-400/40"
                 >
-                  Sign Up
-                </Link>
+                  Register
+                </button>
               </div>
             )}
 
@@ -380,6 +243,26 @@ export default function Navbar() {
               placeholder="Search anime, games, characters..."
             />
 
+            {/* Mobile Auth Buttons */}
+            {!isAuthenticated && (
+              <div className="flex items-center gap-2 pt-1 pb-2">
+                <button
+                  type="button"
+                  onClick={openLoginModal}
+                  className="flex-1 py-2 text-xs font-bold text-center text-white bg-black/40 border border-white/20 rounded-xl hover:border-pink-500/50"
+                >
+                  Login
+                </button>
+                <button
+                  type="button"
+                  onClick={openRegisterModal}
+                  className="flex-1 py-2 text-xs font-black text-center text-white bg-gradient-to-r from-[#ff1361] to-[#7928ca] rounded-xl shadow-md shadow-pink-600/40"
+                >
+                  Register
+                </button>
+              </div>
+            )}
+
             <div className="grid grid-cols-2 gap-2">
               <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 text-xs font-bold text-white hover:bg-black/30 rounded-xl bg-black/20 border border-white/10">Home</Link>
               <Link to="/explore" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 text-xs font-bold text-white hover:bg-black/30 rounded-xl bg-black/20 border border-white/10">Explore</Link>
@@ -393,6 +276,14 @@ export default function Navbar() {
           </div>
         )}
       </div>
+
+      {/* Interactive Industry-Level Auth Modal */}
+      <AuthModal
+        isOpen={authModalOpen}
+        onClose={() => setAuthModalOpen(false)}
+        initialMode={authModalMode}
+      />
     </header>
   );
 }
+

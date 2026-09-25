@@ -1,20 +1,37 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { UserPlus, Mail, Lock, User, AlertCircle } from 'lucide-react';
+import {
+  UserPlus,
+  Mail,
+  Lock,
+  User,
+  Eye,
+  EyeOff,
+  Flame,
+  ArrowRight,
+  Users,
+  Star,
+  Zap,
+  Crown,
+  AlertCircle
+} from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import animeBg from '../assets/auth_anime_bg.jpg';
 
 export default function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const { register } = useAuth();
   const navigate = useNavigate();
 
   const validate = () => {
     const errs = {};
-    if (!name.trim()) errs.name = 'Full name or handle is required';
+    if (!name.trim()) errs.name = 'Full name is required';
     if (!email.trim()) {
       errs.email = 'Email address is required';
     } else if (!/\S+@\S+\.\S+/.test(email)) {
@@ -42,125 +59,285 @@ export default function Register() {
     }
   };
 
+  const features = [
+    {
+      icon: Users,
+      title: 'Connect',
+      desc: 'Meet fellow anime & gaming fans and make new friends.'
+    },
+    {
+      icon: Star,
+      title: 'Explore',
+      desc: 'Discover amazing content, news, lore and updates.'
+    },
+    {
+      icon: Zap,
+      title: 'Create',
+      desc: 'Share your fan arts, stories and character builds.'
+    },
+    {
+      icon: Crown,
+      title: 'Be Part',
+      desc: 'Join exclusive events, tournaments and activities.'
+    }
+  ];
+
   return (
-    <div className="max-w-md mx-auto py-12 px-4 sm:px-6">
-      <div className="rounded-3xl border border-white/[0.08] bg-[#0c101d] p-8 shadow-2xl space-y-6">
-        <div className="text-center space-y-2">
-          <div className="w-12 h-12 rounded-2xl bg-blue-600/20 text-blue-400 border border-blue-500/30 flex items-center justify-center mx-auto shadow-lg">
-            <UserPlus className="w-6 h-6" />
+    <div className="relative min-h-[calc(100vh-5rem)] w-full -mt-6 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-8 py-4 sm:py-6 flex flex-col justify-between overflow-hidden bg-[#070204]">
+      {/* Background Image Layer with Crimson & Ruby Red Glow */}
+      <div className="absolute inset-0 pointer-events-none">
+        <img
+          src={animeBg}
+          alt="Anime Community Atmosphere"
+          className="w-full h-full object-cover object-left opacity-35 filter saturate-125 contrast-125 hue-rotate-[-30deg]"
+        />
+        {/* Dark Vignette & Red Color Gradients */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#080205]/95 via-[#120308]/90 to-[#070204]/95" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#070204] via-transparent to-[#080205]/80" />
+
+        {/* Ambient Red Glows */}
+        <div className="absolute top-10 left-10 w-96 h-96 bg-red-600/15 rounded-full blur-[120px]" />
+        <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-rose-600/20 rounded-full blur-[140px]" />
+      </div>
+
+      {/* Top Header Bar */}
+      <header className="relative z-20 flex items-center justify-between py-2 border-b border-white/10 mb-4 sm:mb-6">
+        <Link to="/" className="flex items-center gap-2.5 group">
+          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-red-500 via-red-600 to-rose-700 p-0.5 shadow-[0_0_15px_rgba(239,68,68,0.5)]">
+            <div className="w-full h-full bg-[#0d0305] rounded-[10px] flex items-center justify-center">
+              <Flame className="w-4 h-4 text-red-500 fill-red-500" />
+            </div>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight font-display">
-            Join Fan Hub Plus
-          </h1>
-          <p className="text-xs text-zinc-400 font-medium">
-            Create an account to join watch parties, curate lists, and submit fan work.
-          </p>
+          <div className="flex items-center gap-1.5">
+            <span className="text-base font-black tracking-tight text-white font-display">
+              FAN HUB
+            </span>
+            <span className="px-1.5 py-0.5 rounded-md bg-red-600 text-white text-[10px] font-black uppercase tracking-wider shadow-sm shadow-red-600/50">
+              PLUS
+            </span>
+          </div>
+        </Link>
+
+        <div className="flex items-center gap-1.5 text-xs text-zinc-300">
+          <span className="hidden xs:inline">Already have an account?</span>
+          <Link
+            to="/login"
+            className="inline-flex items-center gap-1 text-red-400 hover:text-white font-black transition-colors"
+          >
+            <span>Login</span>
+            <ArrowRight className="w-3.5 h-3.5 text-red-500" />
+          </Link>
+        </div>
+      </header>
+
+      {/* Main Content: Left Column + Right Card */}
+      <main className="relative z-20 max-w-5xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center my-auto pb-6">
+        
+        {/* Left Column: Community Points */}
+        <div className="lg:col-span-5 space-y-6">
+          {/* Heading */}
+          <div className="space-y-2">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-red-200 to-red-500 tracking-tight leading-tight italic drop-shadow-[0_0_25px_rgba(239,68,68,0.5)]">
+              Join Our <br />
+              Amazing <br />
+              Community
+            </h2>
+            <div className="w-16 h-1 rounded-full bg-gradient-to-r from-red-500 to-transparent shadow-[0_0_10px_rgba(239,68,68,0.8)]" />
+          </div>
+
+          {/* 4 Feature Items */}
+          <div className="space-y-3.5">
+            {features.map((item, idx) => {
+              const Icon = item.icon;
+              return (
+                <div key={idx} className="flex items-start gap-3.5 group">
+                  <div className="w-9 h-9 rounded-full border border-red-500/70 bg-red-950/60 text-red-400 flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(239,68,68,0.35)] group-hover:scale-110 group-hover:bg-red-600 group-hover:text-white transition-all duration-300">
+                    <Icon className="w-4 h-4" />
+                  </div>
+                  <div className="space-y-0.5">
+                    <h4 className="text-xs sm:text-sm font-black text-white group-hover:text-red-300 transition-colors">
+                      {item.title}
+                    </h4>
+                    <p className="text-[11px] text-zinc-300 leading-relaxed font-normal">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-1.5">
-              Creator / Fandom Handle
-            </label>
-            <div className="relative">
-              <User className="absolute left-3.5 top-3 w-4 h-4 text-zinc-500" />
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="e.g. CyberValkyrie"
-                className="w-full pl-10 pr-4 py-2.5 bg-black/50 border border-white/10 rounded-xl text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-blue-500"
-              />
+        {/* Right Column: Red & White Form Card */}
+        <div className="lg:col-span-7 max-w-md w-full mx-auto">
+          <div className="relative rounded-2xl p-5 sm:p-6 bg-[#0d0407]/95 backdrop-blur-2xl border-2 border-red-500/70 shadow-[0_0_40px_rgba(239,68,68,0.35)] transition-all">
+            
+            {/* Header / Avatar Box */}
+            <div className="text-center space-y-2 mb-4">
+              <div className="inline-flex p-2.5 rounded-xl bg-gradient-to-br from-red-500/20 to-rose-600/20 border border-red-500/60 shadow-[0_0_20px_rgba(239,68,68,0.4)]">
+                <Flame className="w-5 h-5 text-red-500 fill-red-500" />
+              </div>
+
+              <div>
+                <h1 className="text-xl sm:text-2xl font-black text-white tracking-tight font-display">
+                  Create Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-400 to-white">Account</span>
+                </h1>
+                <p className="text-[11px] text-zinc-400 font-medium">
+                  Join Fan Hub Plus and be part of something amazing!
+                </p>
+              </div>
+
+              <div className="w-10 h-0.5 mx-auto rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]" />
             </div>
-            {errors.name && (
-              <p className="text-[11px] text-rose-400 flex items-center gap-1 mt-1 font-medium">
-                <AlertCircle className="w-3 h-3" />
-                {errors.name}
-              </p>
-            )}
-          </div>
 
-          <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-1.5">
-              Email Address
-            </label>
-            <div className="relative">
-              <Mail className="absolute left-3.5 top-3 w-4 h-4 text-zinc-500" />
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="valkyrie@fanhub.io"
-                className="w-full pl-10 pr-4 py-2.5 bg-black/50 border border-white/10 rounded-xl text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-blue-500"
-              />
+            {/* Registration Form */}
+            <form onSubmit={handleSubmit} className="space-y-2.5">
+              
+              {/* Full Name */}
+              <div className="space-y-0.5">
+                <label className="flex items-center gap-1.5 text-[11px] font-bold text-white">
+                  <User className="w-3 h-3 text-red-400" />
+                  <span>Full Name</span>
+                </label>
+                <div className="relative">
+                  <User className="absolute left-3 top-2.5 w-3.5 h-3.5 text-zinc-400" />
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Enter your full name"
+                    className="w-full pl-9 pr-3 py-2 bg-[#120509]/90 border border-white/10 rounded-xl text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all shadow-inner"
+                  />
+                </div>
+                {errors.name && (
+                  <p className="text-[10px] text-red-400 flex items-center gap-1 font-medium">
+                    <AlertCircle className="w-2.5 h-2.5" />
+                    {errors.name}
+                  </p>
+                )}
+              </div>
+
+              {/* Email Address */}
+              <div className="space-y-0.5">
+                <label className="flex items-center gap-1.5 text-[11px] font-bold text-white">
+                  <Mail className="w-3 h-3 text-red-400" />
+                  <span>Email Address</span>
+                </label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-2.5 w-3.5 h-3.5 text-zinc-400" />
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email address"
+                    className="w-full pl-9 pr-3 py-2 bg-[#120509]/90 border border-white/10 rounded-xl text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all shadow-inner"
+                  />
+                </div>
+                {errors.email && (
+                  <p className="text-[10px] text-red-400 flex items-center gap-1 font-medium">
+                    <AlertCircle className="w-2.5 h-2.5" />
+                    {errors.email}
+                  </p>
+                )}
+              </div>
+
+              {/* Password */}
+              <div className="space-y-0.5">
+                <label className="flex items-center gap-1.5 text-[11px] font-bold text-white">
+                  <Lock className="w-3 h-3 text-red-400" />
+                  <span>Password</span>
+                </label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-2.5 w-3.5 h-3.5 text-zinc-400" />
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Create a password"
+                    className="w-full pl-9 pr-9 py-2 bg-[#120509]/90 border border-white/10 rounded-xl text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all shadow-inner"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-2.5 text-zinc-400 hover:text-white transition-colors"
+                  >
+                    {showPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+                  </button>
+                </div>
+                {errors.password && (
+                  <p className="text-[10px] text-red-400 flex items-center gap-1 font-medium">
+                    <AlertCircle className="w-2.5 h-2.5" />
+                    {errors.password}
+                  </p>
+                )}
+              </div>
+
+              {/* Confirm Password */}
+              <div className="space-y-0.5">
+                <label className="flex items-center gap-1.5 text-[11px] font-bold text-white">
+                  <Lock className="w-3 h-3 text-red-400" />
+                  <span>Confirm Password</span>
+                </label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-2.5 w-3.5 h-3.5 text-zinc-400" />
+                  <input
+                    type={showConfirmPassword ? 'text' : 'password'}
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    placeholder="Confirm your password"
+                    className="w-full pl-9 pr-9 py-2 bg-[#120509]/90 border border-white/10 rounded-xl text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all shadow-inner"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    className="absolute right-3 top-2.5 text-zinc-400 hover:text-white transition-colors"
+                  >
+                    {showConfirmPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+                  </button>
+                </div>
+                {errors.confirmPassword && (
+                  <p className="text-[10px] text-red-400 flex items-center gap-1 font-medium">
+                    <AlertCircle className="w-2.5 h-2.5" />
+                    {errors.confirmPassword}
+                  </p>
+                )}
+              </div>
+
+              {/* Register Button */}
+              <div className="pt-2">
+                <button
+                  type="submit"
+                  className="w-full py-2.5 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-500 text-white font-black text-xs sm:text-sm shadow-[0_0_25px_rgba(239,68,68,0.5)] hover:shadow-[0_0_35px_rgba(239,68,68,0.7)] flex items-center justify-center gap-2 transition-all duration-300 hover:scale-[1.01]"
+                >
+                  <UserPlus className="w-4 h-4" />
+                  <span>Register</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </form>
+
+            {/* OR Divider */}
+            <div className="relative flex items-center justify-center my-3">
+              <div className="w-full border-t border-white/10" />
+              <span className="absolute px-2.5 bg-[#0d0407] text-[10px] font-bold text-zinc-400 uppercase tracking-widest">
+                OR
+              </span>
             </div>
-            {errors.email && (
-              <p className="text-[11px] text-rose-400 flex items-center gap-1 mt-1 font-medium">
-                <AlertCircle className="w-3 h-3" />
-                {errors.email}
-              </p>
-            )}
-          </div>
 
-          <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-1.5">
-              Password
-            </label>
-            <div className="relative">
-              <Lock className="absolute left-3.5 top-3 w-4 h-4 text-zinc-500" />
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                className="w-full pl-10 pr-4 py-2.5 bg-black/50 border border-white/10 rounded-xl text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-blue-500"
-              />
+            {/* Bottom Login Text */}
+            <div className="text-center text-[11px] text-zinc-300">
+              <span>Already have an account?</span>
+              <Link
+                to="/login"
+                className="inline-flex items-center gap-1 text-red-400 hover:text-white font-bold ml-1.5 transition-colors"
+              >
+                <span>Login</span>
+                <ArrowRight className="w-3 h-3 text-red-500" />
+              </Link>
             </div>
-            {errors.password && (
-              <p className="text-[11px] text-rose-400 flex items-center gap-1 mt-1 font-medium">
-                <AlertCircle className="w-3 h-3" />
-                {errors.password}
-              </p>
-            )}
           </div>
-
-          <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-1.5">
-              Confirm Password
-            </label>
-            <div className="relative">
-              <Lock className="absolute left-3.5 top-3 w-4 h-4 text-zinc-500" />
-              <input
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder="••••••••"
-                className="w-full pl-10 pr-4 py-2.5 bg-black/50 border border-white/10 rounded-xl text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-blue-500"
-              />
-            </div>
-            {errors.confirmPassword && (
-              <p className="text-[11px] text-rose-400 flex items-center gap-1 mt-1 font-medium">
-                <AlertCircle className="w-3 h-3" />
-                {errors.confirmPassword}
-              </p>
-            )}
-          </div>
-
-          <button
-            type="submit"
-            className="w-full py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs transition-all shadow-lg shadow-blue-600/30"
-          >
-            Create Fandom Account
-          </button>
-        </form>
-
-        <p className="text-center text-xs text-zinc-400 font-medium">
-          Already registered?{' '}
-          <Link to="/login" className="text-blue-400 hover:text-blue-300 font-bold">
-            Sign In
-          </Link>
-        </p>
-      </div>
+        </div>
+      </main>
     </div>
   );
 }

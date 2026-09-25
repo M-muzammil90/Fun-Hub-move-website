@@ -9,7 +9,7 @@ export default function Layout() {
   const [isChatbotModalOpen, setIsChatbotModalOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#080b12] text-zinc-100 flex flex-col selection:bg-blue-600 selection:text-white">
+    <div className="min-h-screen bg-slate-900 text-zinc-100 dark:bg-[#080b12] dark:text-zinc-100 flex flex-col selection:bg-[#ff2e63] selection:text-white transition-colors duration-300">
       <Navbar />
       <div className="flex-1 flex w-full">
         <Sidebar onChatbotOpen={() => setIsChatbotModalOpen(true)} />

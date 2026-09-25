@@ -26,13 +26,17 @@ export default function Merchandise() {
 
   return (
     <div className="space-y-10 pb-20">
-      <div className="relative rounded-3xl overflow-hidden border border-[#1b263e] bg-gradient-to-r from-[#0d1425] via-[#090d16] to-[#121b30] p-6 sm:p-12 shadow-2xl">
+      <div className="relative rounded-3xl overflow-hidden border border-red-900/40 bg-gradient-to-r from-[#150508] via-[#0a0b12] to-[#0e0609] p-6 sm:p-12 shadow-[0_0_60px_rgba(220,38,38,0.15)]">
+        {/* Glow orbs */}
+        <div className="absolute top-0 right-0 w-80 h-80 bg-red-600/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-1/4 w-40 h-40 bg-red-900/15 rounded-full blur-2xl pointer-events-none" />
+
         <div className="relative z-10 max-w-xl space-y-4">
-          <span className="text-xs font-bold uppercase tracking-wider text-blue-400">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-red-500/10 text-red-400 border border-red-500/20 text-xs font-bold uppercase tracking-wider">
             Official Fandom Store
           </span>
           <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight font-display">
-            Official <span className="text-purple-400">Merchandise</span>
+            Official <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-400 to-red-300">Merchandise</span>
           </h1>
           <p className="text-xs sm:text-sm text-zinc-300">
             Bring your favorite fandoms to life. High-quality merch, for true fans.
@@ -41,7 +45,7 @@ export default function Merchandise() {
           <div className="pt-2">
             <a
               href="#store-grid"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs shadow-xl shadow-blue-500/25 transition-all hover:scale-105"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-bold text-xs shadow-xl shadow-red-600/35 transition-all hover:scale-105"
             >
               <ShoppingBag className="w-4 h-4" />
               <span>Shop Now</span>
@@ -55,7 +59,7 @@ export default function Merchandise() {
             alt="Merch Collection"
             className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0d1425] via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#150508] via-transparent to-transparent" />
         </div>
       </div>
 
@@ -69,8 +73,8 @@ export default function Merchandise() {
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
                   selectedCategory === cat
-                    ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30'
-                    : 'bg-[#0f1629] text-zinc-400 hover:text-white border border-[#1c2741]'
+                    ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-md shadow-red-600/30'
+                    : 'bg-black/40 text-zinc-400 hover:text-white border border-white/10 hover:border-red-500/30'
                 }`}
               >
                 {cat}
@@ -85,7 +89,7 @@ export default function Merchandise() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search gear, statues, hoodies..."
-              className="w-full pl-10 pr-4 py-2 bg-[#0c1222] border border-[#1b263e] rounded-xl text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-blue-500"
+              className="w-full pl-10 pr-4 py-2 bg-black/50 border border-white/10 rounded-xl text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors"
             />
           </div>
         </div>

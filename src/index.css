@@ -1,11 +1,21 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   :root {
     --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-display: 'Syne', 'Plus Jakarta Sans', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
     font-family: var(--font-sans);
+    --bg-page: #f1f4f9;
+    --text-page: #0f172a;
+  }
+
+  html.dark {
+    --bg-page: #060913;
+    --text-page: #f8fafc;
+    color-scheme: dark;
   }
 
   html {
@@ -16,31 +26,97 @@
   html.font-size-small {
     font-size: 14px;
   }
+
   html.font-size-normal {
     font-size: 16px;
   }
+
   html.font-size-large {
     font-size: 18px;
   }
 
   body {
-    transition: background-color 0.2s ease, color 0.2s ease;
+    background-color: var(--bg-page);
+    color: var(--text-page);
+    transition: background-color 0.3s ease, color 0.3s ease;
     overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* Light mode full screen styling */
+  html:not(.dark) {
+    color-scheme: light;
+  }
+
+  html:not(.dark) header {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    border-bottom-color: rgba(0, 0, 0, 0.1) !important;
+  }
+
+  html:not(.dark) aside {
+    background-color: #ffffff !important;
+    border-right-color: rgba(0, 0, 0, 0.1) !important;
+  }
+
+  html:not(.dark) footer {
+    background-color: #e8ecf4 !important;
+    border-top-color: rgba(0, 0, 0, 0.1) !important;
+    color: #475569 !important;
+  }
+
+  html:not(.dark) .bg-\[\#080b12\],
+  html:not(.dark) .bg-\[\#060913\],
+  html:not(.dark) .bg-\[\#070911\],
+  html:not(.dark) .bg-\[\#060a14\] {
+    background-color: #f1f4f9 !important;
+  }
+
+  html:not(.dark) .bg-\[\#090d18\],
+  html:not(.dark) .bg-\[\#0c101d\],
+  html:not(.dark) .bg-\[\#0a0f1d\],
+  html:not(.dark) .bg-\[\#070b16\]\/95,
+  html:not(.dark) .bg-\[\#0e1424\] {
+    background-color: #ffffff !important;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.06);
+  }
+
+  html:not(.dark) .border-white\/10,
+  html:not(.dark) .border-white\/15,
+  html:not(.dark) .border-white\/20,
+  html:not(.dark) .border-white\/\[0\.08\] {
+    border-color: rgba(0, 0, 0, 0.1) !important;
+  }
+
+  html:not(.dark) h1.text-white,
+  html:not(.dark) h2.text-white,
+  html:not(.dark) h3.text-white,
+  html:not(.dark) h4.text-white,
+  html:not(.dark) p.text-white {
+    color: #0f172a !important;
+  }
+
+  html:not(.dark) .text-zinc-400,
+  html:not(.dark) .text-zinc-500,
+  html:not(.dark) .text-zinc-300 {
+    color: #475569 !important;
   }
 
   ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
   }
+
   ::-webkit-scrollbar-track {
     background: transparent;
   }
+
   ::-webkit-scrollbar-thumb {
-    background: rgba(156, 163, 175, 0.25);
+    background: rgba(156, 163, 175, 0.35);
     border-radius: 9999px;
   }
+
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(156, 163, 175, 0.45);
+    background: rgba(156, 163, 175, 0.55);
   }
 }
 
@@ -49,7 +125,7 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
 .scrollbar-none::-webkit-scrollbar {
   display: none;
 }
-

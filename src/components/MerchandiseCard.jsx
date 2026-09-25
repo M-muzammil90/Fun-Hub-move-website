@@ -1,55 +1,77 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingCart, Star } from 'lucide-react';
+import { ShoppingCart, Star, ArrowUpRight } from 'lucide-react';
 
 export default function MerchandiseCard({ item, onAddToCart }) {
   const displayTitle = item.title || item.name;
   const displayPrice = typeof item.price === 'number' ? `$${item.price.toFixed(2)}` : item.price;
 
   return (
-    <div className="group rounded-3xl overflow-hidden border border-[#1b263e] bg-[#0c1222] hover:border-blue-500/40 transition-all duration-300 hover:-translate-y-1 shadow-xl flex flex-col justify-between">
-      <div className="relative aspect-square w-full overflow-hidden bg-zinc-900">
+    <div className="group rounded-2xl overflow-hidden border border-white/[0.07] bg-gradient-to-b from-[#0e1018] to-[#080b12] hover:border-red-500/40 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_8px_40px_rgba(239,68,68,0.18)] flex flex-col justify-between">
+
+      {/* Product Image */}
+      <div className="relative aspect-square w-full overflow-hidden bg-[#060810]">
         <Link to={`/merchandise/${item.slug}`} className="block w-full h-full">
           <img
             src={item.image}
             alt={displayTitle}
             referrerPolicy="no-referrer"
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
           />
+          {/* Cinematic overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </Link>
 
+        {/* Discount badge */}
         {item.discount && (
-          <span className="absolute top-3 left-3 px-2 py-0.5 rounded-lg bg-rose-600 text-white text-[10px] font-black uppercase tracking-wider shadow-md">
+          <span className="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-red-600 text-white text-[10px] font-black uppercase tracking-wider shadow-lg shadow-red-600/40 border border-red-400/30">
             {item.discount}
           </span>
         )}
+
+        {/* Quick view arrow */}
+        <Link
+          to={`/merchandise/${item.slug}`}
+          className="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-white/10 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 hover:bg-red-600 hover:border-red-400 transition-all duration-200"
+          aria-label="View product"
+        >
+          <ArrowUpRight className="w-4 h-4" />
+        </Link>
       </div>
 
+      {/* Info */}
       <div className="p-4 space-y-3">
         <div className="space-y-1">
-          <span className="text-[11px] font-bold text-blue-400 uppercase tracking-wider">
+          <span className="text-[10px] font-bold text-red-400 uppercase tracking-widest">
             {item.category}
           </span>
           <Link to={`/merchandise/${item.slug}`} className="block">
-            <h4 className="text-sm font-bold text-white group-hover:text-blue-400 transition-colors line-clamp-1">
+            <h4 className="text-sm font-bold text-white group-hover:text-red-400 transition-colors duration-200 line-clamp-1 font-display">
               {displayTitle}
             </h4>
           </Link>
         </div>
 
-        <div className="flex items-center justify-between pt-1 border-t border-[#1b263e]">
-          <span className="text-base font-black text-white font-mono">{displayPrice}</span>
+        <div className="flex items-center justify-between pt-1 border-t border-white/[0.06]">
+          <div className="space-y-0.5">
+            <span className="text-base font-black text-white font-mono">{displayPrice}</span>
+          </div>
 
           <button
             type="button"
             onClick={() => onAddToCart && onAddToCart(item)}
-            className="p-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white shadow-md shadow-blue-500/25 transition-all hover:scale-105"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-red-600 hover:bg-red-500 text-white text-[11px] font-bold shadow-md shadow-red-600/30 hover:shadow-red-500/50 transition-all hover:scale-105 active:scale-95"
             aria-label="Add to cart"
           >
             <ShoppingCart className="w-3.5 h-3.5" />
+            <span>Add</span>
           </button>
         </div>
+
+        {/* Bottom accent sweep */}
+        <div className="h-[1px] bg-gradient-to-r from-red-500/0 via-red-500/35 to-red-500/0 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left rounded-full" />
       </div>
     </div>
   );
 }
+

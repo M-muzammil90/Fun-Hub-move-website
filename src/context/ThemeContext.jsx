@@ -1,45 +1,60 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState
+} from 'react';
 
-const ThemeContext = createContext();
+const ThemeContext = createContext(null);
 
 export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('fanhub_theme') || 'dark';
+    const savedTheme = localStorage.getItem('fan-hub-theme');
+
+    if (savedTheme === 'dark' || savedTheme === 'light') {
+      return savedTheme;
+    }
+
+    return window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light';
   });
 
-  const [fontSize, setFontSize] = useState(() => {
-    return localStorage.getItem('fanhub_fontsize') || 'normal';
-  });
+  const isDark = theme === 'dark';
 
   useEffect(() => {
-    localStorage.setItem('fanhub_theme', theme);
     const root = document.documentElement;
-    if (theme === 'dark') {
+
+    if (isDark) {
       root.classList.add('dark');
     } else {
       root.classList.remove('dark');
     }
-  }, [theme]);
 
-  useEffect(() => {
-    localStorage.setItem('fanhub_fontsize', fontSize);
-    const root = document.documentElement;
-    root.classList.remove('font-size-small', 'font-size-normal', 'font-size-large');
-    root.classList.add(`font-size-${fontSize}`);
-  }, [fontSize]);
+    root.style.colorScheme = theme;
+
+    localStorage.setItem('fan-hub-theme', theme);
+  }, [theme, isDark]);
 
   const toggleTheme = () => {
-    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+    setTheme((previousTheme) =>
+      previousTheme === 'dark' ? 'light' : 'dark'
+    );
   };
 
-  const changeFontSize = (newSize) => {
-    if (['small', 'normal', 'large'].includes(newSize)) {
-      setFontSize(newSize);
-    }
-  };
+  const value = useMemo(
+    () => ({
+      theme,
+      isDark,
+      toggleTheme
+    }),
+    [theme, isDark]
+  );
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, fontSize, changeFontSize }}>
+    <ThemeContext.Provider value={value}>
       {children}
     </ThemeContext.Provider>
   );
@@ -47,8 +62,12 @@ export function ThemeProvider({ children }) {
 
 export function useTheme() {
   const context = useContext(ThemeContext);
+
   if (!context) {
-    throw new Error('useTheme must be used within ThemeProvider');
+    throw new Error(
+      'useTheme must be used inside ThemeProvider'
+    );
   }
+
   return context;
 }

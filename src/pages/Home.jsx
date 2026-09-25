@@ -11,12 +11,16 @@ import {
   Calendar,
   Eye,
   Sparkles,
-  Ticket
+  Ticket,
+  MapPin,
+  Clock
 } from 'lucide-react';
 import { useData } from '../context/DataContext';
 import CategoryCard from '../components/CategoryCard';
 import ContentCard from '../components/ContentCard';
 import CharacterCard from '../components/CharacterCard';
+import UpcomingReleaseCard from '../components/UpcomingReleaseCard';
+import AutoSlider from '../components/AutoSlider';
 import Modal from '../components/Modal';
 
 export default function Home() {
@@ -158,32 +162,88 @@ export default function Home() {
     }
   ];
 
+  const [upcomingCategoryFilter, setUpcomingCategoryFilter] = useState('All');
+  const upcomingCategories = ['All', 'Anime', 'Movies', 'TV Shows', 'Games'];
+
   const upcomingReleases = [
     {
+      id: 'rel-1',
+      title: 'Demon Slayer: Infinity Castle',
       date: 'JUN 27, 2025',
-      title: 'Demon Slayer: Infinity Castle (Movie)',
+      type: 'MOVIE',
       category: 'Anime',
-      image: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=600&auto=format&fit=crop&q=80'
+      themeColor: 'rose',
+      image: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=800&auto=format&fit=crop&q=85'
     },
     {
-      date: 'JUL 05, 2025',
+      id: 'rel-2',
       title: 'Solo Leveling Season 2',
+      date: 'JUL 05, 2025',
+      type: 'SEASON 2',
       category: 'Anime',
-      image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&auto=format&fit=crop&q=80'
+      themeColor: 'cyan',
+      image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=85'
     },
     {
-      date: 'AUG 15, 2025',
+      id: 'rel-3',
       title: 'The Fantastic Four',
-      category: 'Movie',
-      image: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=600&auto=format&fit=crop&q=80'
+      date: 'AUG 15, 2025',
+      type: 'MOVIE',
+      category: 'Movies',
+      themeColor: 'amber',
+      image: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=800&auto=format&fit=crop&q=85'
     },
     {
-      date: 'OCT 03, 2025',
+      id: 'rel-4',
       title: 'Jujutsu Kaisen Season 3',
+      date: 'OCT 03, 2025',
+      type: 'SEASON 3',
       category: 'Anime',
-      image: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&auto=format&fit=crop&q=80'
+      themeColor: 'purple',
+      image: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800&auto=format&fit=crop&q=85'
+    },
+    {
+      id: 'rel-5',
+      title: 'Grand Theft Auto VI',
+      date: 'NOV 19, 2025',
+      type: 'GAME',
+      category: 'Games',
+      themeColor: 'pink',
+      image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&auto=format&fit=crop&q=85'
+    },
+    {
+      id: 'rel-6',
+      title: 'Stranger Things Season 5',
+      date: 'DEC 12, 2025',
+      type: 'SEASON 5',
+      category: 'TV Shows',
+      themeColor: 'rose',
+      image: 'https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=800&auto=format&fit=crop&q=85'
+    },
+    {
+      id: 'rel-7',
+      title: 'Chainsaw Man: Reze Arc',
+      date: 'JAN 16, 2026',
+      type: 'MOVIE',
+      category: 'Anime',
+      themeColor: 'orange',
+      image: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=800&auto=format&fit=crop&q=85'
+    },
+    {
+      id: 'rel-8',
+      title: 'Avengers: Secret Wars',
+      date: 'MAY 01, 2026',
+      type: 'MOVIE',
+      category: 'Movies',
+      themeColor: 'emerald',
+      image: 'https://images.unsplash.com/photo-1635863138275-d9b33299680b?w=800&auto=format&fit=crop&q=85'
     }
   ];
+
+  const filteredUpcomingReleases = upcomingReleases.filter((item) => {
+    if (upcomingCategoryFilter === 'All') return true;
+    return item.category?.toLowerCase() === upcomingCategoryFilter.toLowerCase();
+  });
 
   return (
     <div className="space-y-14 sm:space-y-20 pb-20 w-full">
@@ -295,25 +355,20 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative space-y-6">
+      <section className="relative space-y-4">
         <div className="relative z-10 flex items-center justify-between gap-4">
-          <div className="flex items-start gap-3">
-            <div className="p-2 sm:p-2.5 rounded-xl bg-[#5b3bf7]/20 border border-[#5b3bf7]/30 text-indigo-400 mt-0.5 shadow-lg shadow-indigo-500/10 shrink-0">
-              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-400 fill-indigo-400/20" />
+          <div className="flex items-center gap-2.5">
+            <div className="p-1.5 rounded-xl bg-red-600/20 border border-red-500/30 text-red-500 shadow-md shadow-red-500/10 shrink-0">
+              <Sparkles className="w-4 h-4 text-red-500 fill-red-500/20" />
             </div>
-            <div className="space-y-0.5">
-              <h2 className="text-lg sm:text-2xl lg:text-3xl font-black text-white tracking-tight font-display">
-                Explore Fandom Categories
-              </h2>
-              <p className="text-xs sm:text-sm text-zinc-400 font-medium">
-                Choose your passion. Explore your universe.
-              </p>
-            </div>
+            <h2 className="text-base sm:text-lg lg:text-xl font-black text-white tracking-tight font-display">
+              Explore <span className="text-red-500">Fandom Categories</span>
+            </h2>
           </div>
 
           <Link
             to="/categories"
-            className="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold text-zinc-400 hover:text-white transition-colors shrink-0"
+            className="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold text-zinc-400 hover:text-red-400 transition-colors shrink-0"
           >
             <span>View All</span>
             <ChevronRight className="w-4 h-4" />
@@ -332,31 +387,29 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="space-y-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div className="space-y-1">
-            <div className="flex items-center gap-2">
-              <div className="p-1 rounded-lg bg-red-600/20 text-red-400">
-                <Flame className="w-5 h-5 fill-current" />
-              </div>
-              <h2 className="text-xl sm:text-3xl font-black text-white tracking-tight font-display">
-                Trending / <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Popular Content</span>
-              </h2>
+      <section className="space-y-5">
+        {/* Single header row: label left, filter pills right */}
+        <div className="flex items-center justify-between gap-4 flex-wrap">
+          {/* Left: Flame + label */}
+          <div className="flex items-center gap-2">
+            <div className="p-1 rounded-lg bg-red-600/20 text-red-400">
+              <Flame className="w-5 h-5 fill-current" />
             </div>
-            <p className="text-xs sm:text-sm text-zinc-400 font-medium">
-              The most loved content by our community. Explore what's trending right now!
-            </p>
+            <span className="text-[11px] sm:text-xs font-black uppercase tracking-[0.18em] text-zinc-400">
+              Trending / <span className="text-red-500">Popular Content</span>
+            </span>
           </div>
 
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-2 md:pb-0 scrollbar-none">
+          {/* Right: Category filter pills */}
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none shrink-0">
             {trendingCategories.map((cat) => (
               <button
                 key={cat}
                 type="button"
                 onClick={() => setTrendingCategoryFilter(cat)}
-                className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all shrink-0 ${
+                className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all shrink-0 ${
                   trendingCategoryFilter === cat
-                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/40'
+                    ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-lg shadow-red-600/30'
                     : 'bg-[#0e1424] text-zinc-400 hover:text-white border border-white/10 hover:bg-[#151f38]'
                 }`}
               >
@@ -373,76 +426,67 @@ export default function Home() {
             </Link>
           </div>
         </div>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
-          {filteredTrendingContent.slice(0, 6).map((item, idx) => (
-            <ContentCard key={item.id} content={item} rank={idx + 1} />
+        {/* Horizontal Scroll Slider — no arrows */}
+        <div className="flex gap-4 overflow-x-auto scrollbar-none snap-x snap-mandatory pb-2 -mx-1 px-1">
+          {filteredTrendingContent.slice(0, 8).map((item, idx) => (
+            <div key={item.id} className="snap-start shrink-0 w-[calc(20%-13px)] min-w-[170px]">
+              <ContentCard content={item} rank={idx + 1} />
+            </div>
           ))}
         </div>
       </section>
 
-      <section className="relative space-y-6">
-        <div className="absolute -top-10 left-6 text-[80px] sm:text-[130px] font-black uppercase tracking-widest text-white/[0.02] select-none pointer-events-none font-display">
-          CHARACTERS
-        </div>
-
-        <div className="relative z-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-          <div className="space-y-1">
-            <div className="flex items-center gap-2">
-              <div className="p-1 rounded-lg bg-purple-600/20 text-purple-400">
-                <Star className="w-5 h-5 fill-current" />
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight font-display">
-                Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">Characters</span>
-              </h2>
+      {/* =========================================================
+          FEATURED CHARACTERS (AUTO SLIDER, NO ARROWS, GLOWING CARDS)
+      ========================================================= */}
+      <section className="space-y-4">
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2.5">
+            <div className="p-1.5 rounded-xl bg-red-600/20 border border-red-500/30 text-red-500 shadow-md shadow-red-500/10 shrink-0">
+              <Star className="w-4 h-4 text-red-500 fill-red-500" />
             </div>
-            <p className="text-xs sm:text-sm text-zinc-400 font-medium">
-              Iconic characters. Legendary stories. Get to know your favorite fandom heroes!
-            </p>
+            <h2 className="text-base sm:text-lg lg:text-xl font-black text-white tracking-tight font-display">
+              Featured <span className="text-red-500">Characters</span>
+            </h2>
           </div>
-
-          <Link
-            to="/characters"
-            className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-zinc-300 hover:text-white"
-          >
+          <Link to="/characters" className="inline-flex items-center gap-1 text-xs font-bold text-zinc-400 hover:text-red-400 transition-colors shrink-0">
             <span>View All</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-          {characters.slice(0, 6).map((char) => (
-            <CharacterCard key={char.id} character={char} />
+        {/* Auto Slider - Wider classical cards */}
+        <AutoSlider itemClassName="w-[270px] sm:w-[300px] md:w-[320px] shrink-0" autoPlayInterval={3400}>
+          {characters.map((char) => (
+            <CharacterCard
+              key={char.id}
+              character={char}
+            />
           ))}
-        </div>
+        </AutoSlider>
       </section>
 
-      <section className="space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-          <div className="space-y-1">
-            <div className="flex items-center gap-2">
-              <div className="p-1 rounded-lg bg-blue-600/20 text-blue-400">
-                <Play className="w-5 h-5 fill-current" />
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight font-display">
-                Latest <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Videos & Trailers</span>
-              </h2>
+      <section className="space-y-4">
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2.5">
+            <div className="p-1.5 rounded-xl bg-red-600/20 border border-red-500/30 text-red-500 shadow-md shadow-red-500/10 shrink-0">
+              <Play className="w-4 h-4 text-red-500 fill-current" />
             </div>
-            <p className="text-xs sm:text-sm text-zinc-400 font-medium">
-              The latest trailers, clips and exclusive content from your favorite fandoms.
-            </p>
+            <h2 className="text-base sm:text-lg lg:text-xl font-black text-white tracking-tight font-display">
+              Latest <span className="text-red-500">Videos & Trailers</span>
+            </h2>
           </div>
 
           <Link
             to="/media"
-            className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-zinc-300 hover:text-white"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-zinc-400 hover:text-red-400 transition-colors shrink-0"
           >
             <span>View All</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {latestVideos.map((vid, i) => (
             <div
               key={i}
@@ -452,189 +496,340 @@ export default function Home() {
                   url: 'https://www.w3schools.com/html/mov_bbb.mp4'
                 })
               }
-              className="group cursor-pointer rounded-2xl overflow-hidden border border-white/10 bg-[#090d18] hover:border-red-500/50 transition-all shadow-xl hover:-translate-y-1"
+              className="group cursor-pointer rounded-2xl overflow-hidden border border-white/[0.07] bg-gradient-to-b from-[#0e1220] to-[#090d18] hover:border-red-500/40 transition-all duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.5)] hover:shadow-[0_8px_40px_rgba(239,68,68,0.15)] hover:-translate-y-1.5"
             >
+              {/* Thumbnail */}
               <div className="relative aspect-video w-full overflow-hidden bg-black">
                 <img
                   src={vid.thumbnail}
                   alt={vid.title}
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 flex items-center justify-center transition-all">
-                  <div className="w-10 h-10 rounded-full bg-white/20 hover:bg-red-600 text-white flex items-center justify-center backdrop-blur-md shadow-lg group-hover:scale-110 transition-transform">
-                    <Play className="w-4 h-4 fill-current ml-0.5" />
-                  </div>
-                </div>
-                <span className="absolute bottom-2 right-2 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md text-[10px] font-mono font-bold text-white border border-white/10">
+
+                {/* Dark gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+                {/* Category badge - top left */}
+                <span className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-full bg-red-600/90 backdrop-blur-md text-[9px] font-black uppercase tracking-widest text-white shadow-md shadow-red-900/40 border border-red-400/30">
+                  {vid.category}
+                </span>
+
+                {/* Duration badge - top right */}
+                <span className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-md bg-black/70 backdrop-blur-md text-[10px] font-mono font-bold text-white border border-white/10">
                   {vid.duration}
                 </span>
-              </div>
 
-              <div className="p-3.5 space-y-1">
-                <h4 className="text-xs sm:text-sm font-bold text-white group-hover:text-red-400 transition-colors line-clamp-1 font-display">
-                  {vid.title}
-                </h4>
-                <div className="flex items-center justify-between text-[11px] text-zinc-400 font-medium">
-                  <span>{vid.category}</span>
-                  <span>{vid.views}</span>
+                {/* Centered animated play button */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="relative">
+                    {/* Pulse ring */}
+                    <div className="absolute inset-0 rounded-full bg-red-500/30 scale-125 group-hover:scale-150 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm" />
+                    <div className="w-12 h-12 rounded-full bg-white/10 group-hover:bg-red-600 text-white flex items-center justify-center backdrop-blur-md border border-white/20 group-hover:border-red-400/50 shadow-xl group-hover:shadow-red-500/40 group-hover:scale-110 transition-all duration-300">
+                      <Play className="w-5 h-5 fill-current ml-0.5" />
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
-      <section className="space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-          <div className="space-y-1">
-            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight font-display">
-              Upcoming <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-amber-500">Releases</span>
-            </h2>
-            <p className="text-xs sm:text-sm text-zinc-400 font-medium">
-              Be the first to know fandom the next big thing in your favorite fandoms. Movies, anime, games, and more!
-            </p>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <button type="button" className="px-3.5 py-1 rounded-full text-xs font-bold bg-blue-600 text-white">All</button>
-            <button type="button" className="px-3.5 py-1 rounded-full text-xs font-bold bg-[#0e1424] text-zinc-400 hover:text-white">Anime</button>
-            <button type="button" className="px-3.5 py-1 rounded-full text-xs font-bold bg-[#0e1424] text-zinc-400 hover:text-white">Movies</button>
-            <button type="button" className="px-3.5 py-1 rounded-full text-xs font-bold bg-[#0e1424] text-zinc-400 hover:text-white">TV Shows</button>
-            <button type="button" className="px-3.5 py-1 rounded-full text-xs font-bold bg-[#0e1424] text-zinc-400 hover:text-white">Games</button>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {upcomingReleases.map((item, idx) => (
-            <div
-              key={idx}
-              className="group rounded-2xl overflow-hidden border border-white/10 bg-[#090d18] hover:border-red-500/50 transition-all flex flex-col justify-between"
-            >
-              <div className="p-3 text-center">
-                <span className="inline-block px-3 py-1 rounded-full bg-blue-600/30 border border-blue-500/40 text-blue-300 text-[10px] font-mono font-bold tracking-wider">
-                  {item.date}
-                </span>
-              </div>
-
-              <div className="relative aspect-[3/3.8] w-full overflow-hidden bg-black px-3">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-
-              <div className="p-4 space-y-3 text-center">
-                <h4 className="text-xs sm:text-sm font-bold text-white line-clamp-1">
-                  {item.title}
+              {/* Info bar */}
+              <div className="p-4 space-y-2.5">
+                <h4 className="text-sm font-bold text-white group-hover:text-red-400 transition-colors duration-200 line-clamp-1 font-display leading-snug">
+                  {vid.title}
                 </h4>
 
-                <div>
-                  <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-blue-600/20 text-blue-400 border border-blue-500/30 uppercase">
-                    {item.category}
+                <div className="flex items-center justify-between">
+                  {/* Views pill */}
+                  <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-white/[0.06] border border-white/10">
+                    <svg className="w-3 h-3 text-zinc-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                      <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-[10px] font-semibold text-zinc-400">{vid.views}</span>
+                  </div>
+
+                  {/* Watch button */}
+                  <span className="inline-flex items-center gap-1 text-[10px] font-bold text-red-400 group-hover:text-red-300 transition-colors">
+                    Watch
+                    <svg className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                    </svg>
                   </span>
                 </div>
 
-                <button
-                  type="button"
-                  className="w-full py-2 px-3 rounded-full border border-blue-500/40 text-blue-300 hover:bg-blue-600 hover:text-white hover:border-blue-600 text-xs font-bold transition-all"
-                >
-                  Coming Soon
-                </button>
+                {/* Bottom accent line */}
+                <div className="h-[1px] bg-gradient-to-r from-red-500/0 via-red-500/30 to-red-500/0 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left rounded-full" />
               </div>
             </div>
           ))}
         </div>
       </section>
 
+      {/* =========================================================
+          UPCOMING RELEASES (AUTO SLIDER, NO ARROWS, GLOWING CARDS)
+      ========================================================= */}
+      <section className="space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="flex items-center gap-2.5">
+            <div className="p-1.5 rounded-xl bg-red-600/20 border border-red-500/30 text-red-500 shadow-md shadow-red-500/10 shrink-0">
+              <Calendar className="w-4 h-4 text-red-500" />
+            </div>
+            <h2 className="text-base sm:text-lg lg:text-xl font-black text-white tracking-tight font-display flex items-baseline gap-1.5">
+              <span>Upcoming</span>
+              <span className="text-red-500">Releases</span>
+            </h2>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2 shrink-0">
+            {upcomingCategories.map((cat) => (
+              <button
+                key={cat}
+                type="button"
+                onClick={() => setUpcomingCategoryFilter(cat)}
+                className={`px-3 py-1 rounded-full text-xs font-bold transition-all shrink-0 cursor-pointer ${
+                  upcomingCategoryFilter === cat
+                    ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-md shadow-red-600/30 scale-105'
+                    : 'bg-[#0a0f1d] text-zinc-400 hover:text-white border border-white/10 hover:bg-[#121a30]'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+
+            <Link
+              to="/explore"
+              className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-bold text-zinc-300 hover:text-red-400 shrink-0 ml-1 transition-colors"
+            >
+              <span>View All</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </div>
+
+        {/* Auto Slider - No arrows */}
+        <AutoSlider itemClassName="w-[260px] xs:w-[280px] sm:w-[300px] shrink-0" autoPlayInterval={3200}>
+          {filteredUpcomingReleases.map((item) => (
+            <UpcomingReleaseCard key={item.id} item={item} />
+          ))}
+        </AutoSlider>
+      </section>
+
+      {/* =========================================================
+          EVENTS SECTION (BLACK & CRIMSON RED NEON THEME)
+      ========================================================= */}
+      {/* =========================================================
+          FANDOM EVENTS (RED & WHITE HIGH-CONTRAST THEME)
+      ========================================================= */}
       <section className="space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-          <div className="space-y-1">
-            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight font-display">
-              Events
-            </h2>
-            <p className="text-xs sm:text-sm text-zinc-400 font-medium">
-              Meet. Watch. Experience. Be part of the fandom!
-            </p>
+          <div className="flex items-start gap-3.5">
+            <div className="p-2.5 sm:p-3 rounded-2xl bg-gradient-to-br from-red-600 to-rose-700 text-white shadow-[0_0_25px_rgba(239,68,68,0.5)] shrink-0 border border-red-400/40">
+              <Ticket className="w-5 h-5 sm:w-6 sm:h-6" />
+            </div>
+            <div className="space-y-1">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-red-600/20 border border-red-500/40 text-[10px] font-black uppercase tracking-wider text-red-400">
+                <Flame className="w-3 h-3 text-red-500" />
+                <span>Live Fandom Summits</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight font-display flex items-baseline gap-2">
+                <span>Fandom</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-400 to-white drop-shadow-[0_0_25px_rgba(239,68,68,0.6)]">
+                  Events
+                </span>
+              </h2>
+              <p className="text-xs sm:text-sm text-zinc-300 font-medium">
+                Meet legendary creators, participate in cosplay championships & experience live fandom summits!
+              </p>
+            </div>
           </div>
 
           <Link
             to="/events"
-            className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-zinc-300 hover:text-white"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-xs font-black text-white shadow-[0_0_20px_rgba(239,68,68,0.35)] transition-all shrink-0 border border-red-400/40 hover:scale-105"
           >
-            <span>View All</span>
+            <span>Explore All Events</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
 
+        {/* Red & White Event Showcase Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-          <div className="lg:col-span-8 rounded-3xl overflow-hidden border border-white/10 bg-[#090d18] relative group flex flex-col sm:flex-row">
-            <div className="sm:w-1/2 relative min-h-[220px] bg-black">
+          {/* Main Featured Big Event Banner */}
+          <div className="lg:col-span-7 xl:col-span-8 rounded-[28px] overflow-hidden border border-red-500/40 bg-gradient-to-b from-[#13080c] via-[#090b10] to-[#050608] hover:border-red-400 transition-all duration-500 shadow-[0_0_35px_rgba(220,38,38,0.25)] hover:shadow-[0_0_55px_rgba(239,68,68,0.45)] flex flex-col md:flex-row group relative">
+            <div className="md:w-1/2 relative min-h-[260px] sm:min-h-[300px] bg-black overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&auto=format&fit=crop&q=80"
+                src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1000&auto=format&fit=crop&q=85"
                 alt="Anime Expo Karachi 2025"
                 referrerPolicy="no-referrer"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
               />
-              <span className="absolute top-3 left-3 px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-red-600 text-white shadow-lg">
-                Popular
-              </span>
-            </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#090b10] via-transparent to-black/50" />
 
-            <div className="sm:w-1/2 p-6 flex flex-col justify-between space-y-4">
-              <div className="space-y-2">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-red-400 font-mono">
+              {/* Badges Top */}
+              <div className="absolute top-3 left-3 z-10 flex flex-wrap gap-2">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-red-600 text-white shadow-lg shadow-red-600/60 border border-red-400/40">
+                  <span className="w-2 h-2 rounded-full bg-white animate-ping" />
                   Featured Event
                 </span>
-                <h3 className="text-xl font-black text-white font-display">
+                <span className="px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-white text-zinc-950 shadow-md font-sans">
+                  ★ Popular
+                </span>
+              </div>
+
+              {/* Price Tag Bottom */}
+              <div className="absolute bottom-3 left-3 z-10">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl text-xs font-mono font-black bg-black/85 backdrop-blur-md text-white border border-red-500/40 shadow-lg">
+                  <span className="text-red-400">Tickets:</span> Rs. 1,500 - Rs. 4,500
+                </span>
+              </div>
+            </div>
+
+            <div className="md:w-1/2 p-6 sm:p-7 flex flex-col justify-between space-y-5 bg-gradient-to-b from-[#14080c] to-[#07080d]">
+              <div className="space-y-3">
+                <div className="flex items-center gap-2 text-red-400 text-[11px] font-mono font-bold uppercase tracking-wider">
+                  <Flame className="w-4 h-4 fill-current animate-pulse text-red-500" />
+                  <span>Mega Fandom Convention</span>
+                </div>
+
+                <h3 className="text-xl sm:text-2xl font-black text-white font-display leading-tight group-hover:text-red-400 transition-colors">
                   Anime Expo Karachi 2025
                 </h3>
-                <p className="text-xs text-zinc-400 flex items-center gap-1.5">
-                  <Calendar className="w-3.5 h-3.5 text-zinc-500" />
-                  <span>Aug 16 - 18, 2025 • Karachi Expo Center</span>
+
+                <p className="text-xs text-zinc-300 leading-relaxed line-clamp-2">
+                  The biggest anime, gaming and pop culture event is back! Meet voice actors, join cosplay championships & shop exclusive merchandise.
                 </p>
-                <div className="flex flex-wrap gap-1.5 pt-1">
-                  <span className="px-2 py-0.5 rounded text-[10px] bg-blue-600/20 text-blue-400 border border-blue-500/30">Convention</span>
-                  <span className="px-2 py-0.5 rounded text-[10px] bg-purple-600/20 text-purple-400 border border-purple-500/30">Anime</span>
-                  <span className="px-2 py-0.5 rounded text-[10px] bg-pink-600/20 text-pink-400 border border-pink-500/30">Cosplay</span>
+
+                <div className="space-y-2 pt-1">
+                  <div className="flex items-center gap-2 text-xs text-white">
+                    <Calendar className="w-4 h-4 text-red-500 shrink-0" />
+                    <span className="font-bold text-white">Aug 16 - 18, 2025</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-zinc-300">
+                    <MapPin className="w-4 h-4 text-red-500 shrink-0" />
+                    <span className="text-zinc-200">Karachi Expo Center, Main University Rd</span>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap gap-1.5 pt-2">
+                  <span className="px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-white text-zinc-950">Convention</span>
+                  <span className="px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-red-950/80 text-red-300 border border-red-600/40">Cosplay Contest</span>
+                  <span className="px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-red-950/80 text-red-300 border border-red-600/40">Gaming Zone</span>
                 </div>
               </div>
 
-              <Link
-                to="/events/anime-expo-karachi-2025"
-                className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-xs font-bold text-center shadow-lg transition-all"
-              >
-                Get Tickets →
-              </Link>
+              <div className="pt-2">
+                <Link
+                  to="/events/anime-expo-karachi-2025"
+                  className="w-full py-3 px-5 rounded-2xl bg-gradient-to-r from-red-600 via-rose-600 to-red-600 hover:from-red-500 hover:to-rose-500 text-white text-xs sm:text-sm font-black text-center shadow-[0_0_25px_rgba(239,68,68,0.5)] hover:shadow-[0_0_35px_rgba(239,68,68,0.8)] flex items-center justify-center gap-2 transition-all group/btn border border-red-400/40"
+                >
+                  <Ticket className="w-4 h-4" />
+                  <span>Get Event Passes</span>
+                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                </Link>
+              </div>
             </div>
           </div>
 
-          <div className="lg:col-span-4 flex flex-col justify-between gap-4">
-            <div className="p-4 rounded-2xl border border-white/10 bg-[#090d18] space-y-1">
-              <h4 className="text-xs font-bold text-white font-display">Gaming Tournament</h4>
-              <p className="text-[11px] text-zinc-400 flex items-center gap-1">
-                <Calendar className="w-3 h-3 text-zinc-500" /> Jul 12, 2025 • Karachi
-              </p>
-              <span className="inline-block mt-1 px-2 py-0.5 rounded text-[10px] bg-cyan-600/20 text-cyan-400">Gaming</span>
-            </div>
+          {/* Stacked Side Event Cards */}
+          <div className="lg:col-span-5 xl:col-span-4 flex flex-col justify-between gap-4">
+            {/* Side Card 1 */}
+            <Link
+              to="/events/gaming-tournament-finals"
+              className="p-4 rounded-2xl border border-white/[0.08] hover:border-red-500/70 bg-[#090b10] hover:bg-[#12080c] transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:shadow-[0_0_25px_rgba(239,68,68,0.3)] flex items-center gap-4 group"
+            >
+              <div className="w-20 h-20 rounded-xl overflow-hidden bg-black shrink-0 relative ring-1 ring-white/10 group-hover:ring-red-500/40 transition-all">
+                <img
+                  src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&auto=format&fit=crop&q=80"
+                  alt="Gaming Tournament 2025"
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <span className="absolute bottom-1 right-1 px-1.5 py-0.5 rounded text-[8px] font-mono font-black bg-white text-red-600 shadow-md">
+                  JUL 12
+                </span>
+              </div>
+              <div className="space-y-1 min-w-0 flex-1">
+                <div className="flex items-center justify-between">
+                  <span className="px-2 py-0.5 rounded text-[9px] font-black uppercase bg-red-600 text-white">
+                    Gaming
+                  </span>
+                  <span className="text-[10px] font-mono font-bold text-white bg-white/[0.08] px-2 py-0.5 rounded">Rs. 1,000</span>
+                </div>
+                <h4 className="text-sm font-black text-white group-hover:text-red-400 transition-colors truncate font-display">
+                  Gaming Tournament 2025
+                </h4>
+                <p className="text-[11px] text-zinc-400 flex items-center gap-1 truncate">
+                  <MapPin className="w-3 h-3 text-red-400 shrink-0" />
+                  <span className="truncate">Cyber Arena Dome • Karachi</span>
+                </p>
+              </div>
+            </Link>
 
-            <div className="p-4 rounded-2xl border border-white/10 bg-[#090d18] space-y-1">
-              <h4 className="text-xs font-bold text-white font-display">K-Pop Dance Meetup</h4>
-              <p className="text-[11px] text-zinc-400 flex items-center gap-1">
-                <Calendar className="w-3 h-3 text-zinc-500" /> Jul 28, 2025 • Lahore
-              </p>
-              <span className="inline-block mt-1 px-2 py-0.5 rounded text-[10px] bg-pink-600/20 text-pink-400">K-Pop</span>
-            </div>
+            {/* Side Card 2 */}
+            <Link
+              to="/events/k-pop-dance-meetup"
+              className="p-4 rounded-2xl border border-white/[0.08] hover:border-red-500/70 bg-[#090b10] hover:bg-[#12080c] transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:shadow-[0_0_25px_rgba(239,68,68,0.3)] flex items-center gap-4 group"
+            >
+              <div className="w-20 h-20 rounded-xl overflow-hidden bg-black shrink-0 relative ring-1 ring-white/10 group-hover:ring-red-500/40 transition-all">
+                <img
+                  src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&auto=format&fit=crop&q=80"
+                  alt="K-Pop Dance Meetup"
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <span className="absolute bottom-1 right-1 px-1.5 py-0.5 rounded text-[8px] font-mono font-black bg-white text-red-600 shadow-md">
+                  JUL 28
+                </span>
+              </div>
+              <div className="space-y-1 min-w-0 flex-1">
+                <div className="flex items-center justify-between">
+                  <span className="px-2 py-0.5 rounded text-[9px] font-black uppercase bg-red-600 text-white">
+                    K-Pop
+                  </span>
+                  <span className="text-[10px] font-mono font-bold text-white bg-white/[0.08] px-2 py-0.5 rounded">Free Entry</span>
+                </div>
+                <h4 className="text-sm font-black text-white group-hover:text-red-400 transition-colors truncate font-display">
+                  K-Pop Dance & Fandom Meetup
+                </h4>
+                <p className="text-[11px] text-zinc-400 flex items-center gap-1 truncate">
+                  <MapPin className="w-3 h-3 text-red-400 shrink-0" />
+                  <span className="truncate">Central Fandom Plaza • Karachi</span>
+                </p>
+              </div>
+            </Link>
 
-            <div className="p-4 rounded-2xl border border-white/10 bg-[#090d18] space-y-1">
-              <h4 className="text-xs font-bold text-white font-display">Cosplay Workshop</h4>
-              <p className="text-[11px] text-zinc-400 flex items-center gap-1">
-                <Calendar className="w-3 h-3 text-zinc-500" /> Aug 08, 2025 • Islamabad
-              </p>
-              <span className="inline-block mt-1 px-2 py-0.5 rounded text-[10px] bg-purple-600/20 text-purple-400">Cosplay</span>
-            </div>
+            {/* Side Card 3 */}
+            <Link
+              to="/events/cosplay-workshop-prop-crafting"
+              className="p-4 rounded-2xl border border-white/[0.08] hover:border-red-500/70 bg-[#090b10] hover:bg-[#12080c] transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:shadow-[0_0_25px_rgba(239,68,68,0.3)] flex items-center gap-4 group"
+            >
+              <div className="w-20 h-20 rounded-xl overflow-hidden bg-black shrink-0 relative ring-1 ring-white/10 group-hover:ring-red-500/40 transition-all">
+                <img
+                  src="https://images.unsplash.com/photo-1563089145-599997674d42?w=400&auto=format&fit=crop&q=80"
+                  alt="Cosplay Workshop & Crafting"
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <span className="absolute bottom-1 right-1 px-1.5 py-0.5 rounded text-[8px] font-mono font-black bg-white text-red-600 shadow-md">
+                  AUG 08
+                </span>
+              </div>
+              <div className="space-y-1 min-w-0 flex-1">
+                <div className="flex items-center justify-between">
+                  <span className="px-2 py-0.5 rounded text-[9px] font-black uppercase bg-red-600 text-white">
+                    Cosplay
+                  </span>
+                  <span className="text-[10px] font-mono font-bold text-white bg-white/[0.08] px-2 py-0.5 rounded">Rs. 2,000</span>
+                </div>
+                <h4 className="text-sm font-black text-white group-hover:text-red-400 transition-colors truncate font-display">
+                  Cosplay Prop Workshop
+                </h4>
+                <p className="text-[11px] text-zinc-400 flex items-center gap-1 truncate">
+                  <MapPin className="w-3 h-3 text-red-400 shrink-0" />
+                  <span className="truncate">Art Guild Studios • Lahore</span>
+                </p>
+              </div>
+            </Link>
           </div>
         </div>
       </section>

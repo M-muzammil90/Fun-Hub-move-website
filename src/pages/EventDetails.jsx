@@ -61,12 +61,12 @@ export default function EventDetails() {
       <div className="flex items-center gap-2 text-xs text-zinc-400 font-medium">
         <Link to="/" className="hover:text-white">Home</Link>
         <span>&gt;</span>
-        <Link to="/events" className="hover:text-white">Events</Link>
+        <Link to="/events" className="hover:text-red-400">Events</Link>
         <span>&gt;</span>
         <span className="text-white truncate">{event.title}</span>
       </div>
 
-      <div className="relative rounded-3xl overflow-hidden border border-[#1b263e] bg-[#0c1222] shadow-2xl">
+      <div className="relative rounded-3xl overflow-hidden border border-red-950/60 bg-gradient-to-b from-[#14080c] via-[#090b10] to-[#050608] shadow-[0_0_50px_rgba(220,38,38,0.18)]">
         <div className="relative h-64 sm:h-96 w-full">
           <img
             src={event.image}
@@ -74,12 +74,12 @@ export default function EventDetails() {
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0c1222] via-[#0c1222]/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#090b10] via-[#090b10]/60 to-transparent" />
         </div>
 
         <div className="p-6 sm:p-10 -mt-24 relative z-10 space-y-6">
           <div className="space-y-3">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-rose-600 text-white text-xs font-black uppercase tracking-wider shadow-md">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-red-600 text-white text-xs font-black uppercase tracking-wider shadow-lg shadow-red-600/40 border border-red-400/30">
               Featured Event
             </span>
 
@@ -87,13 +87,13 @@ export default function EventDetails() {
               {event.title}
             </h1>
 
-            <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-zinc-300">
+            <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-zinc-200">
               <div className="flex items-center gap-1.5">
-                <Calendar className="w-4 h-4 text-rose-500" />
-                <span className="font-mono">{event.startDate} — {event.endDate}</span>
+                <Calendar className="w-4 h-4 text-red-500" />
+                <span className="font-mono font-bold text-white">{event.startDate} — {event.endDate}</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <MapPin className="w-4 h-4 text-rose-500" />
+                <MapPin className="w-4 h-4 text-red-500" />
                 <span>{event.venue}, {event.city}</span>
               </div>
             </div>
@@ -102,9 +102,9 @@ export default function EventDetails() {
               {event.tags?.map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 rounded-xl bg-[#141d33] border border-[#22304e] text-blue-400 text-xs font-bold"
+                  className="px-3 py-1 rounded-xl bg-white text-zinc-950 text-xs font-bold shadow-sm"
                 >
-                  {tag}
+                  #{tag}
                 </span>
               ))}
             </div>
@@ -114,18 +114,18 @@ export default function EventDetails() {
             <button
               type="button"
               onClick={() => setTicketModalOpen(true)}
-              className="px-6 py-3 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs sm:text-sm shadow-xl shadow-blue-500/25 flex items-center gap-2 transition-all hover:scale-105"
+              className="px-6 py-3 rounded-2xl bg-gradient-to-r from-red-600 via-rose-600 to-red-600 hover:from-red-500 hover:to-rose-500 text-white font-black text-xs sm:text-sm shadow-xl shadow-red-600/30 flex items-center gap-2 transition-all hover:scale-105 border border-red-400/40"
             >
               <Ticket className="w-4 h-4" />
-              <span>Get Tickets</span>
+              <span>Get Tickets & Passes</span>
             </button>
 
             <button
               type="button"
               onClick={handleAddToCalendar}
-              className="px-6 py-3 rounded-2xl border border-[#22304e] hover:bg-[#16223e] text-zinc-300 text-xs sm:text-sm font-bold flex items-center gap-2 transition-all"
+              className="px-6 py-3 rounded-2xl border border-white/20 hover:border-red-500 hover:bg-white/[0.04] text-white text-xs sm:text-sm font-bold flex items-center gap-2 transition-all"
             >
-              <CalendarPlus className="w-4 h-4" />
+              <CalendarPlus className="w-4 h-4 text-red-400" />
               <span>{calendarAdded ? 'Added to Calendar!' : 'Add to Calendar'}</span>
             </button>
           </div>
@@ -134,19 +134,19 @@ export default function EventDetails() {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         <div className="lg:col-span-7 space-y-6">
-          <div className="p-6 rounded-3xl border border-[#1a253e] bg-[#0c1222] space-y-4">
+          <div className="p-6 rounded-3xl border border-white/[0.08] bg-gradient-to-b from-[#13080c] via-[#090b10] to-[#06070a] space-y-4">
             <h2 className="text-xl font-black text-white font-display">About This Event</h2>
-            <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+            <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
               {event.description}
             </p>
           </div>
 
-          <div className="p-6 rounded-3xl border border-[#1a253e] bg-[#0c1222] space-y-4">
+          <div className="p-6 rounded-3xl border border-white/[0.08] bg-gradient-to-b from-[#13080c] via-[#090b10] to-[#06070a] space-y-4">
             <h2 className="text-xl font-black text-white font-display">Event Highlights</h2>
             <div className="space-y-2.5">
               {highlights.map((h, i) => (
-                <div key={i} className="flex items-start gap-2.5 text-xs text-zinc-300">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                <div key={i} className="flex items-start gap-2.5 text-xs text-zinc-200">
+                  <CheckCircle2 className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
                   <span>{h}</span>
                 </div>
               ))}
@@ -155,12 +155,12 @@ export default function EventDetails() {
         </div>
 
         <div className="lg:col-span-5 space-y-6">
-          <div className="p-6 rounded-3xl border border-[#1a253e] bg-[#0c1222] space-y-4">
+          <div className="p-6 rounded-3xl border border-white/[0.08] bg-gradient-to-b from-[#13080c] via-[#090b10] to-[#06070a] space-y-4">
             <h2 className="text-xl font-black text-white font-display">Event Atmosphere</h2>
             <div className="grid grid-cols-2 gap-3">
               {gallery.map((img, i) => (
-                <div key={i} className="aspect-video rounded-2xl overflow-hidden bg-zinc-900 border border-[#1a253e]">
-                  <img src={img} alt="Convention scene" className="w-full h-full object-cover" />
+                <div key={i} className="aspect-video rounded-2xl overflow-hidden bg-zinc-900 border border-white/10 ring-1 ring-white/5">
+                  <img src={img} alt="Convention scene" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
                 </div>
               ))}
             </div>
@@ -175,12 +175,12 @@ export default function EventDetails() {
       >
         <form onSubmit={handleConfirmTicket} className="space-y-4 text-xs">
           <p className="text-zinc-300">
-            Booking passes for <strong>{event.title}</strong> in {event.city}.
+            Booking passes for <strong className="text-white">{event.title}</strong> in {event.city}.
           </p>
 
           <div>
-            <label className="block text-zinc-400 mb-1 font-semibold">Pass Tier</label>
-            <select className="w-full px-3 py-2 bg-[#090d16] border border-[#1b263e] rounded-xl text-white">
+            <label className="block text-zinc-300 mb-1 font-bold">Pass Tier</label>
+            <select className="w-full px-3 py-2 bg-black/80 border border-white/20 rounded-xl text-white focus:outline-none focus:border-red-500">
               <option>Weekend VIP Pass (All 3 Days + Fast Track) - Rs. 4,500</option>
               <option>Single Day Saturday Pass - Rs. 2,000</option>
               <option>Single Day Sunday Pass - Rs. 1,500</option>
@@ -188,34 +188,34 @@ export default function EventDetails() {
           </div>
 
           <div>
-            <label className="block text-zinc-400 mb-1 font-semibold">Number of Passes</label>
+            <label className="block text-zinc-300 mb-1 font-bold">Number of Passes</label>
             <input
               type="number"
               min="1"
               max="10"
               value={ticketCount}
               onChange={(e) => setTicketCount(e.target.value)}
-              className="w-full px-3 py-2 bg-[#090d16] border border-[#1b263e] rounded-xl text-white"
+              className="w-full px-3 py-2 bg-black/80 border border-white/20 rounded-xl text-white focus:outline-none focus:border-red-500"
             />
           </div>
 
           {ticketConfirmed ? (
-            <div className="p-3 rounded-xl bg-emerald-950/60 border border-emerald-800 text-emerald-400 font-bold text-center flex items-center justify-center gap-2">
-              <Check className="w-4 h-4" />
+            <div className="p-3 rounded-xl bg-red-950/60 border border-red-600 text-white font-bold text-center flex items-center justify-center gap-2 shadow-lg">
+              <Check className="w-4 h-4 text-red-400" />
               <span>Passes Reserved Successfully!</span>
             </div>
           ) : (
-            <div className="flex justify-end gap-2 pt-2 border-t border-[#1b263e]">
+            <div className="flex justify-end gap-2 pt-2 border-t border-white/10">
               <button
                 type="button"
                 onClick={() => setTicketModalOpen(false)}
-                className="px-3 py-1.5 text-zinc-400 hover:text-white"
+                className="px-3 py-1.5 text-zinc-400 hover:text-white font-medium"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold"
+                className="px-5 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white font-black shadow-lg shadow-red-600/40 transition-all"
               >
                 Confirm Reservation
               </button>
