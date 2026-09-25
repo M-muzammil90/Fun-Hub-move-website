@@ -47,13 +47,13 @@ export default function Events() {
             Meet world-class voice actors, compete in international cosplay tournaments, and celebrate fandom culture live!
           </p>
 
-          <div className="flex flex-wrap gap-2 pt-2">
+          <div className="flex items-center gap-2 pt-2 overflow-x-auto scrollbar-none pb-1 -mx-1 px-1 sm:mx-0 sm:px-0 w-full">
             {filterTabs.map((tab) => (
               <button
                 key={tab}
                 type="button"
                 onClick={() => setActiveFilter(tab)}
-                className={`px-4 py-2 rounded-xl text-xs font-black transition-all ${
+                className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs font-black transition-all shrink-0 whitespace-nowrap ${
                   activeFilter === tab
                     ? 'bg-red-600 text-white shadow-lg shadow-red-600/40 border border-red-400/40 scale-105'
                     : 'bg-[#0e1018] text-zinc-300 hover:text-white border border-white/[0.08] hover:border-red-500/40'

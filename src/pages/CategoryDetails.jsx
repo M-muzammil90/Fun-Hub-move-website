@@ -67,17 +67,17 @@ export default function CategoryDetails() {
   }
 
   return (
-    <div className="space-y-10 pb-20 max-w-7xl mx-auto">
+    <div className="space-y-8 sm:space-y-10 pb-6 sm:pb-12 max-w-7xl mx-auto">
       <div>
         <Link
           to="/categories"
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-zinc-400 hover:text-red-400 mb-4 transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-zinc-400 hover:text-red-400 mb-3 sm:mb-4 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to All Categories</span>
         </Link>
 
-        <div className="relative rounded-3xl overflow-hidden border border-red-500/20 bg-gradient-to-r from-[#170509] via-[#090b12] to-[#120508] p-6 sm:p-12 shadow-2xl">
+        <div className="relative rounded-3xl overflow-hidden border border-red-500/20 bg-gradient-to-r from-[#170509] via-[#090b12] to-[#120508] p-4 xs:p-6 sm:p-10 shadow-2xl">
           <div className="absolute inset-0 z-0">
             <img
               src={category.image}
@@ -88,106 +88,133 @@ export default function CategoryDetails() {
             <div className="absolute inset-0 bg-gradient-to-r from-[#170509] via-[#170509]/90 to-transparent" />
           </div>
 
-          <div className="relative z-10 max-w-3xl space-y-4">
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="px-3 py-1 rounded-xl text-xs font-black uppercase tracking-wider bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-md shadow-red-600/30 flex items-center gap-1.5">
+          <div className="relative z-10 max-w-3xl space-y-3 sm:space-y-4">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+              <span className="px-2.5 py-1 rounded-xl text-[11px] sm:text-xs font-black uppercase tracking-wider bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-md shadow-red-600/30 flex items-center gap-1.5">
                 <Flame className="w-3.5 h-3.5 fill-current" />
                 <span>Fandom Realm</span>
               </span>
               <FavoriteButton categoryName={category.name} showLabel={true} />
-              <span className="text-xs font-mono text-zinc-400 font-bold">
+              <span className="text-[11px] sm:text-xs font-mono text-zinc-400 font-bold">
                 {category.contentCount ? `${category.contentCount}+ Catalog Entries` : 'Featured Hub'}
               </span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight font-display">
+            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight font-display">
               {category.name}
             </h1>
 
-            <p className="text-sm sm:text-base text-zinc-300 leading-relaxed max-w-2xl font-medium">
+            <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed max-w-2xl font-medium">
               {category.description}
             </p>
           </div>
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.08] pb-4">
-        <div className="flex items-center gap-1.5 p-1 bg-[#0c101d] rounded-2xl border border-white/[0.08]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/[0.08] pb-4">
+        {/* Horizontal Scroll Tabs with sleek red badges that never line-wrap */}
+        <div className="flex items-center gap-1.5 p-1 bg-[#0b0407]/80 rounded-2xl border border-red-500/20 overflow-x-auto scrollbar-none w-full sm:w-auto -mx-1 px-1 sm:mx-0 sm:px-0 shadow-inner">
           <button
             type="button"
             onClick={() => setActiveTab('content')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs font-bold transition-all shrink-0 whitespace-nowrap ${
               activeTab === 'content'
-                ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-lg shadow-red-600/30'
-                : 'text-zinc-400 hover:text-white'
+                ? 'bg-gradient-to-r from-red-600 via-rose-600 to-red-700 text-white shadow-md shadow-red-600/40 font-black'
+                : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
             }`}
           >
-            <Film className="w-3.5 h-3.5" />
-            <span>Content ({relatedContent.length})</span>
+            <Film className="w-3.5 h-3.5 text-current shrink-0" />
+            <span>Content</span>
+            <span className={`px-1.5 py-0.5 text-[10px] font-mono rounded-full font-bold ${
+              activeTab === 'content' ? 'bg-white/25 text-white' : 'bg-white/10 text-zinc-400'
+            }`}>
+              {relatedContent.length}
+            </span>
           </button>
 
           <button
             type="button"
             onClick={() => setActiveTab('characters')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs font-bold transition-all shrink-0 whitespace-nowrap ${
               activeTab === 'characters'
-                ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-lg shadow-red-600/30'
-                : 'text-zinc-400 hover:text-white'
+                ? 'bg-gradient-to-r from-red-600 via-rose-600 to-red-700 text-white shadow-md shadow-red-600/40 font-black'
+                : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
             }`}
           >
-            <Users className="w-3.5 h-3.5" />
-            <span>Characters ({relatedCharacters.length})</span>
+            <Users className="w-3.5 h-3.5 text-current shrink-0" />
+            <span>Characters</span>
+            <span className={`px-1.5 py-0.5 text-[10px] font-mono rounded-full font-bold ${
+              activeTab === 'characters' ? 'bg-white/25 text-white' : 'bg-white/10 text-zinc-400'
+            }`}>
+              {relatedCharacters.length}
+            </span>
           </button>
 
           <button
             type="button"
             onClick={() => setActiveTab('merchandise')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs font-bold transition-all shrink-0 whitespace-nowrap ${
               activeTab === 'merchandise'
-                ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-lg shadow-red-600/30'
-                : 'text-zinc-400 hover:text-white'
+                ? 'bg-gradient-to-r from-red-600 via-rose-600 to-red-700 text-white shadow-md shadow-red-600/40 font-black'
+                : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
             }`}
           >
-            <ShoppingBag className="w-3.5 h-3.5" />
-            <span>Merchandise ({relatedMerchandise.length})</span>
+            <ShoppingBag className="w-3.5 h-3.5 text-current shrink-0" />
+            <span>Merchandise</span>
+            <span className={`px-1.5 py-0.5 text-[10px] font-mono rounded-full font-bold ${
+              activeTab === 'merchandise' ? 'bg-white/25 text-white' : 'bg-white/10 text-zinc-400'
+            }`}>
+              {relatedMerchandise.length}
+            </span>
           </button>
 
           <button
             type="button"
             onClick={() => setActiveTab('events')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs font-bold transition-all shrink-0 whitespace-nowrap ${
               activeTab === 'events'
-                ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-lg shadow-red-600/30'
-                : 'text-zinc-400 hover:text-white'
+                ? 'bg-gradient-to-r from-red-600 via-rose-600 to-red-700 text-white shadow-md shadow-red-600/40 font-black'
+                : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
             }`}
           >
-            <Calendar className="w-3.5 h-3.5" />
-            <span>Events ({relatedEvents.length})</span>
+            <Calendar className="w-3.5 h-3.5 text-current shrink-0" />
+            <span>Events</span>
+            <span className={`px-1.5 py-0.5 text-[10px] font-mono rounded-full font-bold ${
+              activeTab === 'events' ? 'bg-white/25 text-white' : 'bg-white/10 text-zinc-400'
+            }`}>
+              {relatedEvents.length}
+            </span>
           </button>
         </div>
 
         {activeTab === 'content' && (
-          <div className="flex flex-wrap items-center gap-2">
-            <select
-              value={contentTypeFilter}
-              onChange={(e) => setContentTypeFilter(e.target.value)}
-              className="px-3.5 py-2 bg-[#0c101d] border border-white/[0.08] rounded-xl text-xs text-zinc-200 focus:outline-none focus:border-red-500"
-            >
-              <option value="all">All Media</option>
-              <option value="video">Videos</option>
-              <option value="trailer">Trailers</option>
-              <option value="article">Articles</option>
-            </select>
+          <div className="grid grid-cols-2 sm:flex sm:items-center gap-2 w-full sm:w-auto">
+            <div className="relative flex-1 sm:flex-initial">
+              <select
+                value={contentTypeFilter}
+                onChange={(e) => setContentTypeFilter(e.target.value)}
+                className="w-full appearance-none pl-3 pr-8 py-2 bg-[#0e0710] border border-red-500/30 hover:border-red-500/60 rounded-xl text-xs font-semibold text-zinc-200 focus:outline-none focus:ring-1 focus:ring-red-500 shadow-sm transition-colors cursor-pointer"
+              >
+                <option value="all">All Media</option>
+                <option value="video">Videos</option>
+                <option value="trailer">Trailers</option>
+                <option value="article">Articles</option>
+              </select>
+              <Filter className="absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-400 pointer-events-none" />
+            </div>
 
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              className="px-3.5 py-2 bg-[#0c101d] border border-white/[0.08] rounded-xl text-xs text-zinc-200 focus:outline-none focus:border-red-500"
-            >
-              <option value="popularity">Sort: Popularity</option>
-              <option value="newest">Sort: Newest</option>
-              <option value="title">Sort: Title</option>
-            </select>
+            <div className="relative flex-1 sm:flex-initial">
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="w-full appearance-none pl-3 pr-8 py-2 bg-[#0e0710] border border-red-500/30 hover:border-red-500/60 rounded-xl text-xs font-semibold text-zinc-200 focus:outline-none focus:ring-1 focus:ring-red-500 shadow-sm transition-colors cursor-pointer"
+              >
+                <option value="popularity">Sort: Popularity</option>
+                <option value="newest">Sort: Newest</option>
+                <option value="title">Sort: Title</option>
+              </select>
+              <Filter className="absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-400 pointer-events-none" />
+            </div>
           </div>
         )}
       </div>

@@ -71,11 +71,11 @@ export default function Characters() {
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center gap-2">
+      <div className="flex items-center gap-2 overflow-x-auto scrollbar-none pb-1 -mx-1 px-1 sm:mx-0 sm:px-0 w-full">
         <button
           type="button"
           onClick={() => setSelectedCategory('all')}
-          className={`px-4 py-1.5 rounded-xl text-xs font-bold transition-all ${
+          className={`px-3.5 sm:px-4 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 whitespace-nowrap ${
             selectedCategory === 'all'
               ? 'bg-red-600 text-white shadow-lg shadow-red-600/30 border border-red-500/50'
               : 'bg-[#0c101d] text-zinc-400 hover:text-white border border-white/[0.08] hover:border-red-500/40'
@@ -88,7 +88,7 @@ export default function Characters() {
             key={cat.id}
             type="button"
             onClick={() => setSelectedCategory(cat.slug)}
-            className={`px-4 py-1.5 rounded-xl text-xs font-bold transition-all ${
+            className={`px-3.5 sm:px-4 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 whitespace-nowrap ${
               selectedCategory === cat.slug
                 ? 'bg-red-600 text-white shadow-lg shadow-red-600/30 border border-red-500/50'
                 : 'bg-[#0c101d] text-zinc-400 hover:text-white border border-white/[0.08] hover:border-red-500/40'
@@ -100,7 +100,7 @@ export default function Characters() {
       </div>
 
       {filteredCharacters.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-7">
+        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
           {filteredCharacters.map((char) => (
             <CharacterCard key={char.id} character={char} />
           ))}

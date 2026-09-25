@@ -22,7 +22,7 @@ export default function Dashboard() {
   const { bookmarks, ratings, favoriteCategories, categories, contentList, fanSubmissions } = useData();
 
   const userSubmissions = fanSubmissions.filter(
-    (s) => s.creator.toLowerCase() === currentUser?.name.toLowerCase()
+    (s) => s.creator.toLowerCase() === (currentUser?.name || '').toLowerCase()
   );
 
   const bookmarkedItems = contentList.filter((c) =>

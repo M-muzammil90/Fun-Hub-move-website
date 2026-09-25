@@ -25,9 +25,6 @@ import AuthModal from './AuthModal';
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-  const [isCategoriesDropdownOpen, setIsCategoriesDropdownOpen] = useState(false);
-  const [isMoreDropdownOpen, setIsMoreDropdownOpen] = useState(false);
-  const [hasUnreadNotification, setHasUnreadNotification] = useState(true);
 
   // Industry-level Auth Modal State
   const [authModalOpen, setAuthModalOpen] = useState(false);
@@ -67,48 +64,35 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-[#060913]/90 border-b border-white/10 shadow-2xl backdrop-blur-xl">
-      <div className="w-full max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 gap-3">
-          <div className="flex items-center gap-6 shrink-0">
-            <Link to="/" className="flex items-center gap-2.5 group">
-              <div className="w-9 h-9 rounded-2xl bg-gradient-to-br from-[#ff2e63] to-[#d6004c] p-0.5 shadow-lg shadow-[#ff2e63]/30 flex items-center justify-center group-hover:scale-105 transition-transform">
+    <header className="fixed top-0 left-0 right-0 z-50 w-full bg-[#060913]/95 border-b border-white/10 shadow-2xl backdrop-blur-xl h-16">
+      <div className="w-full max-w-[1680px] mx-auto px-3 sm:px-6 lg:px-8 h-full">
+        <div className="flex items-center justify-between h-full gap-2 sm:gap-3">
+          <div className="flex items-center gap-3 sm:gap-6 shrink-0">
+            <Link to="/" className="flex items-center gap-2 sm:gap-2.5 group">
+              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-2xl bg-gradient-to-br from-[#ff2e63] to-[#d6004c] p-0.5 shadow-lg shadow-[#ff2e63]/30 flex items-center justify-center group-hover:scale-105 transition-transform">
                 <div className="w-full h-full bg-[#090d18] rounded-[14px] flex items-center justify-center">
-                  <Flame className="w-5 h-5 text-[#ff2e63] fill-[#ff2e63]/20 animate-pulse" />
+                  <Flame className="w-4 h-4 sm:w-5 sm:h-5 text-[#ff2e63] fill-[#ff2e63]/20 animate-pulse" />
                 </div>
               </div>
-              <span className="text-lg font-black tracking-tight text-white font-display flex items-baseline gap-1.5 drop-shadow-sm">
+              <span className="text-base sm:text-lg font-black tracking-tight text-white font-display flex items-baseline gap-1 sm:gap-1.5 drop-shadow-sm">
                 <span>FAN HUB</span>
-                <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-lg bg-[#ff2e63]/20 text-[#ff3366] border border-[#ff2e63]/40 backdrop-blur-md shadow-sm">
+                <span className="text-[9px] sm:text-[10px] font-black uppercase px-1.5 sm:px-2 py-0.5 rounded-lg bg-[#ff2e63]/20 text-[#ff3366] border border-[#ff2e63]/40 backdrop-blur-md shadow-sm">
                   PLUS
                 </span>
               </span>
             </Link>
           </div>
 
-          <div className="hidden md:flex flex-1 max-w-md mx-2">
+          <div className="hidden md:flex flex-1 max-w-md mx-4">
             <SearchBar
               className="w-full"
-              inputClassName="w-full pl-10 pr-9 py-2 text-xs md:text-sm bg-black/35 hover:bg-black/45 border border-white/25 focus:border-white focus:bg-black/60 rounded-2xl text-white placeholder-white/70 focus:outline-none focus:ring-1 focus:ring-white/40 transition-all shadow-inner"
+              inputClassName="w-full pl-10 pr-9 py-2 text-xs md:text-sm bg-black/40 hover:bg-black/55 border border-white/20 focus:border-red-500 focus:bg-black/70 rounded-2xl text-white placeholder-white/60 focus:outline-none focus:ring-1 focus:ring-red-500/50 transition-all shadow-inner"
               placeholder="Search anime, movies, characters, events..."
             />
           </div>
         
-          <div className="flex items-center gap-2.5 shrink-0">
-            <ThemeToggle />
-
-            <button
-              type="button"
-              onClick={() => setHasUnreadNotification(false)}
-              className="relative p-2 rounded-xl text-white/80 hover:text-white bg-black/20 hover:bg-black/35 border border-white/15 transition-colors"
-              title="Notifications"
-              aria-label="Notifications"
-            >
-              <Bell className="w-4 h-4" />
-              {hasUnreadNotification && (
-                <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-amber-400 ring-2 ring-[#800a18]" />
-              )}
-            </button>
+          <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
+            <ThemeToggle className="!p-1.5 sm:!p-2" />
 
             {isAdmin && (
               <Link
@@ -128,10 +112,10 @@ export default function Navbar() {
                   className="flex items-center gap-2 p-1 rounded-full hover:ring-2 hover:ring-white/60 transition-all bg-black/20 border border-white/20"
                 >
                   <img
-                    src={currentUser.avatar}
-                    alt={currentUser.name}
+                    src={currentUser?.avatar}
+                    alt={currentUser?.name}
                     referrerPolicy="no-referrer"
-                    className="w-8 h-8 rounded-full object-cover ring-1 ring-white/60"
+                    className="w-7 h-7 sm:w-8 sm:h-8 rounded-full object-cover ring-1 ring-white/60"
                   />
                   <ChevronDown className="w-3.5 h-3.5 text-white/80" />
                 </button>
@@ -139,15 +123,15 @@ export default function Navbar() {
                 {isUserMenuOpen && (
                   <div className="absolute right-0 mt-2 w-56 bg-[#30050a] border border-red-500/40 rounded-2xl shadow-2xl py-2 z-50 animate-in fade-in zoom-in-95 backdrop-blur-xl">
                     <div className="px-4 py-2 border-b border-red-500/20">
-                      <p className="text-xs font-bold text-white truncate">{currentUser.name}</p>
-                      <p className="text-[11px] text-white/60 truncate">{currentUser.email}</p>
+                      <p className="text-xs font-bold text-white truncate">{currentUser?.name}</p>
+                      <p className="text-[11px] text-white/60 truncate">{currentUser?.email}</p>
                       <div className="mt-1.5 flex items-center justify-between">
                         <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded-md bg-black/40 text-amber-300 border border-red-500/30">
-                          Role: {currentUser.role}
+                          Role: {currentUser?.role}
                         </span>
                         <button
                           type="button"
-                          onClick={() => switchRole(currentUser.role === 'admin' ? 'user' : 'admin')}
+                          onClick={() => switchRole(currentUser?.role === 'admin' ? 'user' : 'admin')}
                           className="text-[10px] text-white/70 hover:text-white underline"
                         >
                           Switch
@@ -206,18 +190,18 @@ export default function Navbar() {
                 )}
               </div>
             ) : (
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1 sm:gap-2">
                 <button
                   type="button"
                   onClick={openLoginModal}
-                  className="px-4 py-1.5 text-xs font-bold text-white hover:text-pink-300 hover:border-pink-500/50 rounded-full border border-white/25 transition-all bg-black/40 backdrop-blur-md hover:bg-pink-950/30 shadow-sm"
+                  className="px-2 xs:px-2.5 sm:px-3.5 py-1 sm:py-1.5 text-[11px] sm:text-xs font-bold text-red-200 bg-red-600/20 hover:bg-red-600 hover:text-white rounded-full border border-red-500/70 transition-all shadow-[0_0_10px_rgba(239,68,68,0.25)] hover:shadow-[0_0_15px_rgba(239,68,68,0.6)] whitespace-nowrap active:scale-95"
                 >
                   Login
                 </button>
                 <button
                   type="button"
                   onClick={openRegisterModal}
-                  className="px-4 py-1.5 text-xs font-black text-white bg-gradient-to-r from-[#ff1361] via-[#d60067] to-[#7928ca] hover:from-[#ff2371] hover:to-[#8938da] rounded-full transition-all shadow-md shadow-pink-600/40 hover:shadow-pink-600/70 hover:scale-105 active:scale-95 border border-pink-400/40"
+                  className="px-2 xs:px-2.5 sm:px-3.5 py-1 sm:py-1.5 text-[11px] sm:text-xs font-black text-white bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-500 rounded-full transition-all shadow-[0_0_15px_rgba(239,68,68,0.45)] hover:shadow-[0_0_22px_rgba(239,68,68,0.7)] hover:scale-105 active:scale-95 border border-red-400/60 whitespace-nowrap"
                 >
                   Register
                 </button>
@@ -227,7 +211,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-              className="lg:hidden p-2 rounded-xl text-white hover:bg-black/25 transition-colors"
+              className="lg:hidden p-1.5 sm:p-2 rounded-xl text-white bg-white/5 hover:bg-red-600/20 border border-white/10 transition-colors shrink-0"
               aria-label="Toggle navigation menu"
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -250,14 +234,14 @@ export default function Navbar() {
                 <button
                   type="button"
                   onClick={openLoginModal}
-                  className="flex-1 py-2 text-xs font-bold text-center text-white bg-black/40 border border-white/20 rounded-xl hover:border-red-500/50 transition-colors"
+                  className="flex-1 py-2.5 text-xs font-bold text-center text-red-200 bg-red-950/60 border border-red-500/60 rounded-xl hover:bg-red-900/60 shadow-md shadow-red-950/50 transition-colors"
                 >
                   Login
                 </button>
                 <button
                   type="button"
                   onClick={openRegisterModal}
-                  className="flex-1 py-2 text-xs font-black text-center text-white bg-gradient-to-r from-red-600 via-rose-600 to-red-700 rounded-xl shadow-md shadow-red-600/40 transition-colors"
+                  className="flex-1 py-2.5 text-xs font-black text-center text-white bg-gradient-to-r from-red-600 via-rose-600 to-red-700 rounded-xl shadow-md shadow-red-600/40 border border-red-400/50 hover:from-red-500 hover:to-rose-500 transition-colors"
                 >
                   Register
                 </button>

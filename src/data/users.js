@@ -15,6 +15,26 @@ export const initialUsers = [
     joinedDate: '2025-01-10'
   },
   {
+    id: 'usr-admin-demo',
+    name: 'Marcus Vance',
+    email: 'marcus.vance@fanhub.io',
+    avatar: cyberImg,
+    role: 'admin',
+    favoriteCategories: ['Anime', 'Gaming', 'Movies'],
+    bio: 'Senior Community Moderator & System Admin.',
+    joinedDate: '2025-01-15'
+  },
+  {
+    id: 'usr-user-demo',
+    name: 'Alex Hunter',
+    email: 'alex.hunter@fanhub.io',
+    avatar: heroImg,
+    role: 'user',
+    favoriteCategories: ['Anime', 'Cosplay', 'Gaming'],
+    bio: 'Avid anime streamer and gaming enthusiast.',
+    joinedDate: '2025-03-20'
+  },
+  {
     id: 'usr-2',
     name: 'Irakli.T',
     email: 'irakli@example.com',

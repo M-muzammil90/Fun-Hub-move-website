@@ -152,7 +152,7 @@ export default function Media() {
   ];
 
   return (
-    <div className="space-y-12 pb-20 max-w-7xl mx-auto">
+    <div className="space-y-12 pb-6 sm:pb-12 max-w-7xl mx-auto">
       {/* Hero Banner */}
       <div className="relative rounded-3xl overflow-hidden border border-red-950/60 bg-gradient-to-r from-[#18060a] via-[#090b12] to-[#120508] p-6 sm:p-12 shadow-[0_0_60px_rgba(220,38,38,0.18)]">
         {/* Glow orbs */}
@@ -173,7 +173,7 @@ export default function Media() {
             Stream high-bitrate trailers, download 4K UHD desktop & mobile wallpapers, and listen to orchestral fandom soundtracks.
           </p>
 
-          <div className="flex flex-wrap gap-2 pt-2">
+          <div className="flex items-center gap-2 pt-2 overflow-x-auto scrollbar-none pb-1 -mx-1 px-1 sm:mx-0 sm:px-0 w-full">
             {filterTabs.map((tab) => {
               const Icon = tab.icon;
               return (
@@ -181,7 +181,7 @@ export default function Media() {
                   key={tab.id}
                   type="button"
                   onClick={() => setActiveTab(tab.id)}
-                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black transition-all ${
+                  className={`inline-flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs font-black transition-all shrink-0 whitespace-nowrap ${
                     activeTab === tab.id
                       ? 'bg-red-600 text-white shadow-lg shadow-red-600/40 border border-red-400/40 scale-105'
                       : 'bg-[#0e1018] text-zinc-300 hover:text-white border border-white/[0.08] hover:border-red-500/40'

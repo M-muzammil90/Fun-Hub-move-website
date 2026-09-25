@@ -136,3 +136,23 @@
 .scrollbar-none::-webkit-scrollbar {
   display: none;
 }
+
+/* Device Responsive Utilities & Safe Area Support */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .mb-safe {
+    margin-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Ensure smooth image rendering across Retina / High-DPI screens */
+img {
+  content-visibility: auto;
+}
+
+/* Interactive touch improvements */
+button, a {
+  touch-action: manipulation;
+}

@@ -64,14 +64,14 @@ export default function Merchandise() {
       </div>
 
       <div id="store-grid" className="space-y-6">
-        <div className="flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
-          <div className="flex flex-wrap gap-2">
+        <div className="flex flex-col sm:flex-row gap-4 justify-between items-stretch sm:items-center">
+          <div className="flex items-center gap-2 overflow-x-auto scrollbar-none pb-1 -mx-1 px-1 sm:mx-0 sm:px-0 w-full sm:w-auto">
             {categories.map((cat) => (
               <button
                 key={cat}
                 type="button"
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+                className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs font-bold transition-all shrink-0 whitespace-nowrap ${
                   selectedCategory === cat
                     ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-md shadow-red-600/30'
                     : 'bg-black/40 text-zinc-400 hover:text-white border border-white/10 hover:border-red-500/30'
@@ -82,7 +82,7 @@ export default function Merchandise() {
             ))}
           </div>
 
-          <div className="relative w-full sm:w-64">
+          <div className="relative w-full sm:w-64 shrink-0">
             <Search className="absolute left-3.5 top-2.5 w-4 h-4 text-zinc-500" />
             <input
               type="text"
@@ -94,7 +94,7 @@ export default function Merchandise() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3.5 sm:gap-4">
           {filteredMerch.map((item) => (
             <MerchandiseCard
               key={item.id}

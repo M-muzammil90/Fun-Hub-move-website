@@ -93,25 +93,39 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'register' })
     if (mode === 'login') {
       const res = login(email, password);
       if (res.success) {
+        setName('');
+        setEmail('');
+        setPassword('');
+        setConfirmPassword('');
         onClose();
-        navigate('/dashboard');
+        navigate('/');
+      } else {
+        setErrors({ email: res.error || 'Login failed. Please check your credentials.' });
       }
     } else {
-      const res = register({ name, email });
+      const res = register({ name, email, password });
       if (res.success) {
+        setName('');
+        setEmail('');
+        setPassword('');
+        setConfirmPassword('');
         onClose();
-        navigate('/dashboard');
+        navigate('/');
+      } else {
+        setErrors({ email: res.error || 'Registration failed. Please try again.' });
       }
     }
   };
 
   const handleQuickLogin = (demoEmail) => {
-    setEmail(demoEmail);
-    setPassword('fanhub2026');
     const res = login(demoEmail, 'fanhub2026');
     if (res.success) {
+      setName('');
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
       onClose();
-      navigate('/dashboard');
+      navigate('/');
     }
   };
 
@@ -141,7 +155,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'register' })
   if (!isOpen) return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-[99999] flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div className="fixed inset-0 z-[99999] flex items-center justify-center p-2.5 sm:p-4 overflow-y-auto">
       {/* Dark Ambient Backdrop */}
       <div
         className="fixed inset-0 bg-black/90 backdrop-blur-xl transition-opacity animate-in fade-in duration-200"
@@ -150,11 +164,11 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'register' })
 
       {/* Main Container - Matches Exact User Reference Screenshot */}
       <div
-        className="relative z-10 w-full max-w-4xl grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 items-stretch animate-in fade-in zoom-in-95 duration-200 text-white"
+        className="relative z-10 w-full max-w-4xl max-h-[95vh] overflow-y-auto sm:overflow-visible grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 items-stretch animate-in fade-in zoom-in-95 duration-200 text-white my-auto scrollbar-none"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Left Side: Anime Art Card with Community Points */}
-        <div className="md:col-span-5 relative hidden sm:flex flex-col justify-between rounded-3xl overflow-hidden p-5 sm:p-6 border border-white/10 bg-[#080205] shadow-[0_0_35px_rgba(220,38,38,0.25)]">
+        <div className="md:col-span-5 relative hidden md:flex flex-col justify-between rounded-3xl overflow-hidden p-5 sm:p-6 border border-white/10 bg-[#080205] shadow-[0_0_35px_rgba(220,38,38,0.25)]">
           {/* Background Anime Character Image with Red/Crimson Overlay */}
           <div className="absolute inset-0 pointer-events-none">
             <img

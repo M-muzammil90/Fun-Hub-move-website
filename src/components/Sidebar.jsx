@@ -29,7 +29,7 @@ export default function Sidebar({ onChatbotOpen }) {
   ];
 
   return (
-    <aside className="hidden lg:flex flex-col w-60 shrink-0 min-h-[calc(100vh-4rem)] border-r border-red-950/40 bg-[#070911] p-4 justify-between sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto">
+    <aside className="hidden lg:flex flex-col w-60 shrink-0 h-[calc(100vh-4rem)] sticky top-16 border-r border-red-950/40 bg-[#070911] p-4 justify-between overflow-y-auto select-none z-30">
       <div className="space-y-6">
         <nav className="space-y-1.5">
           {navItems.map((item) => {

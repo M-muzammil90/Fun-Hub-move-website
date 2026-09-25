@@ -53,9 +53,11 @@ export default function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!validate()) return;
-    const res = register({ name, email });
+    const res = register({ name, email, password });
     if (res.success) {
-      navigate('/dashboard');
+      navigate('/');
+    } else {
+      setErrors({ email: res.error || 'Registration failed. Please try again.' });
     }
   };
 

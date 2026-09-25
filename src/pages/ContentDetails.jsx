@@ -65,7 +65,7 @@ export default function ContentDetails() {
   };
 
   return (
-    <div className="space-y-10 pb-20 max-w-6xl mx-auto">
+    <div className="space-y-8 sm:space-y-10 pb-4 sm:pb-10 max-w-6xl mx-auto">
       <div className="flex items-center gap-2 text-xs text-zinc-400 font-medium">
         <Link to="/" className="hover:text-red-400 transition-colors">Home</Link>
         <span>&gt;</span>

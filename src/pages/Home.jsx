@@ -246,7 +246,7 @@ export default function Home() {
   });
 
   return (
-    <div className="space-y-14 sm:space-y-20 pb-20 w-full">
+    <div className="space-y-14 sm:space-y-20 pb-6 sm:pb-12 w-full">
       <section
         className="relative rounded-3xl overflow-hidden min-h-[440px] xs:min-h-[480px] sm:min-h-[520px] lg:min-h-[560px] border border-white/10 bg-[#060a14] shadow-2xl flex items-center transition-all duration-700 group/hero"
         onMouseEnter={() => setIsAutoPlaying(false)}
@@ -298,10 +298,10 @@ export default function Home() {
             {activeSlide.subtitle}
           </p>
 
-          <div className="flex flex-row items-center gap-3 pt-2">
+          <div className="flex flex-wrap sm:flex-nowrap items-center gap-2.5 sm:gap-3 pt-2">
             <Link
               to={activeSlide.ctaLink}
-              className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 rounded-full bg-gradient-to-r from-[#ff2e63] to-[#d6004c] hover:from-[#ff1751] hover:to-[#b80041] text-white font-extrabold text-xs sm:text-sm shadow-xl shadow-[#ff2e63]/40 transition-all hover:scale-105 active:scale-95 whitespace-nowrap"
+              className="inline-flex items-center justify-center gap-2 px-4 xs:px-5 sm:px-6 py-2.5 rounded-full bg-gradient-to-r from-[#ff2e63] to-[#d6004c] hover:from-[#ff1751] hover:to-[#b80041] text-white font-extrabold text-xs sm:text-sm shadow-xl shadow-[#ff2e63]/40 transition-all hover:scale-105 active:scale-95 whitespace-nowrap"
             >
               <Play className="w-3.5 h-3.5 fill-current" />
               <span>{activeSlide.ctaText}</span>
@@ -315,7 +315,7 @@ export default function Home() {
                   url: activeSlide.trailerUrl
                 })
               }
-              className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold text-xs sm:text-sm backdrop-blur-md transition-all hover:scale-105 active:scale-95 whitespace-nowrap"
+              className="inline-flex items-center justify-center gap-2 px-4 xs:px-5 sm:px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold text-xs sm:text-sm backdrop-blur-md transition-all hover:scale-105 active:scale-95 whitespace-nowrap"
             >
               <Play className="w-3.5 h-3.5" />
               <span>Watch Trailer</span>
@@ -323,13 +323,13 @@ export default function Home() {
           </div>
 
           {/* Anime Title & Genres metadata badge on lower left */}
-          <div className="flex items-center gap-3 pt-3">
-            <div className="w-9 h-9 rounded-xl bg-black/60 border border-white/15 backdrop-blur-md flex items-center justify-center text-white shrink-0 shadow-lg">
-              <Flame className="w-4 h-4 text-[#ff2e63]" />
+          <div className="flex items-center gap-2.5 sm:gap-3 pt-2 sm:pt-3">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-black/60 border border-white/15 backdrop-blur-md flex items-center justify-center text-white shrink-0 shadow-lg">
+              <Flame className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#ff2e63]" />
             </div>
-            <div className="space-y-0.5">
-              <h4 className="text-xs sm:text-sm font-bold text-white font-display leading-tight">{activeSlide.logoText}</h4>
-              <p className="text-[11px] text-zinc-400 font-medium">{activeSlide.genreText}</p>
+            <div className="space-y-0.5 min-w-0">
+              <h4 className="text-xs sm:text-sm font-bold text-white font-display leading-tight truncate">{activeSlide.logoText}</h4>
+              <p className="text-[10px] sm:text-[11px] text-zinc-400 font-medium truncate">{activeSlide.genreText}</p>
             </div>
           </div>
         </div>
@@ -375,11 +375,11 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="flex gap-3 overflow-x-auto scrollbar-none snap-x snap-mandatory pb-1 -mx-1 px-1">
+        <div className="flex gap-3 sm:gap-4 overflow-x-auto scrollbar-none snap-x snap-mandatory pb-2 -mx-3 px-3 sm:mx-0 sm:px-0">
           {categories.map((cat) => (
             <div
               key={cat.id}
-              className="snap-start shrink-0 w-[calc(20%-10px)] min-w-[160px]"
+              className="snap-start shrink-0 w-[140px] xs:w-[160px] sm:w-[185px] lg:w-[calc(20%-13px)]"
             >
               <CategoryCard category={cat} />
             </div>

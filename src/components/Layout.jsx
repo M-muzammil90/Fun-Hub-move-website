@@ -18,19 +18,20 @@ export default function Layout() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-900 text-zinc-100 dark:bg-[#080b12] dark:text-zinc-100 flex flex-col selection:bg-[#ff2e63] selection:text-white transition-colors duration-300 overflow-x-hidden">
+    <div className="min-h-screen bg-slate-900 text-zinc-100 dark:bg-[#080b12] dark:text-zinc-100 flex flex-col selection:bg-[#ff2e63] selection:text-white transition-colors duration-300 overflow-x-clip">
       <Navbar />
-      <div className="flex-1 flex w-full">
-        <Sidebar onChatbotOpen={() => setIsChatbotModalOpen(true)} />
-        <main className="flex-1 min-w-0 px-3 sm:px-6 lg:px-8 py-4 sm:py-6 max-w-[1680px] pb-24 md:pb-8">
-          <Outlet />
-        </main>
+      <div className="pt-16 flex-1 flex flex-col w-full min-h-screen">
+        <div className="flex-1 flex w-full relative">
+          <Sidebar onChatbotOpen={() => setIsChatbotModalOpen(true)} />
+          <main className="flex-1 min-w-0 px-3 sm:px-6 lg:px-8 py-4 sm:py-6 max-w-[1680px] pb-6 md:pb-8">
+            <Outlet />
+          </main>
+        </div>
+        <Footer />
       </div>
 
-      <Footer />
-
       {/* Mobile App-Style Bottom Navigation Bar (Hidden on Desktop/Tablet >= md) */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#080306]/95 backdrop-blur-xl border-t border-red-500/30 px-2 py-1.5 flex items-center justify-around shadow-[0_-5px_20px_rgba(0,0,0,0.8)]">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#080306]/95 backdrop-blur-xl border-t border-red-500/30 px-2 pt-1.5 pb-[calc(0.5rem+env(safe-area-inset-bottom,0px))] flex items-center justify-around shadow-[0_-5px_20px_rgba(0,0,0,0.8)]">
         {mobileNavItems.map((item) => {
           const Icon = item.icon;
           return (
@@ -38,9 +39,9 @@ export default function Layout() {
               key={item.name}
               to={item.path}
               className={({ isActive }) =>
-                `flex flex-col items-center justify-center py-1 px-2.5 rounded-xl text-[10px] font-bold transition-all ${
+                `flex flex-col items-center justify-center py-1 px-2 xs:px-3 rounded-xl text-[10px] font-bold transition-all select-none ${
                   isActive
-                    ? 'text-red-400 scale-105 drop-shadow-[0_0_8px_rgba(239,68,68,0.7)]'
+                    ? 'text-red-400 scale-105 drop-shadow-[0_0_8px_rgba(239,68,68,0.7)] font-black'
                     : 'text-zinc-400 hover:text-white'
                 }`
               }

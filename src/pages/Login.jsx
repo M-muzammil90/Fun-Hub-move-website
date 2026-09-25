@@ -46,16 +46,16 @@ export default function Login() {
     if (!validate()) return;
     const res = login(email, password);
     if (res.success) {
-      navigate('/dashboard');
+      navigate('/');
+    } else {
+      setErrors({ email: res.error || 'Login failed. Please check your credentials.' });
     }
   };
 
   const handleQuickLogin = (demoEmail) => {
-    setEmail(demoEmail);
-    setPassword('fanhub2026');
     const res = login(demoEmail, 'fanhub2026');
     if (res.success) {
-      navigate('/dashboard');
+      navigate('/');
     }
   };
 

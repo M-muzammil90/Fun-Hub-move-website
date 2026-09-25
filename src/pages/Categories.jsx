@@ -32,7 +32,7 @@ export default function Categories() {
   });
 
   return (
-    <div className="space-y-10 pb-20 max-w-7xl mx-auto">
+    <div className="space-y-8 sm:space-y-10 pb-6 sm:pb-12 max-w-7xl mx-auto">
       <div className="relative rounded-3xl overflow-hidden border border-red-500/20 bg-gradient-to-r from-[#170509] via-[#090b12] to-[#1b070d] p-6 sm:p-12 shadow-2xl">
         <div className="relative z-10 max-w-2xl space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-xl bg-red-500/10 text-red-400 border border-red-500/20 text-xs font-bold uppercase tracking-wider shadow-sm">

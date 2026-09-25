@@ -41,10 +41,10 @@ export default function ExternalChatbotWidget({ isOpen: propIsOpen, onClose: pro
   };
 
   return (
-    <div className="fixed bottom-5 right-5 z-50">
+    <div className="fixed bottom-18 md:bottom-5 right-3 sm:right-5 z-40">
       {isOpen ? (
-        <div className="w-80 sm:w-96 bg-[#0c1222] border border-[#1b253d] rounded-3xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200 flex flex-col h-[480px]">
-          <div className="p-4 bg-[#10182c] border-b border-[#1b253d] flex items-center justify-between">
+        <div className="w-[calc(100vw-24px)] xs:w-80 sm:w-96 bg-[#0c1222] border border-[#1b253d] rounded-3xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200 flex flex-col h-[400px] xs:h-[440px] sm:h-[480px] max-h-[75vh]">
+          <div className="p-3.5 sm:p-4 bg-[#10182c] border-b border-[#1b253d] flex items-center justify-between shrink-0">
             <div className="flex items-center gap-2.5">
               <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-blue-500/25">
                 <Bot className="w-4 h-4" />
@@ -67,14 +67,14 @@ export default function ExternalChatbotWidget({ isOpen: propIsOpen, onClose: pro
             </button>
           </div>
 
-          <div className="flex-1 p-4 overflow-y-auto space-y-3 text-xs bg-[#090d16]">
+          <div className="flex-1 p-3.5 sm:p-4 overflow-y-auto space-y-3 text-xs bg-[#090d16]">
             {messages.map((m, i) => (
               <div
                 key={i}
                 className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 <div
-                  className={`max-w-[80%] rounded-2xl p-3 text-xs leading-relaxed ${
+                  className={`max-w-[85%] rounded-2xl p-3 text-xs leading-relaxed ${
                     m.role === 'user'
                       ? 'bg-blue-600 text-white font-medium'
                       : 'bg-[#12192c] text-zinc-200 border border-[#1d273f]'
@@ -86,7 +86,7 @@ export default function ExternalChatbotWidget({ isOpen: propIsOpen, onClose: pro
             ))}
           </div>
 
-          <form onSubmit={handleSend} className="p-3 bg-[#10182c] border-t border-[#1b253d] flex gap-2">
+          <form onSubmit={handleSend} className="p-2.5 sm:p-3 bg-[#10182c] border-t border-[#1b253d] flex gap-2 shrink-0">
             <input
               type="text"
               value={inputMessage}
@@ -96,7 +96,7 @@ export default function ExternalChatbotWidget({ isOpen: propIsOpen, onClose: pro
             />
             <button
               type="submit"
-              className="p-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white shrink-0"
+              className="p-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white shrink-0 active:scale-95"
               aria-label="Send"
             >
               <Send className="w-3.5 h-3.5" />
@@ -107,15 +107,15 @@ export default function ExternalChatbotWidget({ isOpen: propIsOpen, onClose: pro
         <button
           type="button"
           onClick={handleOpen}
-          className="group flex items-center gap-2.5 px-4 py-3 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white rounded-full shadow-xl shadow-blue-500/25 transition-all hover:scale-105 border border-white/20"
+          className="group flex items-center gap-2 sm:gap-2.5 px-3.5 py-2.5 sm:px-4 sm:py-3 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white rounded-full shadow-xl shadow-blue-500/25 transition-all hover:scale-105 active:scale-95 border border-white/20"
           aria-label="Open Fandom Assistant"
         >
           <div className="relative">
-            <Bot className="w-5 h-5 text-white" />
+            <Bot className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
             <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
             <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-emerald-400" />
           </div>
-          <span className="text-xs font-bold tracking-wide">Ask AI Chatbot</span>
+          <span className="text-[11px] sm:text-xs font-bold tracking-wide">Ask AI Chatbot</span>
         </button>
       )}
     </div>
