@@ -132,20 +132,20 @@ export default function EventDetails() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
         <div className="lg:col-span-7 space-y-6">
-          <div className="p-6 rounded-3xl border border-white/[0.08] bg-gradient-to-b from-[#13080c] via-[#090b10] to-[#06070a] space-y-4">
-            <h2 className="text-xl font-black text-white font-display">About This Event</h2>
-            <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
+          <div className="p-5 sm:p-6 rounded-3xl border border-zinc-200/80 dark:border-white/[0.08] bg-white dark:bg-gradient-to-b dark:from-[#13080c] dark:via-[#090b10] dark:to-[#06070a] shadow-[0_4px_20px_rgba(225,29,72,0.05)] dark:shadow-none space-y-4">
+            <h2 className="text-xl font-black text-zinc-900 dark:text-white font-display">About This Event</h2>
+            <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed font-normal">
               {event.description}
             </p>
           </div>
 
-          <div className="p-6 rounded-3xl border border-white/[0.08] bg-gradient-to-b from-[#13080c] via-[#090b10] to-[#06070a] space-y-4">
-            <h2 className="text-xl font-black text-white font-display">Event Highlights</h2>
+          <div className="p-5 sm:p-6 rounded-3xl border border-zinc-200/80 dark:border-white/[0.08] bg-white dark:bg-gradient-to-b dark:from-[#13080c] dark:via-[#090b10] dark:to-[#06070a] shadow-[0_4px_20px_rgba(225,29,72,0.05)] dark:shadow-none space-y-4">
+            <h2 className="text-xl font-black text-zinc-900 dark:text-white font-display">Event Highlights</h2>
             <div className="space-y-2.5">
               {highlights.map((h, i) => (
-                <div key={i} className="flex items-start gap-2.5 text-xs text-zinc-200">
+                <div key={i} className="flex items-start gap-2.5 text-xs text-zinc-700 dark:text-zinc-200">
                   <CheckCircle2 className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
                   <span>{h}</span>
                 </div>
@@ -155,11 +155,11 @@ export default function EventDetails() {
         </div>
 
         <div className="lg:col-span-5 space-y-6">
-          <div className="p-6 rounded-3xl border border-white/[0.08] bg-gradient-to-b from-[#13080c] via-[#090b10] to-[#06070a] space-y-4">
-            <h2 className="text-xl font-black text-white font-display">Event Atmosphere</h2>
+          <div className="p-5 sm:p-6 rounded-3xl border border-zinc-200/80 dark:border-white/[0.08] bg-white dark:bg-gradient-to-b dark:from-[#13080c] dark:via-[#090b10] dark:to-[#06070a] shadow-[0_4px_20px_rgba(225,29,72,0.05)] dark:shadow-none space-y-4">
+            <h2 className="text-xl font-black text-zinc-900 dark:text-white font-display">Event Atmosphere</h2>
             <div className="grid grid-cols-2 gap-3">
               {gallery.map((img, i) => (
-                <div key={i} className="aspect-video rounded-2xl overflow-hidden bg-zinc-900 border border-white/10 ring-1 ring-white/5">
+                <div key={i} className="aspect-video rounded-2xl overflow-hidden bg-zinc-900 border border-zinc-200 dark:border-white/10 ring-1 ring-black/5 dark:ring-white/5">
                   <img src={img} alt="Convention scene" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
                 </div>
               ))}
@@ -174,42 +174,42 @@ export default function EventDetails() {
         title="Reserve Event Passes"
       >
         <form onSubmit={handleConfirmTicket} className="space-y-4 text-xs">
-          <p className="text-zinc-300">
-            Booking passes for <strong className="text-white">{event.title}</strong> in {event.city}.
+          <p className="text-zinc-600 dark:text-zinc-300">
+            Booking passes for <strong className="text-zinc-900 dark:text-white">{event.title}</strong> in {event.city}.
           </p>
 
           <div>
-            <label className="block text-zinc-300 mb-1 font-bold">Pass Tier</label>
-            <select className="w-full px-3 py-2 bg-black/80 border border-white/20 rounded-xl text-white focus:outline-none focus:border-red-500">
-              <option>Weekend VIP Pass (All 3 Days + Fast Track) - Rs. 4,500</option>
-              <option>Single Day Saturday Pass - Rs. 2,000</option>
-              <option>Single Day Sunday Pass - Rs. 1,500</option>
+            <label className="block text-zinc-700 dark:text-zinc-300 mb-1 font-bold">Pass Tier</label>
+            <select className="w-full px-3 py-2 bg-zinc-50 dark:bg-black/80 border border-zinc-200 dark:border-white/20 rounded-xl text-zinc-900 dark:text-white focus:outline-none focus:border-red-500">
+              <option className="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white">Weekend VIP Pass (All 3 Days + Fast Track) - Rs. 4,500</option>
+              <option className="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white">Single Day Saturday Pass - Rs. 2,000</option>
+              <option className="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white">Single Day Sunday Pass - Rs. 1,500</option>
             </select>
           </div>
 
           <div>
-            <label className="block text-zinc-300 mb-1 font-bold">Number of Passes</label>
+            <label className="block text-zinc-700 dark:text-zinc-300 mb-1 font-bold">Number of Passes</label>
             <input
               type="number"
               min="1"
               max="10"
               value={ticketCount}
               onChange={(e) => setTicketCount(e.target.value)}
-              className="w-full px-3 py-2 bg-black/80 border border-white/20 rounded-xl text-white focus:outline-none focus:border-red-500"
+              className="w-full px-3 py-2 bg-zinc-50 dark:bg-black/80 border border-zinc-200 dark:border-white/20 rounded-xl text-zinc-900 dark:text-white focus:outline-none focus:border-red-500"
             />
           </div>
 
           {ticketConfirmed ? (
-            <div className="p-3 rounded-xl bg-red-950/60 border border-red-600 text-white font-bold text-center flex items-center justify-center gap-2 shadow-lg">
-              <Check className="w-4 h-4 text-red-400" />
+            <div className="p-3 rounded-xl bg-red-50 dark:bg-red-950/60 border border-red-500 text-red-600 dark:text-white font-bold text-center flex items-center justify-center gap-2 shadow-lg">
+              <Check className="w-4 h-4 text-red-500 dark:text-red-400" />
               <span>Passes Reserved Successfully!</span>
             </div>
           ) : (
-            <div className="flex justify-end gap-2 pt-2 border-t border-white/10">
+            <div className="flex justify-end gap-2 pt-2 border-t border-zinc-100 dark:border-white/10">
               <button
                 type="button"
                 onClick={() => setTicketModalOpen(false)}
-                className="px-3 py-1.5 text-zinc-400 hover:text-white font-medium"
+                className="px-3 py-1.5 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white font-medium"
               >
                 Cancel
               </button>

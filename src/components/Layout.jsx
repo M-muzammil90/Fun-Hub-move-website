@@ -18,16 +18,18 @@ export default function Layout() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-900 text-zinc-100 dark:bg-[#080b12] dark:text-zinc-100 flex flex-col selection:bg-[#ff2e63] selection:text-white transition-colors duration-300 overflow-x-clip">
+    <div className="min-h-screen bg-[var(--bg-page)] text-[var(--text-page)] flex flex-col selection:bg-[#ff2e63] selection:text-white transition-colors duration-300 overflow-x-clip">
       <Navbar />
       <div className="pt-16 flex-1 flex flex-col w-full min-h-screen">
         <div className="flex-1 flex w-full relative">
           <Sidebar onChatbotOpen={() => setIsChatbotModalOpen(true)} />
-          <main className="flex-1 min-w-0 px-3 sm:px-6 lg:px-8 py-4 sm:py-6 max-w-[1680px] pb-6 md:pb-8">
-            <Outlet />
-          </main>
+          <div className="flex-1 flex flex-col min-w-0">
+            <main className="flex-1 px-3 sm:px-6 lg:px-8 py-4 sm:py-6 max-w-[1680px] w-full pb-6 md:pb-8 mx-auto">
+              <Outlet />
+            </main>
+            <Footer />
+          </div>
         </div>
-        <Footer />
       </div>
 
       {/* Mobile App-Style Bottom Navigation Bar (Hidden on Desktop/Tablet >= md) */}

@@ -79,7 +79,7 @@ export default function Events() {
       {featuredEvent && (
         <section className="space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-black text-white flex items-center gap-2 font-display">
+            <h2 className="text-xl font-black text-zinc-900 dark:text-white flex items-center gap-2 font-display">
               <span className="px-2.5 py-0.5 rounded-lg bg-red-600 text-white text-xs font-black uppercase shadow-md">
                 Featured
               </span>
@@ -87,15 +87,15 @@ export default function Events() {
             </h2>
           </div>
 
-          <div className="relative rounded-3xl overflow-hidden border border-red-500/40 bg-gradient-to-b from-[#14080b] via-[#090b10] to-[#050608] shadow-[0_0_40px_rgba(220,38,38,0.18)] hover:border-red-400 transition-all duration-500 flex flex-col lg:flex-row group">
-            <div className="lg:w-1/2 aspect-video lg:aspect-auto relative min-h-[320px] overflow-hidden">
+          <div className="relative rounded-3xl overflow-hidden border border-zinc-200 dark:border-red-500/40 bg-white dark:bg-gradient-to-b dark:from-[#14080b] dark:via-[#090b10] dark:to-[#050608] shadow-[0_8px_30px_rgba(225,29,72,0.06)] dark:shadow-[0_0_40px_rgba(220,38,38,0.18)] hover:border-red-400 transition-all duration-500 flex flex-col lg:flex-row group">
+            <div className="lg:w-1/2 aspect-video lg:aspect-auto relative min-h-[240px] sm:min-h-[320px] overflow-hidden">
               <img
                 src={featuredEvent.image}
                 alt={featuredEvent.title}
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#090b10] via-transparent to-transparent lg:hidden" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent lg:hidden" />
               
               <div className="absolute top-3 left-3 z-10 flex gap-2">
                 <span className="px-3 py-1 rounded-full bg-red-600 text-white text-[10px] font-black uppercase tracking-wider shadow-lg shadow-red-600/50">
@@ -107,27 +107,27 @@ export default function Events() {
               </div>
             </div>
 
-            <div className="lg:w-1/2 p-6 sm:p-10 flex flex-col justify-between space-y-6">
+            <div className="lg:w-1/2 p-5 sm:p-10 flex flex-col justify-between space-y-6">
               <div className="space-y-3">
-                <div className="flex items-center gap-2">
-                  <span className="px-2.5 py-1 rounded-md bg-red-600/20 text-red-400 border border-red-500/40 text-[10px] font-black uppercase tracking-wider">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="px-2.5 py-1 rounded-md bg-red-600/20 text-red-600 dark:text-red-400 border border-red-500/40 text-[10px] font-black uppercase tracking-wider">
                     {featuredEvent.category || 'Convention'}
                   </span>
-                  <span className="text-xs text-white font-mono font-bold">
+                  <span className="text-xs text-zinc-700 dark:text-white font-mono font-bold">
                     {featuredEvent.startDate} — {featuredEvent.endDate}
                   </span>
                 </div>
 
-                <h3 className="text-2xl sm:text-3xl font-black text-white font-display leading-tight group-hover:text-red-400 transition-colors">
+                <h3 className="text-2xl sm:text-3xl font-black text-zinc-900 dark:text-white font-display leading-tight group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
                   {featuredEvent.title}
                 </h3>
 
-                <div className="flex items-center gap-2 text-xs text-zinc-200">
+                <div className="flex items-center gap-2 text-xs text-zinc-600 dark:text-zinc-200">
                   <MapPin className="w-4 h-4 text-red-500 shrink-0" />
                   <span className="font-semibold">{featuredEvent.venue}, {featuredEvent.city}</span>
                 </div>
 
-                <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-medium">
+                <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed font-medium">
                   {featuredEvent.description}
                 </p>
 
@@ -135,7 +135,7 @@ export default function Events() {
                   {featuredEvent.tags?.map((t) => (
                     <span
                       key={t}
-                      className="px-2.5 py-1 rounded-lg bg-white text-zinc-950 text-[10px] font-bold shadow-sm"
+                      className="px-2.5 py-1 rounded-lg bg-zinc-100 dark:bg-white text-zinc-800 dark:text-zinc-950 text-[10px] font-bold border border-zinc-200 dark:border-transparent shadow-sm"
                     >
                       #{t}
                     </span>
@@ -143,17 +143,17 @@ export default function Events() {
                 </div>
               </div>
 
-              <div className="pt-2 flex items-center gap-3">
+              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                 <Link
                   to={`/events/${featuredEvent.slug}`}
-                  className="px-6 py-3 rounded-2xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-black text-xs shadow-xl shadow-red-600/30 flex items-center gap-2 transition-all hover:scale-105 border border-red-400/40"
+                  className="px-6 py-3 rounded-2xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-black text-xs shadow-xl shadow-red-600/30 flex items-center justify-center gap-2 transition-all hover:scale-105 border border-red-400/40 text-center"
                 >
                   <Ticket className="w-4 h-4" />
                   <span>Get Tickets & Passes</span>
                 </Link>
                 <Link
                   to={`/events/${featuredEvent.slug}`}
-                  className="px-6 py-3 rounded-2xl border border-white/20 hover:border-red-500 hover:bg-white/[0.04] text-white text-xs font-bold transition-all"
+                  className="px-6 py-3 rounded-2xl border border-zinc-300 dark:border-white/20 hover:border-red-500 hover:bg-zinc-100 dark:hover:bg-white/[0.04] text-zinc-800 dark:text-white text-xs font-bold transition-all text-center"
                 >
                   View Details
                 </Link>
@@ -167,22 +167,22 @@ export default function Events() {
       <section className="space-y-6">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div className="space-y-1">
-            <h2 className="text-xl sm:text-2xl font-black text-white font-display">
+            <h2 className="text-xl sm:text-2xl font-black text-zinc-900 dark:text-white font-display">
               Upcoming Fandom Conventions & Meetups
             </h2>
-            <p className="text-xs text-zinc-400">
+            <p className="text-xs text-zinc-600 dark:text-zinc-400">
               Browse upcoming summits, dates, ticket prices and venue locations.
             </p>
           </div>
 
           <div className="relative w-full sm:w-72">
-            <Search className="absolute left-3.5 top-3 w-4 h-4 text-zinc-400" />
+            <Search className="absolute left-3.5 top-3 w-4 h-4 text-zinc-400 dark:text-zinc-500" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search city, venue or event..."
-              className="w-full pl-10 pr-4 py-2.5 bg-black/60 border border-white/15 rounded-xl text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors"
+              className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-black/60 border border-zinc-200 dark:border-white/15 rounded-xl text-xs text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors shadow-sm dark:shadow-none"
             />
           </div>
         </div>
@@ -191,17 +191,17 @@ export default function Events() {
           {filteredEvents.map((evt) => (
             <article
               key={evt.id}
-              className="group rounded-2xl overflow-hidden border border-white/[0.08] hover:border-red-500/70 bg-gradient-to-b from-[#13080c] via-[#090b10] to-[#06070a] transition-all duration-400 hover:-translate-y-1.5 shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:shadow-[0_12px_36px_rgba(220,38,38,0.22)] flex flex-col justify-between"
+              className="group rounded-2xl overflow-hidden border border-zinc-200/80 dark:border-white/[0.08] hover:border-red-500/70 bg-white dark:bg-gradient-to-b dark:from-[#13080c] dark:via-[#090b10] dark:to-[#06070a] transition-all duration-400 hover:-translate-y-1.5 shadow-[0_4px_20px_rgba(225,29,72,0.05)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:shadow-[0_12px_36px_rgba(220,38,38,0.18)] dark:hover:shadow-[0_12px_36px_rgba(220,38,38,0.22)] flex flex-col justify-between"
             >
               <div>
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-black">
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-zinc-900">
                   <img
                     src={evt.image}
                     alt={evt.title}
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#090b10] via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                   
                   {/* White Date Chip */}
                   <span className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-white text-red-600 text-[10px] font-mono font-black shadow-md">
@@ -215,16 +215,16 @@ export default function Events() {
                 </div>
 
                 <div className="p-5 space-y-3">
-                  <h3 className="text-base font-black text-white group-hover:text-red-400 transition-colors line-clamp-1 font-display">
+                  <h3 className="text-base font-black text-zinc-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors line-clamp-1 font-display">
                     {evt.title}
                   </h3>
 
-                  <div className="flex items-center gap-2 text-xs text-zinc-300">
+                  <div className="flex items-center gap-2 text-xs text-zinc-600 dark:text-zinc-300">
                     <MapPin className="w-3.5 h-3.5 text-red-500 shrink-0" />
                     <span className="truncate font-medium">{evt.venue}, {evt.city}</span>
                   </div>
 
-                  <p className="text-xs text-zinc-400 line-clamp-2 leading-relaxed font-normal">
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400 line-clamp-2 leading-relaxed font-normal">
                     {evt.description}
                   </p>
                 </div>
@@ -233,7 +233,7 @@ export default function Events() {
               <div className="p-5 pt-0">
                 <Link
                   to={`/events/${evt.slug}`}
-                  className="w-full py-2.5 px-4 rounded-xl bg-red-600/15 hover:bg-red-600 border border-red-500/30 hover:border-red-500 text-xs font-black text-red-400 hover:text-white flex items-center justify-center gap-1.5 transition-all shadow-md group/btn"
+                  className="w-full py-2.5 px-4 rounded-xl bg-red-50 hover:bg-red-600 dark:bg-red-600/15 dark:hover:bg-red-600 border border-red-200 dark:border-red-500/30 hover:border-red-500 text-xs font-black text-red-600 hover:text-white dark:text-red-400 dark:hover:text-white flex items-center justify-center gap-1.5 transition-all shadow-sm group/btn"
                 >
                   <span>Event Passes & Details</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />

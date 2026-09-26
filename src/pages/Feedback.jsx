@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MessageSquare, Check, AlertCircle, Send } from 'lucide-react';
+import { MessageSquare, Check, Send, Sparkles } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useData } from '../context/DataContext';
 
@@ -7,179 +7,95 @@ export default function Feedback() {
   const { currentUser } = useAuth();
   const { addFeedback } = useData();
 
-  const [userName, setUserName] = useState(currentUser?.name || '');
-  const [userEmail, setUserEmail] = useState(currentUser?.email || '');
-  const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
-  const [type, setType] = useState('feature');
-  const [errors, setErrors] = useState({});
+  const [error, setError] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const validate = () => {
-    const errs = {};
-    if (!userName.trim()) errs.userName = 'Name is required';
-    if (!userEmail.trim() || !/\S+@\S+\.\S+/.test(userEmail)) {
-      errs.userEmail = 'Valid email is required';
-    }
-    if (!subject.trim()) errs.subject = 'Subject line is required';
-    if (!message.trim() || message.length < 10) {
-      errs.message = 'Message must be at least 10 characters';
-    }
-
-    setErrors(errs);
-    return Object.keys(errs).length === 0;
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!validate()) return;
+    if (!message.trim() || message.length < 10) {
+      setError('Message must be at least 10 characters.');
+      return;
+    }
+    setError('');
 
     addFeedback({
-      userName,
-      userEmail,
-      subject,
+      userName: currentUser?.name || 'Anonymous',
+      userEmail: currentUser?.email || 'unknown@example.com',
+      subject: 'Community Message',
       message,
-      type
+      type: 'general'
     });
 
     setIsSubmitted(true);
   };
 
   const handleReset = () => {
-    setSubject('');
     setMessage('');
     setIsSubmitted(false);
   };
 
   return (
-    <div className="max-w-2xl mx-auto space-y-8 pb-20">
-      <div className="space-y-2">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20 text-xs font-bold uppercase tracking-wider">
-          <MessageSquare className="w-3.5 h-3.5" />
+    <div className="max-w-3xl mx-auto space-y-12 pb-20 pt-6 selection:bg-red-500/30">
+      <div className="text-center space-y-5">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-950/40 text-red-400 border border-red-500/20 text-xs font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(239,68,68,0.15)]">
+          <Sparkles className="w-4 h-4 text-red-500" />
           <span>Community Voice</span>
         </div>
-        <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight font-display">
-          Feedback & <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Support</span>
+        <h1 className="text-4xl sm:text-6xl font-black text-white tracking-tight font-display">
+          Direct <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-rose-400 drop-shadow-sm">Message</span>
         </h1>
-        <p className="text-xs sm:text-sm text-zinc-400 font-medium">
-          Have an idea for a new fandom realm, noticed an issue, or want to suggest an event? Send your thoughts directly to our development team.
+        <p className="text-sm sm:text-base text-zinc-400 font-medium max-w-xl mx-auto leading-relaxed">
+          Share your thoughts, suggestions, or simply drop a line. Your voice shapes the future of Fan Hub Plus.
         </p>
       </div>
 
       {isSubmitted ? (
-        <div className="p-8 rounded-3xl bg-[#0c101d] border border-emerald-500/30 shadow-2xl space-y-4 animate-in fade-in">
-          <div className="flex items-center gap-3 text-emerald-400">
-            <div className="w-10 h-10 rounded-xl bg-emerald-950/80 border border-emerald-500/40 flex items-center justify-center">
-              <Check className="w-5 h-5" />
-            </div>
-            <div>
-              <h3 className="text-lg font-bold text-white font-display">Thank You for Your Feedback!</h3>
-              <p className="text-xs text-zinc-400">
-                Your message has been logged in our system and assigned to the community team.
-              </p>
-            </div>
+        <div className="p-10 rounded-3xl bg-[#0a0204] border border-green-500/30 shadow-2xl space-y-6 text-center animate-in fade-in zoom-in-95">
+          <div className="w-20 h-20 mx-auto rounded-full bg-green-950/80 border border-green-500/40 flex items-center justify-center shadow-[0_0_30px_rgba(34,197,94,0.3)]">
+            <Check className="w-10 h-10 text-green-400" />
           </div>
-
+          <div className="space-y-3">
+            <h3 className="text-2xl font-bold text-white font-display">Message Sent Successfully!</h3>
+            <p className="text-sm text-zinc-400 max-w-sm mx-auto leading-relaxed">
+              Thank you for reaching out. Your message has been safely delivered to our community team.
+            </p>
+          </div>
           <button
             type="button"
             onClick={handleReset}
-            className="mt-4 px-5 py-2.5 text-xs font-bold text-white bg-blue-600 hover:bg-blue-500 rounded-xl transition-colors shadow-md shadow-blue-500/20"
+            className="mt-8 px-8 py-3 text-sm font-bold text-white bg-transparent border border-red-500/50 hover:bg-red-950/50 rounded-full transition-all hover:scale-105 active:scale-95"
           >
             Send Another Message
           </button>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="p-6 sm:p-10 rounded-3xl bg-[#0c101d] border border-white/[0.08] space-y-5 shadow-2xl">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="relative p-1">
+          <div className="absolute inset-0 bg-gradient-to-br from-red-600/20 via-red-900/10 to-transparent blur-xl rounded-3xl pointer-events-none" />
+          <form onSubmit={handleSubmit} className="relative p-8 sm:p-12 rounded-3xl bg-[#0a0204] border border-white/5 space-y-8 shadow-2xl">
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-1.5">
-                Your Name *
+              <label className="block text-sm font-bold tracking-wider text-white mb-4">
+                What would you like to share?
               </label>
-              <input
-                type="text"
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
-                className="w-full px-4 py-2.5 bg-black/50 border border-white/10 rounded-xl text-xs sm:text-sm text-white focus:outline-none focus:border-blue-500"
+              <textarea
+                rows={6}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder="Write your message here..."
+                className="w-full px-5 py-4 bg-[#150508] border border-red-500/30 rounded-2xl text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all resize-none shadow-inner"
               />
-              {errors.userName && <p className="text-xs text-rose-400 mt-1">{errors.userName}</p>}
+              {error && <p className="text-xs text-red-400 mt-2 font-medium flex items-center gap-1.5"><span className="w-1 h-1 rounded-full bg-red-400" />{error}</p>}
             </div>
 
-            <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-1.5">
-                Email Address *
-              </label>
-              <input
-                type="email"
-                value={userEmail}
-                onChange={(e) => setUserEmail(e.target.value)}
-                className="w-full px-4 py-2.5 bg-black/50 border border-white/10 rounded-xl text-xs sm:text-sm text-white focus:outline-none focus:border-blue-500"
-              />
-              {errors.userEmail && <p className="text-xs text-rose-400 mt-1">{errors.userEmail}</p>}
-            </div>
-          </div>
-
-          <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-1.5">
-              Feedback Category
-            </label>
-            <div className="grid grid-cols-3 gap-2">
-              {[
-                { id: 'feature', label: 'Feature Request' },
-                { id: 'bug', label: 'Report Bug' },
-                { id: 'general', label: 'General Praise' }
-              ].map((item) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => setType(item.id)}
-                  className={`py-2 px-3 rounded-xl text-xs font-bold border transition-colors ${
-                    type === item.id
-                      ? 'bg-blue-600/30 text-blue-400 border-blue-500/50'
-                      : 'bg-black/40 text-zinc-400 border-white/5 hover:text-white'
-                  }`}
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-1.5">
-              Subject Line *
-            </label>
-            <input
-              type="text"
-              value={subject}
-              onChange={(e) => setSubject(e.target.value)}
-              placeholder="e.g. Please add Discord community sync"
-              className="w-full px-4 py-2.5 bg-black/50 border border-white/10 rounded-xl text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-blue-500"
-            />
-            {errors.subject && <p className="text-xs text-rose-400 mt-1">{errors.subject}</p>}
-          </div>
-
-          <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-1.5">
-              Detailed Message *
-            </label>
-            <textarea
-              rows={4}
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              placeholder="Tell us what you would love to see or what can be improved..."
-              className="w-full px-4 py-2.5 bg-black/50 border border-white/10 rounded-xl text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-blue-500"
-            />
-            {errors.message && <p className="text-xs text-rose-400 mt-1">{errors.message}</p>}
-          </div>
-
-          <button
-            type="submit"
-            className="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs sm:text-sm shadow-xl shadow-blue-500/25 flex items-center justify-center gap-2 transition-all hover:scale-[1.02] active:scale-95"
-          >
-            <Send className="w-4 h-4" />
-            <span>Send Community Feedback</span>
-          </button>
-        </form>
+            <button
+              type="submit"
+              className="w-full py-4 px-8 rounded-full bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-500 text-white font-bold text-sm shadow-[0_0_20px_rgba(239,68,68,0.4)] flex items-center justify-center gap-3 transition-all hover:scale-[1.02] active:scale-95"
+            >
+              <Send className="w-5 h-5" />
+              <span>Send Message</span>
+            </button>
+          </form>
+        </div>
       )}
     </div>
   );

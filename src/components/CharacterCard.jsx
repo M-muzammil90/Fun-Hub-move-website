@@ -17,12 +17,12 @@ export default function CharacterCard({ character }) {
       className="
         group relative flex flex-col justify-between
         rounded-2xl p-3.5 sm:p-4
-        bg-gradient-to-b from-[#14080b] via-[#0b0c12] to-[#06070a]
-        border border-white/[0.08] hover:border-red-500/70
+        bg-white dark:bg-gradient-to-b dark:from-[#14080b] dark:via-[#0b0c12] dark:to-[#06070a]
+        border border-zinc-200 dark:border-white/[0.08] hover:border-red-500/60 dark:hover:border-red-500/70
         transition-all duration-400 ease-out
         hover:-translate-y-2
-        shadow-[0_6px_24px_rgba(0,0,0,0.6)]
-        hover:shadow-[0_14px_40px_rgba(220,38,38,0.25)]
+        shadow-[0_4px_20px_rgba(225,29,72,0.05)] dark:shadow-[0_6px_24px_rgba(0,0,0,0.6)]
+        hover:shadow-[0_14px_40px_rgba(239,68,68,0.25)] dark:hover:shadow-[0_14px_40px_rgba(220,38,38,0.25)]
         h-full select-none
       "
     >
@@ -30,7 +30,7 @@ export default function CharacterCard({ character }) {
       <div className="absolute inset-x-4 top-0 h-[1px] bg-gradient-to-r from-transparent via-red-500/40 to-transparent opacity-50 group-hover:opacity-100 transition-opacity" />
 
       {/* Character Image / Poster Container */}
-      <div className="relative aspect-[3/3.8] w-full overflow-hidden rounded-xl bg-black mb-3.5 ring-1 ring-white/10 group-hover:ring-red-500/30 transition-all">
+      <div className="relative aspect-[3/3.8] w-full overflow-hidden rounded-xl bg-black mb-3.5 ring-1 ring-black/5 dark:ring-white/10 group-hover:ring-red-500/30 transition-all">
         {image ? (
           <img
             src={image}
@@ -101,12 +101,12 @@ export default function CharacterCard({ character }) {
       <div className="flex-1 flex flex-col justify-between space-y-3">
         <div className="space-y-1.5">
           <div className="flex items-center justify-between gap-2">
-            <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[9.5px] font-black uppercase tracking-wider bg-red-950/60 text-red-400 border border-red-800/40">
+            <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[9.5px] font-black uppercase tracking-wider bg-red-100 dark:bg-red-950/60 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-800/40">
               {character.category || 'Featured'}
             </span>
             {character.powerLevel && (
-              <span className="inline-flex items-center gap-1 text-[10px] font-bold text-zinc-400">
-                <Zap className="w-2.5 h-2.5 text-amber-400" />
+              <span className="inline-flex items-center gap-1 text-[10px] font-bold text-zinc-500 dark:text-zinc-400">
+                <Zap className="w-2.5 h-2.5 text-amber-500 dark:text-amber-400" />
                 <span className="truncate max-w-[80px]">{character.powerLevel}</span>
               </span>
             )}
@@ -114,7 +114,7 @@ export default function CharacterCard({ character }) {
 
           <Link to={characterLink} className="block group/title">
             <h3
-              className="text-base sm:text-lg font-black text-white leading-snug truncate font-display transition-colors duration-200 group-hover/title:text-red-400"
+              className="text-base sm:text-lg font-black text-zinc-900 dark:text-white leading-snug truncate font-display transition-colors duration-200 group-hover/title:text-red-500 dark:group-hover/title:text-red-400"
               title={name}
             >
               {name}
@@ -122,24 +122,24 @@ export default function CharacterCard({ character }) {
           </Link>
 
           {loreSnippet && (
-            <p className="text-xs text-zinc-400 font-medium line-clamp-1 leading-relaxed">
+            <p className="text-xs text-zinc-600 dark:text-zinc-400 font-medium line-clamp-1 leading-relaxed">
               {loreSnippet}
             </p>
           )}
         </div>
 
         {/* Bottom Row / Stats & Classical CTA */}
-        <div className="pt-2.5 border-t border-white/[0.08] flex items-center justify-between">
-          <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.06]">
-            <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
-            <span className="text-xs font-bold text-zinc-200">
+        <div className="pt-2.5 border-t border-zinc-200 dark:border-white/[0.08] flex items-center justify-between">
+          <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-zinc-100 dark:bg-white/[0.04] border border-zinc-200 dark:border-white/[0.06]">
+            <Star className="w-3.5 h-3.5 text-amber-500 dark:text-amber-400 fill-amber-500 dark:fill-amber-400" />
+            <span className="text-xs font-bold text-zinc-700 dark:text-zinc-200">
               {character.rating ? Number(character.rating).toFixed(1) : '4.9'}
             </span>
           </div>
 
           <Link
             to={characterLink}
-            className="group/link inline-flex items-center gap-1.5 text-xs font-bold text-red-400 hover:text-red-300 transition-colors"
+            className="group/link inline-flex items-center gap-1.5 text-xs font-bold text-red-500 dark:text-red-400 hover:text-red-600 dark:hover:text-red-300 transition-colors"
           >
             <span>View Details</span>
             <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform duration-200" />

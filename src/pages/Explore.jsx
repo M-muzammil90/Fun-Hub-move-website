@@ -125,27 +125,27 @@ export default function Explore() {
           <Flame className="w-3.5 h-3.5 fill-current" />
           <span>Fandom Explorer</span>
         </div>
-        <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight font-display">
+        <h1 className="text-3xl sm:text-5xl font-black text-zinc-900 dark:text-white tracking-tight font-display">
           Explore <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-500 to-amber-500">Content & Media</span>
         </h1>
-        <p className="text-xs sm:text-sm text-zinc-400 font-medium">
+        <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 font-medium">
           Discover videos, episodes, convention trailers, wallpapers, and soundtrack releases across all 8 fandom categories.
         </p>
       </div>
 
-      <div className="p-6 rounded-3xl bg-[#0c101d] border border-white/[0.08] space-y-4 shadow-2xl">
+      <div className="p-4 sm:p-6 rounded-3xl bg-white dark:bg-[#0c101d] border border-rose-100/80 dark:border-white/[0.08] space-y-4 shadow-[0_8px_30px_rgba(225,29,72,0.06)] dark:shadow-2xl">
         <form onSubmit={handleSearchSubmit} className="relative flex items-center">
-          <Search className="absolute left-4 w-4 h-4 text-zinc-500" />
+          <Search className="absolute left-3.5 sm:left-4 w-4 h-4 text-zinc-400 dark:text-zinc-500" />
           <input
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search by title, character, creator, tag, or lore topic..."
-            className="w-full pl-11 pr-28 py-3 bg-black/50 border border-white/10 rounded-2xl text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors"
+            placeholder="Search by title, character, tag, or lore topic..."
+            className="w-full pl-10 sm:pl-11 pr-24 sm:pr-28 py-2.5 sm:py-3 bg-zinc-50 dark:bg-black/50 border border-zinc-200 dark:border-white/10 rounded-2xl text-xs sm:text-sm text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none focus:border-red-500 focus:bg-white dark:focus:bg-black/80 transition-colors"
           />
           <button
             type="submit"
-            className="absolute right-2 px-5 py-2 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white rounded-xl text-xs font-bold shadow-md shadow-red-600/30 transition-all"
+            className="absolute right-1.5 sm:right-2 px-3.5 sm:px-5 py-1.5 sm:py-2 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white rounded-xl text-xs font-bold shadow-md shadow-red-600/30 transition-all"
           >
             Search
           </button>
@@ -153,7 +153,7 @@ export default function Explore() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1">
           <div>
-            <label className="block text-[11px] font-bold uppercase tracking-wider text-zinc-400 mb-1.5">
+            <label className="block text-[11px] font-bold uppercase tracking-wider text-zinc-600 dark:text-zinc-400 mb-1.5">
               Category
             </label>
             <select
@@ -162,11 +162,11 @@ export default function Explore() {
                 setSelectedCategory(e.target.value);
                 setCurrentPage(1);
               }}
-              className="w-full px-3.5 py-2.5 bg-black/50 border border-white/10 rounded-xl text-xs text-white focus:outline-none focus:border-red-500"
+              className="w-full px-3.5 py-2.5 bg-zinc-50 dark:bg-black/50 border border-zinc-200 dark:border-white/10 rounded-xl text-xs text-zinc-900 dark:text-white focus:outline-none focus:border-red-500 focus:bg-white dark:focus:bg-black/80 transition-colors"
             >
-              <option value="all">All Categories</option>
+              <option value="all" className="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white">All Categories</option>
               {categories.map((c) => (
-                <option key={c.id} value={c.slug}>
+                <option key={c.id} value={c.slug} className="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white">
                   {c.name}
                 </option>
               ))}
@@ -174,7 +174,7 @@ export default function Explore() {
           </div>
 
           <div>
-            <label className="block text-[11px] font-bold uppercase tracking-wider text-zinc-400 mb-1.5">
+            <label className="block text-[11px] font-bold uppercase tracking-wider text-zinc-600 dark:text-zinc-400 mb-1.5">
               Content Type
             </label>
             <select
@@ -183,19 +183,19 @@ export default function Explore() {
                 setSelectedType(e.target.value);
                 setCurrentPage(1);
               }}
-              className="w-full px-3.5 py-2.5 bg-black/50 border border-white/10 rounded-xl text-xs text-white focus:outline-none focus:border-red-500"
+              className="w-full px-3.5 py-2.5 bg-zinc-50 dark:bg-black/50 border border-zinc-200 dark:border-white/10 rounded-xl text-xs text-zinc-900 dark:text-white focus:outline-none focus:border-red-500 focus:bg-white dark:focus:bg-black/80 transition-colors"
             >
-              <option value="all">All Media Formats</option>
-              <option value="video">Video</option>
-              <option value="trailer">Trailer</option>
-              <option value="article">Article</option>
-              <option value="audio">Audio</option>
-              <option value="image">Image Gallery</option>
+              <option value="all" className="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white">All Media Formats</option>
+              <option value="video" className="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white">Video</option>
+              <option value="trailer" className="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white">Trailer</option>
+              <option value="article" className="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white">Article</option>
+              <option value="audio" className="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white">Audio</option>
+              <option value="image" className="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white">Image Gallery</option>
             </select>
           </div>
 
           <div>
-            <label className="block text-[11px] font-bold uppercase tracking-wider text-zinc-400 mb-1.5">
+            <label className="block text-[11px] font-bold uppercase tracking-wider text-zinc-600 dark:text-zinc-400 mb-1.5">
               Genre
             </label>
             <select
@@ -204,11 +204,11 @@ export default function Explore() {
                 setSelectedGenre(e.target.value);
                 setCurrentPage(1);
               }}
-              className="w-full px-3.5 py-2.5 bg-black/50 border border-white/10 rounded-xl text-xs text-white focus:outline-none focus:border-red-500"
+              className="w-full px-3.5 py-2.5 bg-zinc-50 dark:bg-black/50 border border-zinc-200 dark:border-white/10 rounded-xl text-xs text-zinc-900 dark:text-white focus:outline-none focus:border-red-500 focus:bg-white dark:focus:bg-black/80 transition-colors"
             >
-              <option value="all">All Genres</option>
+              <option value="all" className="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white">All Genres</option>
               {allGenres.map((g) => (
-                <option key={g} value={g}>
+                <option key={g} value={g} className="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white">
                   {g}
                 </option>
               ))}
@@ -216,7 +216,7 @@ export default function Explore() {
           </div>
 
           <div>
-            <label className="block text-[11px] font-bold uppercase tracking-wider text-zinc-400 mb-1.5">
+            <label className="block text-[11px] font-bold uppercase tracking-wider text-zinc-600 dark:text-zinc-400 mb-1.5">
               Sort By
             </label>
             <select
@@ -225,25 +225,25 @@ export default function Explore() {
                 setSortBy(e.target.value);
                 setCurrentPage(1);
               }}
-              className="w-full px-3.5 py-2.5 bg-black/50 border border-white/10 rounded-xl text-xs text-white focus:outline-none focus:border-red-500"
+              className="w-full px-3.5 py-2.5 bg-zinc-50 dark:bg-black/50 border border-zinc-200 dark:border-white/10 rounded-xl text-xs text-zinc-900 dark:text-white focus:outline-none focus:border-red-500 focus:bg-white dark:focus:bg-black/80 transition-colors"
             >
-              <option value="popularity">Popularity (High to Low)</option>
-              <option value="newest">Newest Released</option>
-              <option value="oldest">Oldest Released</option>
-              <option value="title">Alphabetical (A - Z)</option>
+              <option value="popularity" className="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white">Popularity (High to Low)</option>
+              <option value="newest" className="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white">Newest Released</option>
+              <option value="oldest" className="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white">Oldest Released</option>
+              <option value="title" className="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white">Alphabetical (A - Z)</option>
             </select>
           </div>
         </div>
 
         {hasActiveFilters && (
-          <div className="pt-3 flex items-center justify-between border-t border-white/[0.08]">
-            <span className="text-xs text-zinc-400">
-              Showing <strong className="text-white font-mono">{filteredItems.length}</strong> matching results
+          <div className="pt-3 flex flex-wrap items-center justify-between gap-2 border-t border-zinc-100 dark:border-white/[0.08]">
+            <span className="text-xs text-zinc-600 dark:text-zinc-400">
+              Showing <strong className="text-zinc-900 dark:text-white font-mono">{filteredItems.length}</strong> matching results
             </span>
             <button
               type="button"
               onClick={handleResetFilters}
-              className="inline-flex items-center gap-1.5 text-xs text-red-400 hover:text-red-300 font-bold transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 font-bold transition-colors"
             >
               <X className="w-3.5 h-3.5" />
               Reset All Filters

@@ -361,14 +361,14 @@ export default function Home() {
             <div className="p-1.5 rounded-xl bg-red-600/20 border border-red-500/30 text-red-500 shadow-md shadow-red-500/10 shrink-0">
               <Sparkles className="w-4 h-4 text-red-500 fill-red-500/20" />
             </div>
-            <h2 className="text-base sm:text-lg lg:text-xl font-black text-white tracking-tight font-display">
+            <h2 className="text-base sm:text-lg lg:text-xl font-black text-zinc-900 dark:text-white tracking-tight font-display">
               Explore <span className="text-red-500">Fandom Categories</span>
             </h2>
           </div>
 
           <Link
             to="/categories"
-            className="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold text-zinc-400 hover:text-red-400 transition-colors shrink-0"
+            className="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold text-zinc-600 dark:text-zinc-400 hover:text-red-500 dark:hover:text-red-400 transition-colors shrink-0"
           >
             <span>View All</span>
             <ChevronRight className="w-4 h-4" />
@@ -396,15 +396,15 @@ export default function Home() {
               <div className="p-1.5 rounded-xl bg-red-600/20 text-red-500 border border-red-500/30 shrink-0">
                 <Flame className="w-4 h-4 fill-current text-red-500" />
               </div>
-              <h2 className="text-xs sm:text-sm font-black uppercase tracking-wider text-zinc-300 font-display flex items-baseline gap-1.5">
+              <h2 className="text-xs sm:text-sm font-black uppercase tracking-wider text-zinc-800 dark:text-zinc-300 font-display flex items-baseline gap-1.5">
                 <span>Trending /</span>
-                <span className="text-red-500">Popular Content</span>
+                <span className="text-red-600 dark:text-red-500">Popular Content</span>
               </h2>
             </div>
             
             <Link
               to="/explore"
-              className="sm:hidden inline-flex items-center gap-1 text-xs font-bold text-zinc-400 hover:text-red-400 shrink-0 transition-colors"
+              className="sm:hidden inline-flex items-center gap-1 text-xs font-bold text-zinc-600 dark:text-zinc-400 hover:text-red-500 dark:hover:text-red-400 shrink-0 transition-colors"
             >
               <span>View All</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -421,7 +421,7 @@ export default function Home() {
                 className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all shrink-0 whitespace-nowrap ${
                   trendingCategoryFilter === cat
                     ? 'bg-gradient-to-r from-red-600 via-rose-600 to-red-700 text-white shadow-lg shadow-red-600/30 border border-red-400/40'
-                    : 'bg-[#0e1424] text-zinc-400 hover:text-white border border-white/10 hover:bg-[#151f38]'
+                    : 'bg-white dark:bg-[#0e1424] text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white border border-zinc-200 dark:border-white/10 hover:bg-zinc-100 dark:hover:bg-[#151f38]'
                 }`}
               >
                 {cat}
@@ -430,7 +430,7 @@ export default function Home() {
 
             <Link
               to="/explore"
-              className="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 text-xs font-bold text-zinc-300 hover:text-white shrink-0 ml-1 whitespace-nowrap"
+              className="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 text-xs font-bold text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white shrink-0 ml-1 whitespace-nowrap"
             >
               <span>View All</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -457,11 +457,11 @@ export default function Home() {
             <div className="p-1.5 rounded-xl bg-red-600/20 border border-red-500/30 text-red-500 shadow-md shadow-red-500/10 shrink-0">
               <Star className="w-4 h-4 text-red-500 fill-red-500" />
             </div>
-            <h2 className="text-base sm:text-lg lg:text-xl font-black text-white tracking-tight font-display">
+            <h2 className="text-base sm:text-lg lg:text-xl font-black text-zinc-900 dark:text-white tracking-tight font-display">
               Featured <span className="text-red-500">Characters</span>
             </h2>
           </div>
-          <Link to="/characters" className="inline-flex items-center gap-1 text-xs font-bold text-zinc-400 hover:text-red-400 transition-colors shrink-0">
+          <Link to="/characters" className="inline-flex items-center gap-1 text-xs font-bold text-zinc-600 dark:text-zinc-400 hover:text-red-500 dark:hover:text-red-400 transition-colors shrink-0">
             <span>View All</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
@@ -484,14 +484,14 @@ export default function Home() {
             <div className="p-1.5 rounded-xl bg-red-600/20 border border-red-500/30 text-red-500 shadow-md shadow-red-500/10 shrink-0">
               <Play className="w-4 h-4 text-red-500 fill-current" />
             </div>
-            <h2 className="text-base sm:text-lg lg:text-xl font-black text-white tracking-tight font-display">
+            <h2 className="text-base sm:text-lg lg:text-xl font-black text-zinc-900 dark:text-white tracking-tight font-display">
               Latest <span className="text-red-500">Videos & Trailers</span>
             </h2>
           </div>
 
           <Link
             to="/media"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-zinc-400 hover:text-red-400 transition-colors shrink-0"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-zinc-600 dark:text-zinc-400 hover:text-red-500 dark:hover:text-red-400 transition-colors shrink-0"
           >
             <span>View All</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -508,10 +508,10 @@ export default function Home() {
                   url: 'https://www.w3schools.com/html/mov_bbb.mp4'
                 })
               }
-              className="group cursor-pointer rounded-2xl overflow-hidden border border-white/[0.07] bg-gradient-to-b from-[#0e1220] to-[#090d18] hover:border-red-500/40 transition-all duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.5)] hover:shadow-[0_8px_40px_rgba(239,68,68,0.15)] hover:-translate-y-1.5"
+              className="group cursor-pointer rounded-2xl overflow-hidden border border-zinc-200 dark:border-white/[0.07] bg-white dark:bg-gradient-to-b dark:from-[#0e1220] dark:to-[#090d18] hover:border-red-500/60 dark:hover:border-red-500/40 transition-all duration-300 shadow-[0_4px_20px_rgba(225,29,72,0.05)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.5)] hover:shadow-[0_14px_40px_rgba(239,68,68,0.25)] dark:hover:shadow-[0_8px_40px_rgba(239,68,68,0.18)]"
             >
               {/* Thumbnail */}
-              <div className="relative aspect-video w-full overflow-hidden bg-black">
+              <div className="relative aspect-video w-full overflow-hidden bg-black ring-1 ring-black/5 dark:ring-transparent">
                 <img
                   src={vid.thumbnail}
                   alt={vid.title}
@@ -520,7 +520,7 @@ export default function Home() {
                 />
 
                 {/* Dark gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
 
                 {/* Category badge - top left */}
                 <span className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-full bg-red-600/90 backdrop-blur-md text-[9px] font-black uppercase tracking-widest text-white shadow-md shadow-red-900/40 border border-red-400/30">
@@ -533,7 +533,7 @@ export default function Home() {
                 </span>
 
                 {/* Centered animated play button */}
-                <div className="absolute inset-0 flex items-center justify-center">
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                   <div className="relative">
                     {/* Pulse ring */}
                     <div className="absolute inset-0 rounded-full bg-red-500/30 scale-125 group-hover:scale-150 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm" />
@@ -546,22 +546,22 @@ export default function Home() {
 
               {/* Info bar */}
               <div className="p-4 space-y-2.5">
-                <h4 className="text-sm font-bold text-white group-hover:text-red-400 transition-colors duration-200 line-clamp-1 font-display leading-snug">
+                <h4 className="text-sm font-bold text-zinc-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-200 line-clamp-1 font-display leading-snug">
                   {vid.title}
                 </h4>
 
                 <div className="flex items-center justify-between">
                   {/* Views pill */}
-                  <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-white/[0.06] border border-white/10">
-                    <svg className="w-3 h-3 text-zinc-400" fill="currentColor" viewBox="0 0 20 20">
+                  <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-white/[0.06] border border-zinc-200 dark:border-white/10">
+                    <svg className="w-3 h-3 text-zinc-500 dark:text-zinc-400" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
                       <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-[10px] font-semibold text-zinc-400">{vid.views}</span>
+                    <span className="text-[10px] font-semibold text-zinc-600 dark:text-zinc-400">{vid.views}</span>
                   </div>
 
                   {/* Watch button */}
-                  <span className="inline-flex items-center gap-1 text-[10px] font-bold text-red-400 group-hover:text-red-300 transition-colors">
+                  <span className="inline-flex items-center gap-1 text-[10px] font-bold text-red-500 dark:text-red-400 group-hover:text-red-600 dark:group-hover:text-red-300 transition-colors">
                     Watch
                     <svg className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
@@ -587,7 +587,7 @@ export default function Home() {
               <div className="p-1.5 rounded-xl bg-red-600/20 border border-red-500/30 text-red-500 shadow-md shadow-red-500/10 shrink-0">
                 <Calendar className="w-4 h-4 text-red-500" />
               </div>
-              <h2 className="text-base sm:text-lg lg:text-xl font-black text-white tracking-tight font-display flex items-baseline gap-1.5">
+              <h2 className="text-base sm:text-lg lg:text-xl font-black text-zinc-900 dark:text-white tracking-tight font-display flex items-baseline gap-1.5">
                 <span>Upcoming</span>
                 <span className="text-red-500">Releases</span>
               </h2>
@@ -595,7 +595,7 @@ export default function Home() {
 
             <Link
               to="/explore"
-              className="sm:hidden inline-flex items-center gap-1 text-xs font-bold text-zinc-300 hover:text-red-400 shrink-0 transition-colors"
+              className="sm:hidden inline-flex items-center gap-1 text-xs font-bold text-zinc-600 dark:text-zinc-300 hover:text-red-500 dark:hover:text-red-400 shrink-0 transition-colors"
             >
               <span>View All</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -611,7 +611,7 @@ export default function Home() {
                 className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all shrink-0 whitespace-nowrap cursor-pointer ${
                   upcomingCategoryFilter === cat
                     ? 'bg-gradient-to-r from-red-600 via-rose-600 to-red-700 text-white shadow-md shadow-red-600/30 border border-red-400/40'
-                    : 'bg-[#0a0f1d] text-zinc-400 hover:text-white border border-white/10 hover:bg-[#121a30]'
+                    : 'bg-white dark:bg-[#0a0f1d] text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white border border-zinc-200 dark:border-white/10 hover:bg-zinc-100 dark:hover:bg-[#121a30]'
                 }`}
               >
                 {cat}
@@ -620,7 +620,7 @@ export default function Home() {
 
             <Link
               to="/explore"
-              className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 text-xs font-bold text-zinc-300 hover:text-red-400 shrink-0 ml-1 transition-colors whitespace-nowrap"
+              className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 text-xs font-bold text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-red-400 shrink-0 ml-1 transition-colors whitespace-nowrap"
             >
               <span>View All</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -649,17 +649,17 @@ export default function Home() {
               <Ticket className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
             <div className="space-y-1">
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-red-600/20 border border-red-500/40 text-[10px] font-black uppercase tracking-wider text-red-400">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-red-600/20 border border-red-500/40 text-[10px] font-black uppercase tracking-wider text-red-600 dark:text-red-400">
                 <Flame className="w-3 h-3 text-red-500" />
                 <span>Live Fandom Summits</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight font-display flex items-baseline gap-2">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-zinc-900 dark:text-white tracking-tight font-display flex items-baseline gap-2">
                 <span>Fandom</span>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-400 to-white drop-shadow-[0_0_25px_rgba(239,68,68,0.6)]">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-rose-500 to-red-500 dark:from-red-500 dark:via-rose-400 dark:to-white drop-shadow-[0_0_10px_rgba(239,68,68,0.3)] dark:drop-shadow-[0_0_25px_rgba(239,68,68,0.6)]">
                   Events
                 </span>
               </h2>
-              <p className="text-xs sm:text-sm text-zinc-300 font-medium">
+              <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 font-medium">
                 Meet legendary creators, participate in cosplay championships & experience live fandom summits!
               </p>
             </div>

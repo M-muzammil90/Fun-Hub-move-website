@@ -74,7 +74,7 @@ export default function Merchandise() {
                 className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs font-bold transition-all shrink-0 whitespace-nowrap ${
                   selectedCategory === cat
                     ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-md shadow-red-600/30'
-                    : 'bg-black/40 text-zinc-400 hover:text-white border border-white/10 hover:border-red-500/30'
+                    : 'bg-white dark:bg-black/40 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white border border-zinc-200 dark:border-white/10 hover:border-red-500/30'
                 }`}
               >
                 {cat}
@@ -83,13 +83,13 @@ export default function Merchandise() {
           </div>
 
           <div className="relative w-full sm:w-64 shrink-0">
-            <Search className="absolute left-3.5 top-2.5 w-4 h-4 text-zinc-500" />
+            <Search className="absolute left-3.5 top-2.5 w-4 h-4 text-zinc-400 dark:text-zinc-500" />
             <input
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search gear, statues, hoodies..."
-              className="w-full pl-10 pr-4 py-2 bg-black/50 border border-white/10 rounded-xl text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors"
+              className="w-full pl-10 pr-4 py-2 bg-white dark:bg-black/50 border border-zinc-200 dark:border-white/10 rounded-xl text-xs text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors shadow-sm dark:shadow-none"
             />
           </div>
         </div>
@@ -111,33 +111,33 @@ export default function Merchandise() {
         title="Item Added to Cart"
       >
         <div className="space-y-4 text-xs">
-          <div className="flex items-center gap-3 p-3 rounded-2xl bg-[#090d16] border border-[#1b263e]">
+          <div className="flex items-center gap-3 p-3 rounded-2xl bg-zinc-50 dark:bg-[#090d16] border border-zinc-200 dark:border-[#1b263e]">
             <img
               src={cartModalItem?.image}
               alt={cartModalItem?.title || cartModalItem?.name}
               className="w-14 h-14 rounded-xl object-cover"
             />
             <div>
-              <h4 className="font-bold text-white text-sm">
+              <h4 className="font-bold text-zinc-900 dark:text-white text-sm">
                 {cartModalItem?.title || cartModalItem?.name}
               </h4>
-              <p className="text-blue-400 font-mono font-bold">
+              <p className="text-red-600 dark:text-red-400 font-mono font-bold">
                 {typeof cartModalItem?.price === 'number'
                   ? `$${cartModalItem?.price.toFixed(2)}`
                   : cartModalItem?.price}
               </p>
-              <span className="text-[10px] text-emerald-400 flex items-center gap-1 mt-0.5">
+              <span className="text-[10px] text-emerald-600 dark:text-emerald-400 flex items-center gap-1 mt-0.5">
                 <Check className="w-3 h-3" />
                 Reserved for checkout
               </span>
             </div>
           </div>
 
-          <div className="flex justify-end gap-2 pt-2 border-t border-[#1b263e]">
+          <div className="flex justify-end gap-2 pt-2 border-t border-zinc-100 dark:border-[#1b263e]">
             <button
               type="button"
               onClick={() => setCartModalItem(null)}
-              className="px-4 py-2 rounded-xl border border-[#22304d] text-zinc-300 hover:text-white"
+              className="px-4 py-2 rounded-xl border border-zinc-200 dark:border-[#22304d] text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:text-white"
             >
               Continue Browsing
             </button>
@@ -145,7 +145,7 @@ export default function Merchandise() {
               href={cartModalItem?.buyUrl || 'https://store.crunchyroll.com'}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold shadow-md"
+              className="px-5 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold shadow-md shadow-red-600/30 transition-all"
             >
               Proceed to Checkout
             </a>

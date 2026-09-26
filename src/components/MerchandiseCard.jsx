@@ -7,10 +7,10 @@ export default function MerchandiseCard({ item, onAddToCart }) {
   const displayPrice = typeof item.price === 'number' ? `$${item.price.toFixed(2)}` : item.price;
 
   return (
-    <div className="group rounded-2xl overflow-hidden border border-white/[0.07] bg-gradient-to-b from-[#0e1018] to-[#080b12] hover:border-red-500/40 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_8px_40px_rgba(239,68,68,0.18)] flex flex-col justify-between">
+    <div className="group rounded-2xl overflow-hidden border border-zinc-200/80 dark:border-white/[0.07] bg-white dark:bg-gradient-to-b dark:from-[#0e1018] dark:to-[#080b12] hover:border-red-500/40 transition-all duration-300 hover:-translate-y-1.5 shadow-[0_4px_20px_rgba(225,29,72,0.05)] dark:shadow-none hover:shadow-[0_12px_36px_rgba(220,38,38,0.18)] dark:hover:shadow-[0_8px_40px_rgba(239,68,68,0.18)] flex flex-col justify-between">
 
       {/* Product Image */}
-      <div className="relative aspect-square w-full overflow-hidden bg-[#060810]">
+      <div className="relative aspect-square w-full overflow-hidden bg-zinc-100 dark:bg-[#060810]">
         <Link to={`/merchandise/${item.slug}`} className="block w-full h-full">
           <img
             src={item.image}
@@ -40,21 +40,21 @@ export default function MerchandiseCard({ item, onAddToCart }) {
       </div>
 
       {/* Info */}
-      <div className="p-4 space-y-3">
+      <div className="p-3 sm:p-4 space-y-3">
         <div className="space-y-1">
-          <span className="text-[10px] font-bold text-red-400 uppercase tracking-widest">
+          <span className="text-[10px] font-bold text-red-600 dark:text-red-400 uppercase tracking-widest">
             {item.category}
           </span>
           <Link to={`/merchandise/${item.slug}`} className="block">
-            <h4 className="text-sm font-bold text-white group-hover:text-red-400 transition-colors duration-200 line-clamp-1 font-display">
+            <h4 className="text-sm font-bold text-zinc-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-200 line-clamp-1 font-display">
               {displayTitle}
             </h4>
           </Link>
         </div>
 
-        <div className="flex items-center justify-between pt-1 border-t border-white/[0.06]">
+        <div className="flex items-center justify-between pt-1 border-t border-zinc-100 dark:border-white/[0.06]">
           <div className="space-y-0.5">
-            <span className="text-base font-black text-white font-mono">{displayPrice}</span>
+            <span className="text-base font-black text-zinc-900 dark:text-white font-mono">{displayPrice}</span>
           </div>
 
           <button

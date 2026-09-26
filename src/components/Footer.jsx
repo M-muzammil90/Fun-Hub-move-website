@@ -36,46 +36,46 @@ export default function Footer() {
 
           <div>
             <h5 className="text-xs font-bold uppercase tracking-wider text-zinc-200 mb-3">
-              Explore Fandoms
+              Quick Links
             </h5>
             <ul className="space-y-2">
               <li>
-                <Link to="/category/anime" className="hover:text-white transition-colors">Anime Spotlights</Link>
+                <Link to="/" className="hover:text-red-400 transition-colors">Home</Link>
               </li>
               <li>
-                <Link to="/category/gaming" className="hover:text-white transition-colors">Gaming & Esports</Link>
+                <Link to="/explore" className="hover:text-red-400 transition-colors">Explore</Link>
               </li>
               <li>
-                <Link to="/category/movies" className="hover:text-white transition-colors">Cinematic Premieres</Link>
+                <Link to="/categories" className="hover:text-red-400 transition-colors">Categories</Link>
               </li>
               <li>
-                <Link to="/category/k-pop" className="hover:text-white transition-colors">K-Pop Fan Clubs</Link>
+                <Link to="/media" className="hover:text-red-400 transition-colors">Media</Link>
               </li>
               <li>
-                <Link to="/category/cosplay" className="hover:text-white transition-colors">Cosplay & Crafting</Link>
+                <Link to="/about" className="hover:text-red-400 transition-colors">About Us</Link>
               </li>
             </ul>
           </div>
 
           <div>
             <h5 className="text-xs font-bold uppercase tracking-wider text-zinc-200 mb-3">
-              Community & Events
+              Fandom Universe
             </h5>
             <ul className="space-y-2">
               <li>
-                <Link to="/characters" className="hover:text-white transition-colors">Character Codex</Link>
+                <Link to="/characters" className="hover:text-red-400 transition-colors">Characters</Link>
               </li>
               <li>
-                <Link to="/merchandise" className="hover:text-white transition-colors">Official Merchandise Showcase</Link>
+                <Link to="/merchandise" className="hover:text-red-400 transition-colors">Merchandise</Link>
               </li>
               <li>
-                <Link to="/events" className="hover:text-white transition-colors">Global Conventions & Meetups</Link>
+                <Link to="/events" className="hover:text-red-400 transition-colors">Events</Link>
               </li>
               <li>
-                <Link to="/fan-creations" className="hover:text-white transition-colors">Approved Fan Creations</Link>
+                <Link to="/fan-creations" className="hover:text-red-400 transition-colors">Fan Articles</Link>
               </li>
               <li>
-                <Link to="/bookmarks" className="hover:text-white transition-colors">Saved Watchlist</Link>
+                <Link to="/bookmarks" className="hover:text-red-400 transition-colors">Bookmarks</Link>
               </li>
             </ul>
           </div>
@@ -86,17 +86,14 @@ export default function Footer() {
             </h5>
             <ul className="space-y-2">
               <li>
-                <Link to="/about" className="hover:text-white transition-colors">About Fan Hub Plus</Link>
+                <Link to="/feedback" className="hover:text-red-400 transition-colors">Feedback & Support</Link>
               </li>
               <li>
-                <Link to="/feedback" className="hover:text-white transition-colors">Submit Bug / Query</Link>
+                <Link to="/dashboard" className="hover:text-red-400 transition-colors">Member Dashboard</Link>
               </li>
               <li>
-                <Link to="/dashboard" className="hover:text-white transition-colors">Member Dashboard</Link>
-              </li>
-              <li>
-                <Link to="/admin" className="hover:text-white transition-colors flex items-center gap-1">
-                  <Shield className="w-3 h-3 text-rose-500" />
+                <Link to="/admin" className="hover:text-red-400 transition-colors flex items-center gap-1">
+                  <Shield className="w-3 h-3 text-red-500" />
                   <span>Admin Management</span>
                 </Link>
               </li>

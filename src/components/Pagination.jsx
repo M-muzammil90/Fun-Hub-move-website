@@ -10,7 +10,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }) {
         type="button"
         disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
-        className="p-2 rounded-xl border border-zinc-800 bg-zinc-900/80 text-zinc-400 hover:text-white hover:bg-zinc-800 disabled:opacity-30 disabled:pointer-events-none transition-colors"
+        className="p-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/80 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-50 dark:hover:bg-zinc-800 disabled:opacity-30 disabled:pointer-events-none transition-colors shadow-sm dark:shadow-none"
         aria-label="Previous page"
       >
         <ChevronLeft className="w-4 h-4" />
@@ -26,8 +26,8 @@ export default function Pagination({ currentPage, totalPages, onPageChange }) {
             onClick={() => onPageChange(pageNum)}
             className={`w-9 h-9 rounded-xl text-xs font-semibold transition-all ${
               isActive
-                ? 'bg-rose-600 text-white shadow-md shadow-rose-950/40'
-                : 'border border-zinc-800 bg-zinc-900/80 text-zinc-400 hover:text-white hover:bg-zinc-800'
+                ? 'bg-rose-600 text-white shadow-md shadow-rose-600/30'
+                : 'border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/80 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-50 dark:hover:bg-zinc-800 shadow-sm dark:shadow-none'
             }`}
           >
             {pageNum}
@@ -39,7 +39,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }) {
         type="button"
         disabled={currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}
-        className="p-2 rounded-xl border border-zinc-800 bg-zinc-900/80 text-zinc-400 hover:text-white hover:bg-zinc-800 disabled:opacity-30 disabled:pointer-events-none transition-colors"
+        className="p-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/80 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-50 dark:hover:bg-zinc-800 disabled:opacity-30 disabled:pointer-events-none transition-colors shadow-sm dark:shadow-none"
         aria-label="Next page"
       >
         <ChevronRight className="w-4 h-4" />
